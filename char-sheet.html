@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Sheet</title>
+    <style>
+        .flex {
+            display: flex;
+        }
+        .flex-row {
+            flex-direction: row;
+        }
+        .flex-col {
+            flex-direction: column;
+        }
+        .border {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div>Character name: <span id="name">__________</span></div>
+    <div>Race: <span id="race">__________</span></div>
+    <div>Master Level: <span id="masterLevel"></span></div>
+    <div>
+        <div class="flex" style="background-color: brown; padding: 5px">
+            <div style="border: 1px solid;">Physique</div>
+            <div style="border: 1px solid; align-items: center;">0</div>
+            <div class="flex-col">
+                <div class="border">0</div>
+                <div class="border">0</div>
+            </div>
+            <div></div>
+        </div>
+    </div>
+</body>
+</html>
