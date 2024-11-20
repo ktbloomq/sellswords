@@ -7,6 +7,10 @@
     <style>
         .flex {
             display: flex;
+            justify-content: space-between;
+        }
+        .flex-auto {
+            flex: 1 1 auto;
         }
         .flex-row {
             flex-direction: row;
@@ -14,8 +18,27 @@
         .flex-col {
             flex-direction: column;
         }
-        .border {
+        .box {
             border: 1px solid;
+            margin: .25rem auto .25rem auto;
+            padding: 0 .5rem 0 .5rem;
+            width:min-content;
+            min-width: 1rem;
+            min-height: 2rem;
+            background-color: white;
+        }
+        .text-box {
+            border: 1px solid;
+            margin: 2px auto 2px auto;
+            padding: 2px;
+            width:min-content;
+            background-color: white;
+        }
+        #attributes {
+            display: grid;
+            grid-template-columns: repeat(7,1fr);
+            text-align: center; 
+            align-items: center;
         }
     </style>
 </head>
@@ -24,14 +47,101 @@
     <div>Race: <span id="race">__________</span></div>
     <div>Master Level: <span id="masterLevel"></span></div>
     <div>
-        <div class="flex" style="background-color: brown; padding: 5px">
-            <div style="border: 1px solid;">Physique</div>
-            <div style="border: 1px solid; align-items: center;">0</div>
-            <div class="flex-col">
-                <div class="border">0</div>
-                <div class="border">0</div>
+        <div id="attributes">
+            <!-- Title Row -->
+            <div>Attribute</div>
+            <div>Attribute Bonus</div>
+            <div>Skill</div>
+            <div>Skill Bonus</div>
+            <div>Injury</div>
+            <div>Specialization</div>
+            <div>Injury</div>
+            <!-- Row -->
+            <div><div class="text-box">Phisique</div></div>
+            <div><div class="box"></div></div>
+            <div>
+                <div class="text-box">Intimidation</div>
+                <div class="text-box">Strength</div>
             </div>
-            <div></div>
+            <div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div><div class="box"></div></div>
+            <div><div class="box"></div></div>
+            <!-- Row -->
+            <div><div class="text-box">Precision</div></div>
+            <div><div class="box"></div></div>
+            <div>
+                <div class="text-box">Pickpocket</div>
+                <div class="text-box">Hide</div>
+            </div>
+            <div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div><div class="box"></div></div>
+            <div><div class="box"></div></div>
+            <!-- Row -->
+            <div><div class="text-box">Intuition</div></div>
+            <div><div class="box"></div></div>
+            <div>
+                <div class="text-box">Intimidation</div>
+                <div class="text-box">Strength</div>
+            </div>
+            <div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div><div class="box"></div></div>
+            <div><div class="box"></div></div>
+            <!-- Row -->
+            <div><div class="text-box">Phisique</div></div>
+            <div><div class="box"></div></div>
+            <div>
+                <div class="text-box">Intimidation</div>
+                <div class="text-box">Strength</div>
+            </div>
+            <div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div><div class="box"></div></div>
+            <div><div class="box"></div></div>
+            <!-- Row -->
+            <div><div class="text-box">Phisique</div></div>
+            <div><div class="box"></div></div>
+            <div>
+                <div class="text-box">Intimidation</div>
+                <div class="text-box">Strength</div>
+            </div>
+            <div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div><div class="box"></div></div>
+            <div><div class="box"></div></div>
+        </div>
         </div>
     </div>
 </body>
