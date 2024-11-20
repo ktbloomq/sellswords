@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Sheet</title>
     <style>
+        :root {
+            --orange: LightSalmon;
+            --green:LightGreen;
+            --blue:LightSkyBlue;
+            /* --orange: coral; */
+        }
         .flex {
             display: flex;
             justify-content: space-between;
@@ -37,8 +43,11 @@
         #attributes {
             display: grid;
             grid-template-columns: repeat(7,1fr);
+            grid-auto-rows: max-content;
             text-align: center; 
-            align-items: center;
+        }
+        #attributes > div {
+            align-content: center;
         }
     </style>
 </head>
@@ -57,90 +66,107 @@
             <div>Specialization</div>
             <div>Injury</div>
             <!-- Row -->
-            <div><div class="text-box">Phisique</div></div>
-            <div><div class="box"></div></div>
-            <div>
+            <div style="background-color: var(--orange);"><div class="text-box">Phisique</div></div>
+            <div style="background-color: var(--orange);"><div class="box"></div></div>
+            <div style="background-color: var(--orange);">
                 <div class="text-box">Intimidation</div>
                 <div class="text-box">Strength</div>
             </div>
-            <div>
+            <div style="background-color: var(--orange);">
                 <div class="box"></div>
                 <div class="box"></div>
             </div>
-            <div>
+            <div style="background-color: var(--orange);">
                 <div class="box"></div>
                 <div class="box"></div>
             </div>
-            <div><div class="box"></div></div>
-            <div><div class="box"></div></div>
+            <div style="background-color: var(--orange);"><div class="box"></div></div>
+            <div style="background-color: var(--orange);"><div class="box"></div></div>
             <!-- Row -->
-            <div><div class="text-box">Precision</div></div>
-            <div><div class="box"></div></div>
-            <div>
+            <div style="background-color: var(--orange);"><div class="text-box">Precision</div></div>
+            <div style="background-color: var(--orange);"><div class="box"></div></div>
+            <div style="background-color: var(--orange);">
                 <div class="text-box">Pickpocket</div>
                 <div class="text-box">Hide</div>
             </div>
-            <div>
+            <div style="background-color: var(--orange);">
                 <div class="box"></div>
                 <div class="box"></div>
             </div>
-            <div>
+            <div style="background-color: var(--orange);">
                 <div class="box"></div>
                 <div class="box"></div>
             </div>
-            <div><div class="box"></div></div>
-            <div><div class="box"></div></div>
+            <div style="background-color: var(--orange);"><div class="box"></div></div>
+            <div style="background-color: var(--orange);"><div class="box"></div></div>
             <!-- Row -->
-            <div><div class="text-box">Intuition</div></div>
-            <div><div class="box"></div></div>
-            <div>
-                <div class="text-box">Intimidation</div>
-                <div class="text-box">Strength</div>
+            <div style="background-color: var(--green);"><div class="text-box">Intuition</div></div>
+            <div style="background-color: var(--green);"><div class="box"></div></div>
+            <div style="background-color: var(--green);">
+                <div class="text-box">Blend</div>
+                <div class="text-box">Diplomacy</div>
             </div>
-            <div>
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div>
+            <div style="background-color: var(--green);">
                 <div class="box"></div>
                 <div class="box"></div>
             </div>
-            <div><div class="box"></div></div>
-            <div><div class="box"></div></div>
+            <div style="background-color: var(--green);">
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div style="background-color: var(--green);"><div class="box"></div></div>
+            <div style="background-color: var(--green);"><div class="box"></div></div>
             <!-- Row -->
-            <div><div class="text-box">Phisique</div></div>
-            <div><div class="box"></div></div>
-            <div>
-                <div class="text-box">Intimidation</div>
-                <div class="text-box">Strength</div>
+            <div style="background-color: var(--green);"><div class="text-box">Smarts</div></div>
+            <div style="background-color: var(--green);"><div class="box"></div></div>
+            <div style="background-color: var(--green);">
+                <div class="text-box">Focus</div>
+                <div class="text-box">Tinkering</div>
             </div>
-            <div>
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div>
+            <div style="background-color: var(--green);">
                 <div class="box"></div>
                 <div class="box"></div>
             </div>
-            <div><div class="box"></div></div>
-            <div><div class="box"></div></div>
+            <div style="background-color: var(--green);">
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div style="background-color: var(--green);"><div class="box"></div></div>
+            <div style="background-color: var(--green);"><div class="box"></div></div>
             <!-- Row -->
-            <div><div class="text-box">Phisique</div></div>
-            <div><div class="box"></div></div>
-            <div>
-                <div class="text-box">Intimidation</div>
-                <div class="text-box">Strength</div>
+            <div style="background-color: var(--blue);"><div class="text-box">Wit</div></div>
+            <div style="background-color: var(--blue);"><div class="box"></div></div>
+            <div style="background-color: var(--blue);">
+                <div class="text-box">Business</div>
+                <div class="text-box">Bluff</div>
             </div>
-            <div>
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div>
+            <div style="background-color: var(--blue);">
                 <div class="box"></div>
                 <div class="box"></div>
             </div>
-            <div><div class="box"></div></div>
-            <div><div class="box"></div></div>
+            <div style="background-color: var(--blue);">
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div style="background-color: var(--blue);"><div class="box"></div></div>
+            <div style="background-color: var(--blue);"><div class="box"></div></div>
+            <!-- Row -->
+            <div style="background-color: var(--blue);"><div class="text-box">Soul</div></div>
+            <div style="background-color: var(--blue);"><div class="box"></div></div>
+            <div style="background-color: var(--blue);">
+                <div class="text-box">Read Person</div>
+                <div class="text-box">Alchemy</div>
+            </div>
+            <div style="background-color: var(--blue);">
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div style="background-color: var(--blue);">
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div style="background-color: var(--blue);"><div class="box"></div></div>
+            <div style="background-color: var(--blue);"><div class="box"></div></div>
         </div>
         </div>
     </div>
