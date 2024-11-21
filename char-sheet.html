@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Sheet</title>
+    <script src="char-sheet.js"></script>
     <style>
         :root {
             --orange: LightSalmon;
-            --green:LightGreen;
-            --blue:LightSkyBlue;
+            --green: LightGreen;
+            --blue: LightSkyBlue;
             /* --orange: coral; */
         }
+
         .flex {
             display: flex;
             justify-content: space-between;
         }
-        .flex-auto {
-            flex: 1 1 auto;
+
+        .flex-none {
+            flex: none;
         }
+
         .flex-row {
             flex-direction: row;
         }
+
         .flex-col {
             flex-direction: column;
         }
+
         .box {
             border: 1px solid;
             margin: .25rem auto .25rem auto;
             padding: 0 .5rem 0 .5rem;
-            width:min-content;
+            width: min-content;
             min-width: 1rem;
             min-height: 2rem;
             background-color: white;
         }
+
         .text-box {
             border: 1px solid;
             margin: 2px auto 2px auto;
             padding: 2px;
-            width:min-content;
+            width: min-content;
             background-color: white;
         }
+
         #attributes {
             display: grid;
-            grid-template-columns: repeat(7,1fr);
+            grid-template-columns: repeat(8, 1fr);
             grid-auto-rows: max-content;
-            text-align: center; 
+            text-align: center;
         }
+
         #attributes div {
             display: flex;
             flex-direction: column;
@@ -54,124 +64,180 @@
         }
     </style>
 </head>
+
 <body>
     <div>Character name: <span id="name">__________</span></div>
     <div>Race: <span id="race">__________</span></div>
-    <div>Master Level: <span id="masterLevel"></span></div>
-    <div>
-        <div id="attributes">
-            <!-- Title Row -->
-            <div>Attribute</div>
-            <div>Attribute Bonus</div>
-            <div>Skill</div>
-            <div>Skill Bonus</div>
-            <div>Injury</div>
-            <div>Specialization</div>
-            <div>Injury</div>
-            <!-- Row -->
-            <div style="background-color: var(--orange);"><div class="text-box">Phisique</div></div>
-            <div style="background-color: var(--orange);"><div class="box"></div></div>
-            <div style="background-color: var(--orange);">
-                <div class="text-box">Intimidation</div>
-                <div class="text-box">Strength</div>
-            </div>
-            <div style="background-color: var(--orange);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--orange);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--orange);"><div class="box"></div></div>
-            <div style="background-color: var(--orange);"><div class="box"></div></div>
-            <!-- Row -->
-            <div style="background-color: var(--orange);"><div class="text-box">Precision</div></div>
-            <div style="background-color: var(--orange);"><div class="box"></div></div>
-            <div style="background-color: var(--orange);">
-                <div class="text-box">Pickpocket</div>
-                <div class="text-box">Hide</div>
-            </div>
-            <div style="background-color: var(--orange);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--orange);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--orange);"><div class="box"></div></div>
-            <div style="background-color: var(--orange);"><div class="box"></div></div>
-            <!-- Row -->
-            <div style="background-color: var(--green);"><div class="text-box">Intuition</div></div>
-            <div style="background-color: var(--green);"><div class="box"></div></div>
-            <div style="background-color: var(--green);">
-                <div class="text-box">Blend</div>
-                <div class="text-box">Diplomacy</div>
-            </div>
-            <div style="background-color: var(--green);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--green);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--green);"><div class="box"></div></div>
-            <div style="background-color: var(--green);"><div class="box"></div></div>
-            <!-- Row -->
-            <div style="background-color: var(--green);"><div class="text-box">Smarts</div></div>
-            <div style="background-color: var(--green);"><div class="box"></div></div>
-            <div style="background-color: var(--green);">
-                <div class="text-box">Focus</div>
-                <div class="text-box">Tinkering</div>
-            </div>
-            <div style="background-color: var(--green);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--green);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--green);"><div class="box"></div></div>
-            <div style="background-color: var(--green);"><div class="box"></div></div>
-            <!-- Row -->
-            <div style="background-color: var(--blue);"><div class="text-box">Wit</div></div>
-            <div style="background-color: var(--blue);"><div class="box"></div></div>
-            <div style="background-color: var(--blue);">
-                <div class="text-box">Business</div>
-                <div class="text-box">Bluff</div>
-            </div>
-            <div style="background-color: var(--blue);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--blue);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--blue);"><div class="box"></div></div>
-            <div style="background-color: var(--blue);"><div class="box"></div></div>
-            <!-- Row -->
-            <div style="background-color: var(--blue);"><div class="text-box">Soul</div></div>
-            <div style="background-color: var(--blue);"><div class="box"></div></div>
-            <div style="background-color: var(--blue);">
-                <div class="text-box">Read Person</div>
-                <div class="text-box">Alchemy</div>
-            </div>
-            <div style="background-color: var(--blue);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--blue);">
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div style="background-color: var(--blue);"><div class="box"></div></div>
-            <div style="background-color: var(--blue);"><div class="box"></div></div>
+    <div>Master Level: <span id="master-level"></span></div>
+    <div id="attributes">
+        <!-- Title Row -->
+        <div>Attribute</div>
+        <div>Attribute Bonus</div>
+        <div>Skill</div>
+        <div>Skill Bonus</div>
+        <div>Injury</div>
+        <div>Specialization</div>
+        <div>Injury</div>
+        <div>Pools</div>
+        <!-- Row -->
+        <div style="background-color: var(--orange);">
+            <div class="text-box">Phisique</div>
         </div>
+        <div style="background-color: var(--orange);">
+            <div id="physique-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--orange);">
+            <div class="text-box">Intimidation</div>
+            <div class="text-box">Strength</div>
+        </div>
+        <div style="background-color: var(--orange);">
+            <div id="intimidation-bonus" class="box"></div>
+            <div id="strength-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--orange);">
+            <div id="intimidation-injury" class="box"></div>
+            <div id="strength-injury" class="box"></div>
+        </div>
+        <div style="background-color: var(--orange);">
+            <div id="physique-specialization" class="box"></div>
+        </div>
+        <div style="background-color: var(--orange);">
+            <div id="physique-injury" class="box"></div>
+        </div>
+        <!-- Row -->
+        <div style="background-color: var(--orange);">
+            <div class="text-box">Precision</div>
+        </div>
+        <div style="background-color: var(--orange);">
+            <div id="precision-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--orange);">
+            <div class="text-box">Pickpocket</div>
+            <div class="text-box">Hide</div>
+        </div>
+        <div style="background-color: var(--orange);">
+            <div id="pickpocket-bonus" class="box"></div>
+            <div id="hide-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--orange);">
+            <div id="pickpocket-injury" class="box"></div>
+            <div id="hide-injury" class="box"></div>
+        </div>
+        <div style="background-color: var(--orange);">
+            <div id="precision-specialization" class="box"></div>
+        </div>
+        <div style="background-color: var(--orange);">
+            <div id="precision-injury" class="box"></div>
+        </div>
+        <!-- Row -->
+        <div style="background-color: var(--green);">
+            <div class="text-box">Intuition</div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div id="intuition-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div class="text-box">Blend</div>
+            <div class="text-box">Diplomacy</div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div id="blend-bonus" class="box"></div>
+            <div id="diplomacy-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div id="blend-injury" class="box"></div>
+            <div id="diplomacy-injury" class="box"></div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div id="intuition-specialization" class="box"></div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div id="intuition-injury" class="box"></div>
+        </div>
+        <!-- Row -->
+        <div style="background-color: var(--green);">
+            <div class="text-box">Smarts</div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div id="smarts-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div class="text-box">Focus</div>
+            <div class="text-box">Tinkering</div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div id="focus-bonus" class="box"></div>
+            <div id="tinkering-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div id="focus-injury" class="box"></div>
+            <div id="tinkering-injury" class="box"></div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div id="smarts-specialization" class="box"></div>
+        </div>
+        <div style="background-color: var(--green);">
+            <div id="smarts-injury" class="box"></div>
+        </div>
+        <!-- Row -->
+        <div style="background-color: var(--blue);">
+            <div class="text-box">Wit</div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div id="wit-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div class="text-box">Business</div>
+            <div class="text-box">Bluff</div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div id="business-bonus" class="box"></div>
+            <div id="bluff-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div id="business-injury" class="box"></div>
+            <div id="bluff-injury" class="box"></div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div id="wit-specialization" class="box"></div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div id="wit-injury" class="box"></div>
+        </div>
+        <!-- Row -->
+        <div style="background-color: var(--blue);">
+            <div class="text-box">Soul</div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div id="soul-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div class="text-box">Read Person</div>
+            <div class="text-box">Alchemy</div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div id="read-person-bonus" class="box"></div>
+            <div id="alchemy-bonus" class="box"></div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div id="read-person-injury" class="box"></div>
+            <div id="alchemy-injury" class="box"></div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div id="soul-specialization" class="box"></div>
+        </div>
+        <div style="background-color: var(--blue);">
+            <div id="soul-injury" class="box"></div>
+        </div>
+        <!-- Pools -->
+        <div id="pools" class="flex flex-col" style="grid-column: 8 / 9; grid-row: 2 / 8; text-align: center;">
+            <div>health</div>
+            <div>energy</div>
+            <div>mana</div>
+            <div>injuries</div>
+            <div>actions</div>
         </div>
     </div>
 </body>
+
 </html>
