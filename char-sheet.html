@@ -11,6 +11,7 @@
             --physical: LightSalmon;
             --mental: LightGreen;
             --spiritual: LightSkyBlue;
+            print-color-adjust: exact;
         }
 
         .flex {
@@ -52,14 +53,23 @@
             background-color: white;
         }
 
+        .boon-subcategories {
+            border-top: 1px solid;
+            height: 10rem;
+            padding: 0 2px;
+            display: grid;
+            justify-content: space-between;
+            justify-items: start;
+        }
+
         #attributes {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr; 
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
             grid-auto-rows: max-content;
             text-align: center;
         }
 
-        #attributes > div {
+        #attributes>div {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
@@ -104,7 +114,7 @@
         <div style="background-color: var(--physical);">
             <div id="physique-specialization" class="specialization-box flex">
                 <div id="physique-specialization-type"></div>
-                <div id="physique-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+                <div id="physique-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
             </div>
         </div>
         <div style="background-color: var(--physical);">
@@ -132,7 +142,7 @@
         <div style="background-color: var(--physical);">
             <div id="precision-specialization" class="specialization-box flex">
                 <div id="precision-specialization-type"></div>
-                <div id="precision-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+                <div id="precision-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
             </div>
         </div>
         <div style="background-color: var(--physical);">
@@ -160,7 +170,7 @@
         <div style="background-color: var(--mental);">
             <div id="intuition-specialization" class="specialization-box flex">
                 <div id="intuition-specialization-type"></div>
-                <div id="intuition-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+                <div id="intuition-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
             </div>
         </div>
         <div style="background-color: var(--mental);">
@@ -188,7 +198,7 @@
         <div style="background-color: var(--mental);">
             <div id="smarts-specialization" class="specialization-box flex">
                 <div id="smarts-specialization-type"></div>
-                <div id="smarts-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+                <div id="smarts-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
             </div>
         </div>
         <div style="background-color: var(--mental);">
@@ -216,7 +226,7 @@
         <div style="background-color: var(--spiritual);">
             <div id="wit-specialization" class="specialization-box flex">
                 <div id="wit-specialization-type"></div>
-                <div id="wit-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+                <div id="wit-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
             </div>
         </div>
         <div style="background-color: var(--spiritual);">
@@ -244,35 +254,41 @@
         <div style="background-color: var(--spiritual);">
             <div id="soul-specialization" class="specialization-box flex">
                 <div id="soul-specialization-type"></div>
-                <div id="soul-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+                <div id="soul-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
             </div>
         </div>
         <div style="background-color: var(--spiritual);">
             <div id="soul-injury" class="box"></div>
         </div>
         <!-- Pools -->
-        <div 
-            id="pools" class="flex-col" style="grid-column: 8 / 9; grid-row: 2 / 8; text-align: center; margin: 0 1rem;">
+        <div id="pools" class="flex-col"
+            style="grid-column:8/9; grid-row:2/8; text-align: center; margin: 0 1rem;">
             <div>Health
                 <div style="border: 1px solid; text-align: left;">
-                    <div style="height: 3rem;"></div>
-                    <div style="border-top: 1px solid;">Max HP</div>
+                    <div id="hp" style="height: 3rem; text-align: center; align-content: center;"></div>
+                    <div style="border-top: 1px solid; padding: 0 2px;">Max HP
+                        <span id="max-hp"></span>
+                    </div>
                 </div>
             </div>
             <div>Energy
                 <div style="border: 1px solid; text-align: left;">
-                    <div style="height: 3rem;"></div>
-                    <div style="border-top: 1px solid;">Max EP</div>
+                    <div id="ep" style="height: 3rem; text-align: center; align-content: center;"></div>
+                    <div style="border-top: 1px solid; padding: 0 2px;">Max EP
+                        <span id="max-ep"></span>
+                    </div>
                 </div>
             </div>
             <div>Mana
                 <div style="border: 1px solid; text-align: left;">
-                    <div style="height: 3rem;"></div>
-                    <div style="border-top: 1px solid;">Max MP</div>
+                    <div id="mp" style="height: 3rem; text-align: center; align-content: center;"></div>
+                    <div style="border-top: 1px solid; padding: 0 2px;">Max MP
+                        <span id="max-mp"></span>
+                    </div>
                 </div>
             </div>
             <div>Injuries
-                <ol style="border: 1px solid; padding: 0 0 0 20px; margin: 0;">
+                <ol id="injuries" style="border: 1px solid; padding: 0 0 0 20px; margin: 0;">
                     <li></li>
                     <li></li>
                     <li></li>
@@ -281,25 +297,51 @@
             </div>
             <div>Actions
                 <div style="border: 1px solid; text-align: left;">
-                    <div style="border-bottom: 1px solid;"><div>Free</div><div>Actions</div></div>
-                    <div style="border-bottom: 1px solid;"><div>Max</div><div>Chain</div></div>
-                    <div><div>Total</div><div>Action</div><div>Dice</div></div>
+                    <div style="border-bottom: 1px solid; padding: 0 2px;">
+                        <div class="flex">Free Actions
+                            <div id="free-actions"></div>
+                        </div>
+                    </div>
+                    <div style="border-bottom: 1px solid; padding: 0 2px;">
+                        <div class="flex">Max Chain
+                            <div id="max-chain"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex" style="padding: 0 2px;">Total Action Dice
+                            <div id="total-action-dice" style="flex-basis: 1rem;"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="flex">
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr));">
         <div style="border: 1px solid; flex-grow:1; margin: .25rem;">
             <div style="padding: 0 2px; background-color: red;">Combat Boons</div>
             <div style="border-top: 1px solid; height: 10rem"></div>
         </div>
         <div style="border: 1px solid; flex-grow:1; margin: .25rem;">
             <div style="padding: 0 2px; background-color: orange;">Social Boons</div>
-            <div style="border-top: 1px solid; height: 10rem"></div>
+            <div class="boon-subcategories">
+                <div>Character Trait:
+                    <div id="character-traits"></div>
+                </div>
+                <div>Character Flaw:
+                    <div id="character-flaws"></div>
+                </div>
+                <div>Social Circle:
+                    <div id="social-circle"></div>
+                </div>
+            </div>
         </div>
         <div style="border: 1px solid; flex-grow:1; margin: .25rem;">
             <div style="padding: 0 2px; background-color: yellow;">Exploration Boons</div>
-            <div style="border-top: 1px solid; height: 10rem"></div>
+            <div class="boon-subcategories">
+                <div>Regional Knowledge:
+                    <div id="regional-knowledge"></div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
