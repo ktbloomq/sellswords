@@ -11,7 +11,6 @@
             --orange: LightSalmon;
             --green: LightGreen;
             --blue: LightSkyBlue;
-            /* --orange: coral; */
         }
 
         .flex {
@@ -23,11 +22,8 @@
             flex: none;
         }
 
-        .flex-row {
-            flex-direction: row;
-        }
-
         .flex-col {
+            display: flex;
             flex-direction: column;
         }
 
@@ -49,14 +45,21 @@
             background-color: white;
         }
 
+        .specialization-box {
+            border: 1px solid;
+            margin: .5rem;
+            height: 100%;
+            background-color: white;
+        }
+
         #attributes {
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr; 
             grid-auto-rows: max-content;
             text-align: center;
         }
 
-        #attributes div {
+        #attributes > div {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
@@ -78,7 +81,7 @@
         <div>Injury</div>
         <div>Specialization</div>
         <div>Injury</div>
-        <div>Pools</div>
+        <div>Combat Pools</div>
         <!-- Row -->
         <div style="background-color: var(--orange);">
             <div class="text-box">Phisique</div>
@@ -99,7 +102,10 @@
             <div id="strength-injury" class="box"></div>
         </div>
         <div style="background-color: var(--orange);">
-            <div id="physique-specialization" class="box"></div>
+            <div id="physique-specialization" class="specialization-box flex">
+                <div id="physique-specialization-type"></div>
+                <div id="physique-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+            </div>
         </div>
         <div style="background-color: var(--orange);">
             <div id="physique-injury" class="box"></div>
@@ -124,7 +130,10 @@
             <div id="hide-injury" class="box"></div>
         </div>
         <div style="background-color: var(--orange);">
-            <div id="precision-specialization" class="box"></div>
+            <div id="precision-specialization" class="specialization-box flex">
+                <div id="precision-specialization-type"></div>
+                <div id="precision-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+            </div>
         </div>
         <div style="background-color: var(--orange);">
             <div id="precision-injury" class="box"></div>
@@ -149,7 +158,10 @@
             <div id="diplomacy-injury" class="box"></div>
         </div>
         <div style="background-color: var(--green);">
-            <div id="intuition-specialization" class="box"></div>
+            <div id="intuition-specialization" class="specialization-box flex">
+                <div id="intuition-specialization-type"></div>
+                <div id="intuition-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+            </div>
         </div>
         <div style="background-color: var(--green);">
             <div id="intuition-injury" class="box"></div>
@@ -174,7 +186,10 @@
             <div id="tinkering-injury" class="box"></div>
         </div>
         <div style="background-color: var(--green);">
-            <div id="smarts-specialization" class="box"></div>
+            <div id="smarts-specialization" class="specialization-box flex">
+                <div id="smarts-specialization-type"></div>
+                <div id="smarts-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+            </div>
         </div>
         <div style="background-color: var(--green);">
             <div id="smarts-injury" class="box"></div>
@@ -199,7 +214,10 @@
             <div id="bluff-injury" class="box"></div>
         </div>
         <div style="background-color: var(--blue);">
-            <div id="wit-specialization" class="box"></div>
+            <div id="wit-specialization" class="specialization-box flex">
+                <div id="wit-specialization-type"></div>
+                <div id="wit-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+            </div>
         </div>
         <div style="background-color: var(--blue);">
             <div id="wit-injury" class="box"></div>
@@ -224,18 +242,64 @@
             <div id="alchemy-injury" class="box"></div>
         </div>
         <div style="background-color: var(--blue);">
-            <div id="soul-specialization" class="box"></div>
+            <div id="soul-specialization" class="specialization-box flex">
+                <div id="soul-specialization-type"></div>
+                <div id="soul-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
+            </div>
         </div>
         <div style="background-color: var(--blue);">
             <div id="soul-injury" class="box"></div>
         </div>
         <!-- Pools -->
-        <div id="pools" class="flex flex-col" style="grid-column: 8 / 9; grid-row: 2 / 8; text-align: center;">
-            <div>health</div>
-            <div>energy</div>
-            <div>mana</div>
-            <div>injuries</div>
-            <div>actions</div>
+        <div 
+            id="pools" class="flex-col" style="grid-column: 8 / 9; grid-row: 2 / 8; text-align: center; margin: 0 1rem;">
+            <div>Health
+                <div style="border: 1px solid; text-align: left;">
+                    <div style="height: 3rem;"></div>
+                    <div style="border-top: 1px solid;">Max HP</div>
+                </div>
+            </div>
+            <div>Energy
+                <div style="border: 1px solid; text-align: left;">
+                    <div style="height: 3rem;"></div>
+                    <div style="border-top: 1px solid;">Max EP</div>
+                </div>
+            </div>
+            <div>Mana
+                <div style="border: 1px solid; text-align: left;">
+                    <div style="height: 3rem;"></div>
+                    <div style="border-top: 1px solid;">Max MP</div>
+                </div>
+            </div>
+            <div>Injuries
+                <ol style="border: 1px solid; padding: 0 0 0 20px; margin: 0;">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+            </div>
+            <div>Actions
+                <div style="border: 1px solid; text-align: left;">
+                    <div style="border-bottom: 1px solid;"><div>Free</div><div>Actions</div></div>
+                    <div style="border-bottom: 1px solid;"><div>Max</div><div>Chain</div></div>
+                    <div><div>Total</div><div>Action</div><div>Dice</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex">
+        <div style="border: 1px solid; flex-grow:1; margin: .25rem;">
+            <div style="padding: 0 2px; background-color: red;">Combat Boons</div>
+            <div style="border-top: 1px solid; height: 10rem"></div>
+        </div>
+        <div style="border: 1px solid; flex-grow:1; margin: .25rem;">
+            <div style="padding: 0 2px; background-color: orange;">Social Boons</div>
+            <div style="border-top: 1px solid; height: 10rem"></div>
+        </div>
+        <div style="border: 1px solid; flex-grow:1; margin: .25rem;">
+            <div style="padding: 0 2px; background-color: yellow;">Exploration Boons</div>
+            <div style="border-top: 1px solid; height: 10rem"></div>
         </div>
     </div>
 </body>
