@@ -8,9 +8,9 @@
     <script src="char-sheet.js"></script>
     <style>
         :root {
-            --orange: LightSalmon;
-            --green: LightGreen;
-            --blue: LightSkyBlue;
+            --physical: LightSalmon;
+            --mental: LightGreen;
+            --spiritual: LightSkyBlue;
         }
 
         .flex {
@@ -83,171 +83,171 @@
         <div>Injury</div>
         <div>Combat Pools</div>
         <!-- Row -->
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div class="text-box">Phisique</div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div id="physique-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div class="text-box">Intimidation</div>
             <div class="text-box">Strength</div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div id="intimidation-bonus" class="box"></div>
             <div id="strength-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div id="intimidation-injury" class="box"></div>
             <div id="strength-injury" class="box"></div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div id="physique-specialization" class="specialization-box flex">
                 <div id="physique-specialization-type"></div>
                 <div id="physique-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
             </div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div id="physique-injury" class="box"></div>
         </div>
         <!-- Row -->
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div class="text-box">Precision</div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div id="precision-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div class="text-box">Pickpocket</div>
             <div class="text-box">Hide</div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div id="pickpocket-bonus" class="box"></div>
             <div id="hide-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div id="pickpocket-injury" class="box"></div>
             <div id="hide-injury" class="box"></div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div id="precision-specialization" class="specialization-box flex">
                 <div id="precision-specialization-type"></div>
                 <div id="precision-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
             </div>
         </div>
-        <div style="background-color: var(--orange);">
+        <div style="background-color: var(--physical);">
             <div id="precision-injury" class="box"></div>
         </div>
         <!-- Row -->
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div class="text-box">Intuition</div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div id="intuition-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div class="text-box">Blend</div>
             <div class="text-box">Diplomacy</div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div id="blend-bonus" class="box"></div>
             <div id="diplomacy-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div id="blend-injury" class="box"></div>
             <div id="diplomacy-injury" class="box"></div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div id="intuition-specialization" class="specialization-box flex">
                 <div id="intuition-specialization-type"></div>
                 <div id="intuition-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
             </div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div id="intuition-injury" class="box"></div>
         </div>
         <!-- Row -->
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div class="text-box">Smarts</div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div id="smarts-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div class="text-box">Focus</div>
             <div class="text-box">Tinkering</div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div id="focus-bonus" class="box"></div>
             <div id="tinkering-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div id="focus-injury" class="box"></div>
             <div id="tinkering-injury" class="box"></div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div id="smarts-specialization" class="specialization-box flex">
                 <div id="smarts-specialization-type"></div>
                 <div id="smarts-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
             </div>
         </div>
-        <div style="background-color: var(--green);">
+        <div style="background-color: var(--mental);">
             <div id="smarts-injury" class="box"></div>
         </div>
         <!-- Row -->
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div class="text-box">Wit</div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div id="wit-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div class="text-box">Business</div>
             <div class="text-box">Bluff</div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div id="business-bonus" class="box"></div>
             <div id="bluff-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div id="business-injury" class="box"></div>
             <div id="bluff-injury" class="box"></div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div id="wit-specialization" class="specialization-box flex">
                 <div id="wit-specialization-type"></div>
                 <div id="wit-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
             </div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div id="wit-injury" class="box"></div>
         </div>
         <!-- Row -->
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div class="text-box">Soul</div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div id="soul-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div class="text-box">Read Person</div>
             <div class="text-box">Alchemy</div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div id="read-person-bonus" class="box"></div>
             <div id="alchemy-bonus" class="box"></div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div id="read-person-injury" class="box"></div>
             <div id="alchemy-injury" class="box"></div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div id="soul-specialization" class="specialization-box flex">
                 <div id="soul-specialization-type"></div>
                 <div id="soul-specialization-value" style="border-left: 1px solid; width: 25%;"></div>
             </div>
         </div>
-        <div style="background-color: var(--blue);">
+        <div style="background-color: var(--spiritual);">
             <div id="soul-injury" class="box"></div>
         </div>
         <!-- Pools -->
