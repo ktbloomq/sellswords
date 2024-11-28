@@ -67,7 +67,7 @@ export class Player {
 				Object.entries(skills).slice(1).forEach(([sKey, sVal]) => {
 					skills[sKey] = skills.raw*5;
 					if(skills.raw > 0) {
-						skills[sKey]  = Math.ceil(skills[sKey]/2)+3
+						skills[sKey]  = Math.floor(skills[sKey]/2)+3
 					}
 				});
 			});
