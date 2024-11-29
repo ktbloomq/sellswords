@@ -22,24 +22,24 @@ let alchemyElement;
 let player;
 
 function updateElements() {
-	physiqueElement.textContent = player.attributes.physical.physique.raw;
-	intimidationElement.textContent = player.attributes.physical.physique.intimidation;
-	strengthElement.textContent = player.attributes.physical.physique.strength;
-	precisionElement.textContent = player.attributes.physical.precision.raw
-	pickpocketElement.textContent = player.attributes.physical.precision.pickpocket;
-	hideElement.textContent = player.attributes.physical.precision.hide;
-	intuitionElement.textContent = player.attributes.mental.intuition.raw
-	blendElement.textContent = player.attributes.mental.intuition.blend;
-	diplomacyElement.textContent = player.attributes.mental.intuition.diplomacy;
-	smartsElement.textContent = player.attributes.mental.smarts.raw
-	focusElement.textContent = player.attributes.mental.smarts.focus;
-	tinkeringElement.textContent = player.attributes.mental.smarts.tinkering;
-	witElement.textContent = player.attributes.spiritual.wit.raw
-	businessElement.textContent = player.attributes.spiritual.wit.business;
-	bluffElement.textContent = player.attributes.spiritual.wit.bluff;
-	soulElement.textContent = player.attributes.spiritual.soul.raw
-	readPersonElement.textContent = player.attributes.spiritual.soul.readPerson;
-	alchemyElement.textContent = player.attributes.spiritual.soul.alchemy;
+	physiqueElement.textContent = player.attributes.physique.raw;
+	intimidationElement.textContent = player.attributes.physique.intimidation;
+	strengthElement.textContent = player.attributes.physique.strength;
+	precisionElement.textContent = player.attributes.precision.raw
+	pickpocketElement.textContent = player.attributes.precision.pickpocket;
+	hideElement.textContent = player.attributes.precision.hide;
+	intuitionElement.textContent = player.attributes.intuition.raw
+	blendElement.textContent = player.attributes.intuition.blend;
+	diplomacyElement.textContent = player.attributes.intuition.diplomacy;
+	smartsElement.textContent = player.attributes.smarts.raw
+	focusElement.textContent = player.attributes.smarts.focus;
+	tinkeringElement.textContent = player.attributes.smarts.tinkering;
+	witElement.textContent = player.attributes.wit.raw
+	businessElement.textContent = player.attributes.wit.business;
+	bluffElement.textContent = player.attributes.wit.bluff;
+	soulElement.textContent = player.attributes.soul.raw
+	readPersonElement.textContent = player.attributes.soul.readPerson;
+	alchemyElement.textContent = player.attributes.soul.alchemy;
 }
 
 window.onload = function() {
