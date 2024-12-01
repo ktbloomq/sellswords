@@ -1,4 +1,4 @@
-import { Player } from "./player.js";
+import Player from "./player.js";
 import * as Races from "./races.js";
 
 let physiqueElement;
@@ -19,32 +19,30 @@ let bluffElement;
 let soulElement;
 let readPersonElement;
 let alchemyElement;
-let player;
+let character;
 
 function updateElements() {
-	physiqueElement.textContent = player.attributes.physique.raw;
-	intimidationElement.textContent = player.attributes.physique.intimidation;
-	strengthElement.textContent = player.attributes.physique.strength;
-	precisionElement.textContent = player.attributes.precision.raw
-	pickpocketElement.textContent = player.attributes.precision.pickpocket;
-	hideElement.textContent = player.attributes.precision.hide;
-	intuitionElement.textContent = player.attributes.intuition.raw
-	blendElement.textContent = player.attributes.intuition.blend;
-	diplomacyElement.textContent = player.attributes.intuition.diplomacy;
-	smartsElement.textContent = player.attributes.smarts.raw
-	focusElement.textContent = player.attributes.smarts.focus;
-	tinkeringElement.textContent = player.attributes.smarts.tinkering;
-	witElement.textContent = player.attributes.wit.raw
-	businessElement.textContent = player.attributes.wit.business;
-	bluffElement.textContent = player.attributes.wit.bluff;
-	soulElement.textContent = player.attributes.soul.raw
-	readPersonElement.textContent = player.attributes.soul.readPerson;
-	alchemyElement.textContent = player.attributes.soul.alchemy;
+	physiqueElement.textContent = character.attributes.physique.raw;
+	intimidationElement.textContent = character.attributes.physique.intimidation;
+	strengthElement.textContent = character.attributes.physique.strength;
+	precisionElement.textContent = character.attributes.precision.raw
+	pickpocketElement.textContent = character.attributes.precision.pickpocket;
+	hideElement.textContent = character.attributes.precision.hide;
+	intuitionElement.textContent = character.attributes.intuition.raw
+	blendElement.textContent = character.attributes.intuition.blend;
+	diplomacyElement.textContent = character.attributes.intuition.diplomacy;
+	smartsElement.textContent = character.attributes.smarts.raw
+	focusElement.textContent = character.attributes.smarts.focus;
+	tinkeringElement.textContent = character.attributes.smarts.tinkering;
+	witElement.textContent = character.attributes.wit.raw
+	businessElement.textContent = character.attributes.wit.business;
+	bluffElement.textContent = character.attributes.wit.bluff;
+	soulElement.textContent = character.attributes.soul.raw
+	readPersonElement.textContent = character.attributes.soul.readPerson;
+	alchemyElement.textContent = character.attributes.soul.alchemy;
 }
 
 window.onload = function() {
-	console.log("test");
-	
 	physiqueElement = document.getElementById("physique-bonus");
 	intimidationElement = document.getElementById("intimidation-bonus");
 	strengthElement = document.getElementById("strength-bonus");
@@ -64,9 +62,8 @@ window.onload = function() {
 	readPersonElement = document.getElementById("read-person-bonus");
 	alchemyElement = document.getElementById("alchemy-bonus");
 	
-	player = new Player();
-	let race = new Races.Elf();
-	player.calcSkills(race);
+	const queryParams = new URLSearchParams(window.location.search);
+	character = JSON.parse(queryParams.get("character"));
 	updateElements();
 
 }

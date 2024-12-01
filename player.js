@@ -1,5 +1,5 @@
 import * as Races from "./races.js";
-export class Player {
+export default class Player {
 	race;
 	attributes = {
 		physique: {
@@ -50,11 +50,15 @@ export class Player {
 	actions;
 	actionDice;
 	actionDiceType;
-	applyRace(r) {
-		this.race = r;
+	applyRace() {
 		this.attributes = this.race.applyAttributeModifiers(this.attributes);
 	}
-	calcSkills(r) {
+	applyAttributeBuy(selections) {
+		Object.entries(selections).forEach(([key,val]) => {
+			this.attributes[key].raw += val;
+		});
+	}
+	calcSkills() {
 			Object.keys(this.attributes).forEach((attrKey) => {
 				// console.log(attrKey,attrVal);
 				let skills = this.attributes[attrKey];
@@ -66,7 +70,7 @@ export class Player {
 				});
 			});
 
-		this.applyRace(r);
+		this.applyRace();
 		// TODO: apply boons
 	}
 }

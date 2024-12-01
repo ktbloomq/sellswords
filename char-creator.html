@@ -4,17 +4,38 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<script type="module" src="char-creator.js"></script>
+	<style>
+		input {
+			display: block;
+		}
+	</style>
 </head>
 <body>
-	<form action="">
+	<form id="char-form">
 		<select name="race" id="race">
-			<option value="human">Human</option>
-			<option value="elf">Elf</option>
-			<option value="dwarf">Dwarf</option>
-			<option value="njord">Njord</option>
-			<option value="kindred">Kindred</option>
-			<option value="esborn">Esborn</option>
+			<option value="Human">Human</option>
+			<option value="Elf">Elf</option>
+			<option value="Dwarf">Dwarf</option>
+			<option value="Njord">Njord</option>
+			<option value="Kindred">Kindred</option>
+			<option value="Esborn">Esborn</option>
 		</select>
+		<div>
+			<label for="physique">Physique</label>
+			<input type="number" placeholder="0" name="physique" id="" />
+			<label for="precision">Precision</label>
+			<input type="number" placeholder="0" name="precision" id="" />
+			<label for="intuition">Intuition</label>
+			<input type="number" placeholder="0" name="intuition" id="" />
+			<label for="smarts">Smarts</label>
+			<input type="number" placeholder="0" name="smarts" id="" />
+			<label for="wit">Wit</label>
+			<input type="number" placeholder="0" name="wit" id="" />
+			<label for="soul">Soul</label>
+			<input type="number" placeholder="0" name="soul" id="" />
+		</div>
+		<button type="submit">Submit</button>
 	</form>
 </body>
 </html>
