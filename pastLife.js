@@ -1,4 +1,4 @@
-export class Background {
+export class PastLife {
 	modifiers;
 	applyModifiers(attributes) {
 		this.setModifiers(attributes);
@@ -11,7 +11,7 @@ export class Background {
 	}
 }
 
-export class Bard extends Background {
+export class Bard extends PastLife {
 	setModifiers(attributes) {
 		this.modifiers = [
 			{attribute: attributes.intuition.diplaomacy, modifier: 5}, 
@@ -20,7 +20,7 @@ export class Bard extends Background {
 	}
 }
 
-export class Noble extends Background {
+export class Noble extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.intuition.diplomacy, modifier: 10 },
@@ -29,7 +29,7 @@ export class Noble extends Background {
   }
 }
 
-export class Burglar extends Background {
+export class Burglar extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.precision.hide, modifier: 10 },
@@ -38,7 +38,7 @@ export class Burglar extends Background {
   }
 }
 
-export class Highwayman extends Background {
+export class Highwayman extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.physique.intimidation, modifier: 15 },
@@ -46,7 +46,7 @@ export class Highwayman extends Background {
   }
 }
 
-export class Huntsman extends Background {
+export class Huntsman extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       // TODO: Animals 10
@@ -55,7 +55,7 @@ export class Huntsman extends Background {
   }
 }
 
-export class Brewer extends Background {
+export class Brewer extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.wit.business, modifier: 10 },
@@ -64,7 +64,7 @@ export class Brewer extends Background {
   }
 }
 
-export class Priest extends Background {
+export class Priest extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       // TODO: Religion 20
@@ -73,7 +73,7 @@ export class Priest extends Background {
   }
 }
 
-export class Monk extends Background {
+export class Monk extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       // TODO: Magic 10
@@ -82,7 +82,7 @@ export class Monk extends Background {
   }
 }
 
-export class Academic extends Background {
+export class Academic extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.soul.alchemy, modifier: 10 },
@@ -91,7 +91,7 @@ export class Academic extends Background {
   }
 }
 
-export class Apprentice extends Background {
+export class Apprentice extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.wit.business, modifier: 5 },
@@ -100,7 +100,7 @@ export class Apprentice extends Background {
   }
 }
 
-export class Steward extends Background {
+export class Steward extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.wit.business, modifier: 10 },
@@ -109,7 +109,7 @@ export class Steward extends Background {
   }
 }
 
-export class Farmer extends Background {
+export class Farmer extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.physique.strength, modifier: 10 },
@@ -118,7 +118,7 @@ export class Farmer extends Background {
   }
 }
 
-export class Soldier extends Background {
+export class Soldier extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.soul.readPerson, modifier: 5 },
@@ -127,7 +127,7 @@ export class Soldier extends Background {
   }
 }
 
-export class StreetUrchin extends Background {
+export class StreetUrchin extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.precision.pickpocket, modifier: 10 },
@@ -136,7 +136,7 @@ export class StreetUrchin extends Background {
   }
 }
 
-export class Peasant extends Background {
+export class Peasant extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.physique.strength, modifier: 5 },
@@ -145,7 +145,7 @@ export class Peasant extends Background {
   }
 }
 
-export class MagicInitiate extends Background {
+export class MagicInitiate extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       { attribute: attributes.soul.readPerson, modifier: 5 },
@@ -154,7 +154,7 @@ export class MagicInitiate extends Background {
   }
 }
 
-export class Sailor extends Background {
+export class Sailor extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       // TODO: Swimming
@@ -163,7 +163,7 @@ export class Sailor extends Background {
   }
 }
 
-export class NoviceHealer extends Background {
+export class NoviceHealer extends PastLife {
   setModifiers(attributes) {
     this.modifiers = [
       // TODO: Medicine 15

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Character Creator</title>
 	<script type="module" src="char-creator.js"></script>
 	<style>
 		input {
@@ -11,8 +12,11 @@
 		}
 	</style>
 </head>
+
 <body>
 	<form id="char-form">
+		<h2>Body</h2>
+		<h3>Race</h3>
 		<select name="race" id="race">
 			<option value="Human">Human</option>
 			<option value="Elf">Elf</option>
@@ -21,6 +25,7 @@
 			<option value="Orc">Orc</option>
 			<option value="Catfolk">Catfolk</option>
 		</select>
+		<h3>Attributes</h3>
 		<div>
 			<label for="physique">Physique</label>
 			<input type="number" placeholder="0" name="physique" id="" />
@@ -35,22 +40,31 @@
 			<label for="soul">Soul</label>
 			<input type="number" placeholder="0" name="soul" id="" />
 		</div>
-		<div>
-			<h2>Past Life</h2>
-			<select name="background" id="">
-				<option value="Bard">Bard</option>
-				<option value="Noble">Noble</option>
-				<option value="Burgaler">Burgaler</option>
-				<option value="Highwayman">Highwayman</option>
-				<option value="Huntsman">Huntsman</option>
-				<option value="Brewer">Brewer</option>
-				<option value="Priest">Priest</option>
-				<option value="Monk">Monk</option>
-				<option value="Academic">Academic</option>
-				<option value="Apprentice">Apprentice</option>
-			</select>
-		</div>
+		<h3>Archetype</h3>
+		<h3>Appearance</h3>
+		<h2>Mind</h2>
+		<h3>Past Life</h3>
+		<select name="past" id="">
+			<option value="Bard">Bard</option>
+			<option value="Noble">Noble</option>
+			<option value="Burgaler">Burgaler</option>
+			<option value="Highwayman">Highwayman</option>
+			<option value="Huntsman">Huntsman</option>
+			<option value="Brewer">Brewer</option>
+			<option value="Priest">Priest</option>
+			<option value="Monk">Monk</option>
+			<option value="Academic">Academic</option>
+			<option value="Apprentice">Apprentice</option>
+		</select>
+		<h3>Background</h3>
+		<h2>Soul</h2>
+		<h3>The Call</h3>
+		<h3>Character</h3>
+		<h3>Quirks</h3>
+		<h3>Loyalties</h3>
+		<h3>Backstory</h3>
 		<button type="submit">Submit</button>
 	</form>
 </body>
+
 </html>

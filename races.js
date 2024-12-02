@@ -12,11 +12,11 @@ export class Race {
 }
 
 export class Human extends Race {
-	setModifiers(attributes) {
+	setModifiers(attributes, custom = "wit") {
 		this.modifiers = [
 			{attribute: attributes.physique, modifier: 5}, 
 			{attribute: attributes.soul, modifier: 5},
-			{attribute: attributes.wit, modifier: 3} // TODO: replace with user bonus
+			{attribute: attributes[custom], modifier: 3} // TODO: replace with user bonus
 		];
 	}
 }
