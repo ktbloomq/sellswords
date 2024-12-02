@@ -20,7 +20,7 @@ window.onload = function() {
       soul: Number(formdata.get("soul")) ?? 0,
     };
     character.applyAttributeBuy(pointBuy);
-    const pastLife = new PastLife.Bard();
+    const pastLife = new PastLife[formdata.get("past")]();
     character.pastLife = pastLife;
     character.calcSkills();
     console.log(character);
