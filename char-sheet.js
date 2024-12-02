@@ -1,6 +1,3 @@
-import Player from "./player.js";
-import * as Races from "./races.js";
-
 let physiqueElement;
 let intimidationElement;
 let strengthElement;

@@ -1,4 +1,4 @@
-import Player from "./player.js"
+import Player from "./character.js"
 import * as Races from "./races.js"
 
 window.onload = function() {
@@ -7,7 +7,7 @@ window.onload = function() {
     e.preventDefault();
     const formdata = new FormData(charForm);
     const character = new Player(); 
-    const race = new Races[formdata.get("race")];
+    const race = new Races[formdata.get("race")]();
     console.log(formdata);
     character.race = race;
     let pointBuy = {

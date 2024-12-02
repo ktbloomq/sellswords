@@ -32,7 +32,7 @@ export default class Player {
 			readPerson: -4,
 			alchemy: -4
 		}
-	}
+	};
 	level;
 	health = {
 		current: 0,
