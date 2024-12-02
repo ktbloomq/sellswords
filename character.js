@@ -1,6 +1,7 @@
 import * as Races from "./races.js";
 export default class Player {
 	race;
+	pastLife;
 	attributes = {
 		physique: {
 			raw: -4,
@@ -33,6 +34,7 @@ export default class Player {
 			alchemy: -4
 		}
 	};
+	specializations = [];
 	level;
 	health = {
 		current: 0,
@@ -50,9 +52,6 @@ export default class Player {
 	actions;
 	actionDice;
 	actionDiceType;
-	applyRace() {
-		this.attributes = this.race.applyAttributeModifiers(this.attributes);
-	}
 	applyAttributeBuy(selections) {
 		Object.entries(selections).forEach(([key,val]) => {
 			this.attributes[key].raw += val;
@@ -69,8 +68,8 @@ export default class Player {
 					}
 				});
 			});
-
-		this.applyRace();
+		this.race.applyModifiers(this);
+		this.pastLife.applyModifiers(this);
 		// TODO: apply boons
 	}
 }

@@ -1,5 +1,6 @@
 import Player from "./character.js"
 import * as Races from "./races.js"
+import * as PastLife from "./pastLife.js"
 
 window.onload = function() {
   let charForm = document.getElementById("char-form");
@@ -8,7 +9,7 @@ window.onload = function() {
     const formdata = new FormData(charForm);
     const character = new Player(); 
     const race = new Races[formdata.get("race")]();
-    console.log(formdata);
+    // console.log(formdata);
     character.race = race;
     let pointBuy = {
       physique: Number(formdata.get("physique")) ?? 0,
@@ -19,6 +20,8 @@ window.onload = function() {
       soul: Number(formdata.get("soul")) ?? 0,
     };
     character.applyAttributeBuy(pointBuy);
+    const pastLife = new PastLife.Bard();
+    character.pastLife = pastLife;
     character.calcSkills();
     console.log(character);
 
