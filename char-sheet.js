@@ -1,3 +1,4 @@
+let character;
 let physiqueElement;
 let intimidationElement;
 let strengthElement;
@@ -16,7 +17,7 @@ let bluffElement;
 let soulElement;
 let readPersonElement;
 let alchemyElement;
-let character;
+let weaponsTrainingElement;
 
 function updateElements() {
 	physiqueElement.textContent = character.attributes.physique.raw;
@@ -37,6 +38,7 @@ function updateElements() {
 	soulElement.textContent = character.attributes.soul.raw
 	readPersonElement.textContent = character.attributes.soul.readPerson;
 	alchemyElement.textContent = character.attributes.soul.alchemy;
+	weaponsTrainingElement.textContent = character.weaponsTraining.reduce((a,b) => a+" "+b);
 }
 
 window.onload = function() {
@@ -58,6 +60,7 @@ window.onload = function() {
 	soulElement = document.getElementById("soul-bonus");
 	readPersonElement = document.getElementById("read-person-bonus");
 	alchemyElement = document.getElementById("alchemy-bonus");
+	weaponsTrainingElement = document.getElementById("weapons-training");
 	
 	const queryParams = new URLSearchParams(window.location.search);
 	character = JSON.parse(queryParams.get("character"));

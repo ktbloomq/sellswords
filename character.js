@@ -1,7 +1,7 @@
-import * as Races from "./races.js";
 export default class Player {
 	race;
 	pastLife;
+	weaponsTraining = [];
 	attributes = {
 		physique: {
 			raw: -4,
@@ -35,6 +35,11 @@ export default class Player {
 		}
 	};
 	specializations = [];
+	boons = {
+		combat: {},
+		social: {},
+		exploration: {}
+	};
 	level;
 	health = {
 		current: 0,

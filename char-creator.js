@@ -22,6 +22,10 @@ window.onload = function() {
     character.applyAttributeBuy(pointBuy);
     const pastLife = new PastLife[formdata.get("past")]();
     character.pastLife = pastLife;
+
+    character.weaponsTraining.push(formdata.get("weapon1"));
+    character.weaponsTraining.push(formdata.get("weapon2"));
+
     character.calcSkills();
     console.log(character);
 

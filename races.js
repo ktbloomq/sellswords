@@ -1,5 +1,12 @@
 export class Race {
 	modifiers;
+	boons = {
+		combat: {},
+		social: {},
+		exploration: {}
+	};
+	raceChoices = {};
+	boonCount = 0;
 	applyModifiers(character) {
 		this.setModifiers(character);
 		this.modifiers.forEach((e) => {
@@ -14,6 +21,20 @@ export class Race {
 }
 
 export class Human extends Race {
+	boons = {
+		combat: {},
+		social: {},
+		exploration: {
+			adaptible: "+5 to a skill",
+			catsFootfall: "Move at half speed without noise. This does not remove a stealth check if moving through treacherous ground or any obstacles.",
+			dimsight: "15 feet of color vision in the dark, as if in low light.",
+			wellTraveled: "" // finish this
+		}
+	};
+	boonCount = 1;
+	raceChoices = {
+		boon1: "" // finish this
+	}
 	setModifiers(character, custom = "wit") {
 		this.modifiers = [
 			() => {this.propagateSkills(character.attributes.physique, 5)}, 
