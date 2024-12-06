@@ -36,9 +36,9 @@ export default class Player {
 	};
 	specializations = [];
 	boons = {
-		combat: {},
-		social: {},
-		exploration: {}
+		combat: [],
+		social: [],
+		exploration: []
 	};
 	level;
 	health = {

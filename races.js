@@ -21,17 +21,6 @@ export class Race {
 }
 
 export class Human extends Race {
-	boons = {
-		combat: {},
-		social: {},
-		exploration: {
-			adaptable: "+5 to a skill",
-			catsFootfall: "Move at half speed without noise. This does not remove a stealth check if moving through treacherous ground or any obstacles.",
-			dimsight: "15 feet of color vision in the dark, as if in low light.",
-			wellTraveled: "Spend some time observing your social environment. You can identify if a social situation or environment appears abnormal. You may perform a skill check to identify a potential source of the unrest.",
-			unrelentingEndurance: "you do not become exhausted from a full day of mundane labor (or equivalent)."
-		}
-	};
 	boonCount = 1;
 	static raceChoices = {
 		boon1: [
@@ -62,9 +51,18 @@ export class Human extends Race {
 		this.modifiers = [
 			() => { this.propagateSkills(character.attributes.physique, 5) },
 			() => { this.propagateSkills(character.attributes.soul, 5) },
-			() => { this.propagateSkills(character.attributes[this.choices.attributeBonus], 3) } // TODO: replace with user bonus
+			() => { this.propagateSkills(character.attributes[this.choices.attributeBonus], 3) }
 		];
 	};
+	applyBoons(character) {
+		Object.entries(this.choices).reduce((a,[key,val]) => {
+			if(key.startsWith("boon")) a.push(val);
+			return a;
+		},[]).forEach((e) => {
+			const steps = e.split(".");
+			character.boons[steps[0]].push(steps[1]);
+		});
+	}
 }
 
 export class Elf extends Race {

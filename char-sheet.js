@@ -38,7 +38,9 @@ function updateElements() {
 	soulElement.textContent = character.attributes.soul.raw
 	readPersonElement.textContent = character.attributes.soul.readPerson;
 	alchemyElement.textContent = character.attributes.soul.alchemy;
+
 	weaponsTrainingElement.textContent = character.weaponsTraining.reduce((a,b) => a+" "+b);
+	// TODO: Display Boons
 }
 
 window.onload = function() {

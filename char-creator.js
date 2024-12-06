@@ -7,7 +7,7 @@ function updateRaceChoices(e) {
   // console.log(Races[e.target.value]);
   raceChoicesElement.innerHTML = Object.entries(Races[e.target.value].raceChoices).reduce((a,e) => (
     `${a}<select name='race-${e[0]}'>${e[1].reduce((a2,e2) => (
-      `${a2}<option name='${e2.index}'>${e2.name}</option>`
+      `${a2}<option value='${e2.index}'>${e2.name}</option>`
     ),"")}</select>`
   ),"");
 
@@ -20,10 +20,18 @@ window.onload = function() {
   charForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const formdata = new FormData(charForm);
-    console.log(Array.from(formdata.entries()).filter((e) => (e[0].startsWith("race-"))).map((e) => [e[0].slice(5),e[1]]));
+    // console.log(Object.fromEntries(formdata.entries()));
     const character = new Player();
     const race = new Races[formdata.get("race")]();
+    race.choices = formdata.entries().reduce((a,e) => {
+      if(e[0].startsWith("race-")) {
+        a[e[0].slice(5)]=e[1];
+      }
+      return a;
+    },{});
+    race.applyBoons(character);
     character.race = race;
+
     let pointBuy = {
       physique: Number(formdata.get("physique")) ?? 0,
       precision: Number(formdata.get("precision")) ?? 0,
