@@ -2,14 +2,27 @@ import Player from "./character.js"
 import * as Races from "./races.js"
 import * as PastLife from "./pastLife.js"
 
+function updateRaceChoices(e) {
+  const raceChoicesElement = document.getElementById("race-choices");
+  // console.log(Races[e.target.value]);
+  raceChoicesElement.innerHTML = Object.entries(Races[e.target.value].raceChoices).reduce((a,e) => (
+    `${a}<select name='race-${e[0]}'>${e[1].reduce((a2,e2) => (
+      `${a2}<option name='${e2.index}'>${e2.name}</option>`
+    ),"")}</select>`
+  ),"");
+
+}
 window.onload = function() {
-  let charForm = document.getElementById("char-form");
+  const raceElement = document.getElementById("race");
+  raceElement.addEventListener("change", updateRaceChoices);
+
+  const charForm = document.getElementById("char-form");
   charForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const formdata = new FormData(charForm);
-    const character = new Player(); 
+    console.log(Array.from(formdata.entries()).filter((e) => (e[0].startsWith("race-"))).map((e) => [e[0].slice(5),e[1]]));
+    const character = new Player();
     const race = new Races[formdata.get("race")]();
-    // console.log(formdata);
     character.race = race;
     let pointBuy = {
       physique: Number(formdata.get("physique")) ?? 0,
