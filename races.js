@@ -2,6 +2,7 @@ import Boons from "./boons.js";
 
 export class Race {
 	modifiers;
+	choices;
 	static raceChoices = {};
 	applyModifiers(character) {
 		this.setModifiers(character);
@@ -14,18 +15,22 @@ export class Race {
 			attribute[key] += value;
 		});
 	};
+	applyBoons(character) {
+		// console.log(this.choices);
+		Object.entries(this.choices).forEach(([key,value]) => {
+			// console.log(key,value);
+			if(key.startsWith("boon")) {
+				const boon = Boons[value];
+				console.log(boon);
+				character.boons[boon.target].push(value);
+			}
+		});
+	};
 }
 
 export class Human extends Race {
 	static raceChoices = {
 		boon1: [
-			Boons.adaptable,
-			Boons.catsFootfall,
-			Boons.dimsight,
-			Boons.wellTraveled,
-			Boons.unrelentingEndurance
-		],
-		boon2: [
 			Boons.adaptable,
 			Boons.catsFootfall,
 			Boons.dimsight,
@@ -41,7 +46,6 @@ export class Human extends Race {
 			{id:"soul",displayName:"soul"},
 		]
 	};
-	choices;
 	setModifiers(character) {
 		this.modifiers = [
 			() => { this.propagateSkills(character.attributes.physique, 5) },
@@ -49,20 +53,27 @@ export class Human extends Race {
 			() => { this.propagateSkills(character.attributes[this.choices.attributeBonus], 3) }
 		];
 	};
-	applyBoons(character) {
-		console.log(this.choices);
-		Object.entries(this.choices).forEach(([key,value]) => {
-			console.log(key,value);
-			if(key.startsWith("boon")) {
-				const boon = Boons[value];
-				console.log(boon);
-				character.boons[boon.target].push(value);
-			}
-		});
-	}
 }
 
 export class Elf extends Race {
+	static raceChoices = {
+		boon1: [
+			Boons.hawksight,
+			Boons.elvesNaturalEnemy,
+			Boons.naturesSong,
+			Boons.oneWithNature,
+			Boons.sleepless,
+			Boons.snowstep,
+		],
+		boon2: [
+			Boons.hawksight,
+			Boons.elvesNaturalEnemy,
+			Boons.naturesSong,
+			Boons.oneWithNature,
+			Boons.sleepless,
+			Boons.snowstep,
+		]
+	}
 	setModifiers(character) {
 		this.modifiers = [
 			() => { this.propagateSkills(character.attributes.precision, 5) },
@@ -72,6 +83,28 @@ export class Elf extends Race {
 }
 
 export class Dwarf extends Race {
+	static raceChoices = {
+		boon1: [
+			Boons.mountainBorn,
+			Boons.craftsmen,
+			Boons.drunkenFist,
+			Boons.fortitudeOfStone,
+			Boons.dwarvesNaturalEnemy,
+			Boons.eyeForDetail,
+			Boons.cultured,
+			Boons.livingStone
+		],
+		boon2: [
+			Boons.mountainBorn,
+			Boons.craftsmen,
+			Boons.drunkenFist,
+			Boons.fortitudeOfStone,
+			Boons.dwarvesNaturalEnemy,
+			Boons.eyeForDetail,
+			Boons.cultured,
+			Boons.livingStone
+		]
+	}
 	setModifiers(character) {
 		this.modifiers = [
 			() => { this.propagateSkills(character.attributes.physique, 5) },
@@ -81,6 +114,15 @@ export class Dwarf extends Race {
 }
 
 export class Esborn extends Race {
+	static raceChoices = {
+		boon1: [
+			Boons.elderSight,
+			Boons.giantsStrength,
+			Boons.fortitudeOfStone,
+			Boons.divineHeritage,
+			Boons.ancestralMemory
+		]
+	}
 	setModifiers(character) {
 		this.modifiers = [
 			() => { this.propagateSkills(character.attributes.physique, 15) },
@@ -89,6 +131,22 @@ export class Esborn extends Race {
 }
 
 export class Orc extends Race {
+	static raceChoices = {
+		boon1: [
+			Boons.mountainBorn,
+			Boons.inciteTerror,
+			Boons.bredForWar,
+			Boons.loyalCompanion,
+			Boons.naturalLeader
+		],
+		boon2: [
+			Boons.mountainBorn,
+			Boons.inciteTerror,
+			Boons.bredForWar,
+			Boons.loyalCompanion,
+			Boons.naturalLeader
+		]
+	}
 	setModifiers(character) {
 		this.modifiers = [
 			() => { this.propagateSkills(character.attributes.physique, 5) },
@@ -98,6 +156,22 @@ export class Orc extends Race {
 }
 
 export class Catfolk extends Race {
+	static raceChoices = {
+		boon1: [
+			Boons.nightvision,
+			Boons.felineFootfall,
+			Boons.justACat,
+			Boons.lightningReflexes,
+			Boons.skittish
+		],
+		boon2: [
+			Boons.nightvision,
+			Boons.felineFootfall,
+			Boons.justACat,
+			Boons.lightningReflexes,
+			Boons.skittish
+		]
+	}
 	setModifiers(character) {
 		this.modifiers = [
 			() => { this.propagateSkills(character.attributes.intuition, 5) },

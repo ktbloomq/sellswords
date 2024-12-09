@@ -1,3 +1,5 @@
+import Boons from "./boons.js"
+
 let character;
 let physiqueElement;
 let intimidationElement;
@@ -40,9 +42,19 @@ function updateElements() {
 	readPersonElement.textContent = character.attributes.soul.readPerson;
 	alchemyElement.textContent = character.attributes.soul.alchemy;
 
-	weaponsTrainingElement.textContent = character.weaponsTraining.reduce((a,b) => a+" "+b);
+	character.weaponsTraining.forEach(element => {
+		const newElement = document.createElement("div");
+		newElement.textContent = element;
+		weaponsTrainingElement.appendChild(newElement); 
+
+	});;
 	// TODO: Display Boons
-	// explorationBoonsElement.innerHTML = character.boons.exploration.reduce((a,b) => (`<div></div>`))
+	character.boons.exploration.forEach(e => {
+		const boon = Boons[e]
+		const newElement = document.createElement("div");
+		newElement.textContent = boon.displayName;
+		explorationBoonsElement.appendChild(newElement);
+	});
 }
 
 window.onload = function() {
