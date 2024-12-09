@@ -1,12 +1,8 @@
+import Boons from "./boons.js";
+
 export class Race {
 	modifiers;
-	boons = {
-		combat: {},
-		social: {},
-		exploration: {}
-	};
 	static raceChoices = {};
-	boonCount = 0;
 	applyModifiers(character) {
 		this.setModifiers(character);
 		this.modifiers.forEach((e) => {
@@ -21,29 +17,28 @@ export class Race {
 }
 
 export class Human extends Race {
-	boonCount = 1;
 	static raceChoices = {
 		boon1: [
-			{index:"exploration.adaptable",name:"Adaptable"},
-			{index:"exploration.catsFootfall",name:"Cat's Footfall"},
-			{index:"exploration.dimsight",name:"Dimsight"},
-			{index:"exploration.wellTraveled",name:"Well Traveled"},
-			{index:"exploration.unrelentingEndurance",name:"Unrelenting Endurance"},
+			Boons.adaptable,
+			Boons.catsFootfall,
+			Boons.dimsight,
+			Boons.wellTraveled,
+			Boons.unrelentingEndurance
 		],
 		boon2: [
-			{index:"exploration.adaptable",name:"Adaptable"},
-			{index:"exploration.catsFootfall",name:"Cat's Footfall"},
-			{index:"exploration.dimsight",name:"Dimsight"},
-			{index:"exploration.wellTraveled",name:"Well Traveled"},
-			{index:"exploration.unrelentingEndurance",name:"Unrelenting Endurance"},
+			Boons.adaptable,
+			Boons.catsFootfall,
+			Boons.dimsight,
+			Boons.wellTraveled,
+			Boons.unrelentingEndurance
 		],
 		attributeBonus: [
-			{index:"physique",name:"physique"},
-			{index:"precision",name:"precision"},
-			{index:"intuition",name:"intuition"},
-			{index:"smarts",name:"smarts"},
-			{index:"wit",name:"wit"},
-			{index:"soul",name:"soul"},
+			{id:"physique",displayName:"physique"},
+			{id:"precision",displayName:"precision"},
+			{id:"intuition",displayName:"intuition"},
+			{id:"smarts",displayName:"smarts"},
+			{id:"wit",displayName:"wit"},
+			{id:"soul",displayName:"soul"},
 		]
 	};
 	choices;
@@ -55,12 +50,14 @@ export class Human extends Race {
 		];
 	};
 	applyBoons(character) {
-		Object.entries(this.choices).reduce((a,[key,val]) => {
-			if(key.startsWith("boon")) a.push(val);
-			return a;
-		},[]).forEach((e) => {
-			const steps = e.split(".");
-			character.boons[steps[0]].push(steps[1]);
+		console.log(this.choices);
+		Object.entries(this.choices).forEach(([key,value]) => {
+			console.log(key,value);
+			if(key.startsWith("boon")) {
+				const boon = Boons[value];
+				console.log(boon);
+				character.boons[boon.target].push(value);
+			}
 		});
 	}
 }

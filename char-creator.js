@@ -7,7 +7,7 @@ function updateRaceChoices(e) {
   // console.log(Races[e.target.value]);
   raceChoicesElement.innerHTML = Object.entries(Races[e.target.value].raceChoices).reduce((a,e) => (
     `${a}<select name='race-${e[0]}'>${e[1].reduce((a2,e2) => (
-      `${a2}<option value='${e2.index}'>${e2.name}</option>`
+      `${a2}<option value='${e2.id}'>${e2.displayName}</option>`
     ),"")}</select>`
   ),"");
 

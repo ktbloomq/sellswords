@@ -18,6 +18,7 @@ let soulElement;
 let readPersonElement;
 let alchemyElement;
 let weaponsTrainingElement;
+let explorationBoonsElement;
 
 function updateElements() {
 	physiqueElement.textContent = character.attributes.physique.raw;
@@ -41,6 +42,7 @@ function updateElements() {
 
 	weaponsTrainingElement.textContent = character.weaponsTraining.reduce((a,b) => a+" "+b);
 	// TODO: Display Boons
+	// explorationBoonsElement.innerHTML = character.boons.exploration.reduce((a,b) => (`<div></div>`))
 }
 
 window.onload = function() {
@@ -63,9 +65,11 @@ window.onload = function() {
 	readPersonElement = document.getElementById("read-person-bonus");
 	alchemyElement = document.getElementById("alchemy-bonus");
 	weaponsTrainingElement = document.getElementById("weapons-training");
+	explorationBoonsElement = document.getElementById("exploration-boons");
 	
 	const queryParams = new URLSearchParams(window.location.search);
 	character = JSON.parse(queryParams.get("character"));
+	console.log(character);
 	updateElements();
 
 }
