@@ -21,7 +21,7 @@ export class Race {
 			// console.log(key,value);
 			if(key.startsWith("boon")) {
 				const boon = Boons[value];
-				console.log(boon);
+				// console.log(boon);
 				character.boons[boon.target].push(value);
 			}
 		});

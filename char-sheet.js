@@ -47,8 +47,7 @@ function updateElements() {
 		newElement.textContent = element;
 		weaponsTrainingElement.appendChild(newElement); 
 
-	});;
-	// TODO: Display Boons
+	});
 	character.boons.exploration.forEach(e => {
 		const boon = Boons[e]
 		const newElement = document.createElement("div");

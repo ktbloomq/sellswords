@@ -1,6 +1,7 @@
 export default class Player {
 	race;
 	pastLife;
+	archetype;
 	weaponsTraining = [];
 	attributes = {
 		physique: {

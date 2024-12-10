@@ -1,5 +1,6 @@
 import Player from "./character.js"
 import * as Races from "./races.js"
+import * as Archetypes from "./archetypes.js"
 import * as PastLife from "./pastLife.js"
 
 function updateRaceChoices(e) {
@@ -12,9 +13,23 @@ function updateRaceChoices(e) {
   ),"");
 
 }
+
+function updateArchetypeChoices(e) {
+  const archetypeChoicesElement = document.getElementById("archetype-choices");
+  // console.log(Archetypes[e.target.value]);
+  archetypeChoicesElement.innerHTML = Object.entries(Archetypes[e.target.value].archetypeLevelChoices).reduce((a,e) => (
+    `${a}<select name='archetype-${e[0]}'>${e[1].reduce((a2,e2) => (
+      `${a2}<option value='${e2.id}'>${e2.displayName}</option>`
+    ),"")}</select>`
+  ),"");
+
+}
+
 window.onload = function() {
   const raceElement = document.getElementById("race");
+  const archetypeElement = document.getElementById("archetype");
   raceElement.addEventListener("change", updateRaceChoices);
+  archetypeElement.addEventListener("change", updateArchetypeChoices);
 
   const charForm = document.getElementById("char-form");
   charForm.addEventListener("submit", (e) => {
@@ -47,12 +62,22 @@ window.onload = function() {
     character.weaponsTraining.push(formdata.get("weapon1"));
     character.weaponsTraining.push(formdata.get("weapon2"));
 
+    const archetype = new Archetypes[formdata.get("archetype")]();
+    archetype.choices =  formdata.entries().reduce((a,e) => {
+      if(e[0].startsWith("archetype-")) {
+        a[e[0].slice(10)]=e[1];
+      }
+      return a;
+    },{});
+    archetype.applyBonuses(character);
+    character.archetype = archetype;
+
     character.calcSkills();
     console.log(character);
 
     const queryParams = new URLSearchParams();
     queryParams.append("character", JSON.stringify(character));
     const redirect = `/char-sheet.html?${queryParams.toString()}`
-    window.location.href = redirect;
+    window.open(redirect, '_blank');
   })
 }

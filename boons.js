@@ -36,7 +36,7 @@ export default {
     },
     drunkenFist: {
         id: "drunkenFist",
-        target:"cobat", 
+        target:"combat", 
         displayName:"Drunken Fist"
     },
     fortitudeOfStone: {
@@ -158,5 +158,40 @@ export default {
         id: "skittish",
         target: "exploration",
         displayName: "Skittish"
-    }
+    },
+    hp5: {
+        id: "hp5",
+        target: "exploration",
+        displayName: "+5 HP"
+    },
+    advancedWeapon: {
+        id: "advancedWeapon", 
+        target: "exploration",
+        displayName: "Advanced Weapon Training"
+    },
+    water: {
+        id:"water",
+        target: "combat",
+        displayName: "water"
+    },
+    aether: {
+        id:"aether",
+        target: "combat",
+        displayName: "aether"
+    },
+    fire: {
+        id:"fire",
+        target: "combat",
+        displayName: "fire"
+    },
+    earth: {
+        id:"earth",
+        target: "combat",
+        displayName: "earth"
+    },
+    air: {
+        id:"air",
+        target: "combat",
+        displayName: "air"
+    },
 }
