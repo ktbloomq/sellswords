@@ -24,7 +24,7 @@ let characterElements = {
 	weaponsTraining: {},
 	explorationBoons: {},
 };
-let editorModalElement, editorInputElement, editorFormElement;
+let editorModalElement, editorInputElement, editorFormElement, editorTarget;
 
 function updateElements() {
 	characterElements.physique.target.textContent = characterElements.physique.source;
@@ -46,34 +46,47 @@ function updateElements() {
 	characterElements.readPerson.target.textContent = characterElements.readPerson.source;
 	characterElements.alchemy.target.textContent = characterElements.alchemy.source;
 
+	characterElements.weaponsTraining.target.innerHTML = ""; 
 	character.weaponsTraining.forEach(element => {
 		const newElement = document.createElement("div");
 		newElement.textContent = element;
 		characterElements.weaponsTraining.target.appendChild(newElement); 
 
 	});
-	character.boons.exploration.forEach(e => {
-		const boon = Boons[e]
+
+	characterElements.explorationBoons.target.innerHTML = "";
+	character.boons.exploration.forEach(element => {
+		const boon = Boons[element]
 		const newElement = document.createElement("div");
 		newElement.textContent = boon.displayName;
 		characterElements.explorationBoons.target.appendChild(newElement);
 	});
 }
 
-function editElement(element) {
+function openModal(element) {
 	// console.log(element);
+	editorInputElement.innerHTML = "";
+	if(Array.isArray(element.source)) {
+		element.source.forEach((entry, i) => {
+			const newInput = document.createElement("input");
+			newInput.setAttribute("name", i);
+			newInput.value = entry;
+			editorInputElement.appendChild(newInput);
+		})
+	} else {
+		const newInput = document.createElement("input");
+		newInput.value = element.source;
+		editorFormElement.insertBefore(newInput, editorFormElement.firstChild);
+	}
+	editorTarget = element;
 	editorModalElement.showModal();
-	editorInputElement.value = element.source;
-	editorFormElement.addEventListener("submit", (event) => {
-		event.preventDefault();
-		const formData = new FormData(editorFormElement);
-		element.source = formData.get("newValue");
-		element.target.textContent = element.source;
-		console.log(character);
-	});
 }
 
 window.onload = function() {
+	const queryParams = new URLSearchParams(window.location.search);
+	character = JSON.parse(queryParams.get("character")) ?? new Character();
+	console.log(character);
+
 	characterElements.physique.target = document.getElementById("physique-bonus");
 	characterElements.intimidation.target = document.getElementById("intimidation-bonus");
 	characterElements.strength.target = document.getElementById("strength-bonus");
@@ -97,17 +110,11 @@ window.onload = function() {
 
 	editorModalElement = document.getElementById("editor");
 	editorFormElement = document.getElementById("editor-form");
-	editorInputElement = document.getElementById("newValue");
-
+	editorInputElement = document.getElementById("editor-inputs");
 
 	Object.entries(characterElements).forEach(([key, value]) => {
-		value.target.addEventListener("click", (event) => {editElement(value)});
+		value.target.addEventListener("click", (event) => {openModal(value)});
 	});
-
-	
-	const queryParams = new URLSearchParams(window.location.search);
-	character = JSON.parse(queryParams.get("character")) ?? new Character();
-	console.log(character);
 
 	characterElements.physique.source = character.attributes.physique.raw;
 	characterElements.intimidation.source = character.attributes.physique.intimidation;
@@ -133,4 +140,14 @@ window.onload = function() {
 
 	updateElements();
 
+	editorFormElement.addEventListener("submit", (event) => {
+		event.preventDefault();
+		const formData = new FormData(editorFormElement);
+		console.log(formData);
+		editorTarget.source = Array.from(formData.values());
+		console.log(editorTarget.source)
+		console.log(character);
+		updateElements();
+		editorModalElement.close();
+	});
 }
