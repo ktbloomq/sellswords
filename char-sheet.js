@@ -1,7 +1,8 @@
 import Boons from "./boons.js"
+import Character from "./character.js"
 
 let character;
-let elements = {
+let characterElements = {
 	physique: {},
 	intimidation: {},
 	strength: {},
@@ -23,97 +24,112 @@ let elements = {
 	weaponsTraining: {},
 	explorationBoons: {},
 };
+let editorModalElement, editorInputElement, editorFormElement;
 
 function updateElements() {
-	elements.physique.target.textContent = elements.physique.source;
-	elements.intimidation.target.textContent = elements.intimidation.source;
-	elements.strength.target.textContent = elements.strength.source;
-	elements.precision.target.textContent = elements.precision.source
-	elements.pickpocket.target.textContent = elements.pickpocket.source;
-	elements.hide.target.textContent = elements.hide.source;
-	elements.intuition.target.textContent = elements.intuition.source
-	elements.blend.target.textContent = elements.blend.source;
-	elements.diplomacy.target.textContent = elements.diplomacy.source;
-	elements.smarts.target.textContent = elements.smarts.source
-	elements.focus.target.textContent = elements.focus.source;
-	elements.tinkering.target.textContent = elements.tinkering.source;
-	elements.wit.target.textContent = elements.wit.source
-	elements.business.target.textContent = elements.business.source;
-	elements.bluff.target.textContent = elements.bluff.source;
-	elements.soul.target.textContent = elements.soul.source
-	elements.readPerson.target.textContent = elements.readPerson.source;
-	elements.alchemy.target.textContent = elements.alchemy.source;
+	characterElements.physique.target.textContent = characterElements.physique.source;
+	characterElements.intimidation.target.textContent = characterElements.intimidation.source;
+	characterElements.strength.target.textContent = characterElements.strength.source;
+	characterElements.precision.target.textContent = characterElements.precision.source
+	characterElements.pickpocket.target.textContent = characterElements.pickpocket.source;
+	characterElements.hide.target.textContent = characterElements.hide.source;
+	characterElements.intuition.target.textContent = characterElements.intuition.source
+	characterElements.blend.target.textContent = characterElements.blend.source;
+	characterElements.diplomacy.target.textContent = characterElements.diplomacy.source;
+	characterElements.smarts.target.textContent = characterElements.smarts.source
+	characterElements.focus.target.textContent = characterElements.focus.source;
+	characterElements.tinkering.target.textContent = characterElements.tinkering.source;
+	characterElements.wit.target.textContent = characterElements.wit.source
+	characterElements.business.target.textContent = characterElements.business.source;
+	characterElements.bluff.target.textContent = characterElements.bluff.source;
+	characterElements.soul.target.textContent = characterElements.soul.source
+	characterElements.readPerson.target.textContent = characterElements.readPerson.source;
+	characterElements.alchemy.target.textContent = characterElements.alchemy.source;
 
 	character.weaponsTraining.forEach(element => {
 		const newElement = document.createElement("div");
 		newElement.textContent = element;
-		elements.weaponsTraining.target.appendChild(newElement); 
+		characterElements.weaponsTraining.target.appendChild(newElement); 
 
 	});
 	character.boons.exploration.forEach(e => {
 		const boon = Boons[e]
 		const newElement = document.createElement("div");
 		newElement.textContent = boon.displayName;
-		elements.explorationBoons.target.appendChild(newElement);
+		characterElements.explorationBoons.target.appendChild(newElement);
 	});
 }
 
 function editElement(element) {
 	// console.log(element);
-	element.source = "test";
-	element.target.textContent = element.source;
-	console.log(character);
+	editorModalElement.showModal();
+	editorInputElement.value = element.source;
+	editorFormElement.addEventListener("submit", (event) => {
+		event.preventDefault();
+		const formData = new FormData(editorFormElement);
+		element.source = formData.get("newValue");
+		element.target.textContent = element.source;
+		console.log(character);
+	});
 }
 
 window.onload = function() {
-	elements.physique.target = document.getElementById("physique-bonus");
-	elements.intimidation.target = document.getElementById("intimidation-bonus");
-	elements.strength.target = document.getElementById("strength-bonus");
-	elements.precision.target = document.getElementById("precision-bonus");
-	elements.pickpocket.target = document.getElementById("pickpocket-bonus");
-	elements.hide.target = document.getElementById("hide-bonus");
-	elements.intuition.target = document.getElementById("intuition-bonus");
-	elements.blend.target = document.getElementById("blend-bonus");
-	elements.diplomacy.target = document.getElementById("diplomacy-bonus");
-	elements.smarts.target = document.getElementById("smarts-bonus");
-	elements.focus.target = document.getElementById("focus-bonus");
-	elements.tinkering.target = document.getElementById("tinkering-bonus");
-	elements.wit.target = document.getElementById("wit-bonus");
-	elements.business.target = document.getElementById("business-bonus");
-	elements.bluff.target = document.getElementById("bluff-bonus");
-	elements.soul.target = document.getElementById("soul-bonus");
-	elements.readPerson.target = document.getElementById("read-person-bonus");
-	elements.alchemy.target = document.getElementById("alchemy-bonus");
-	elements.weaponsTraining.target = document.getElementById("weapons-training");
-	elements.explorationBoons.target = document.getElementById("exploration-boons");
+	characterElements.physique.target = document.getElementById("physique-bonus");
+	characterElements.intimidation.target = document.getElementById("intimidation-bonus");
+	characterElements.strength.target = document.getElementById("strength-bonus");
+	characterElements.precision.target = document.getElementById("precision-bonus");
+	characterElements.pickpocket.target = document.getElementById("pickpocket-bonus");
+	characterElements.hide.target = document.getElementById("hide-bonus");
+	characterElements.intuition.target = document.getElementById("intuition-bonus");
+	characterElements.blend.target = document.getElementById("blend-bonus");
+	characterElements.diplomacy.target = document.getElementById("diplomacy-bonus");
+	characterElements.smarts.target = document.getElementById("smarts-bonus");
+	characterElements.focus.target = document.getElementById("focus-bonus");
+	characterElements.tinkering.target = document.getElementById("tinkering-bonus");
+	characterElements.wit.target = document.getElementById("wit-bonus");
+	characterElements.business.target = document.getElementById("business-bonus");
+	characterElements.bluff.target = document.getElementById("bluff-bonus");
+	characterElements.soul.target = document.getElementById("soul-bonus");
+	characterElements.readPerson.target = document.getElementById("read-person-bonus");
+	characterElements.alchemy.target = document.getElementById("alchemy-bonus");
+	characterElements.weaponsTraining.target = document.getElementById("weapons-training");
+	characterElements.explorationBoons.target = document.getElementById("exploration-boons");
 
-	Object.entries(elements).forEach(([key, value]) => {
+	editorModalElement = document.getElementById("editor");
+	editorFormElement = document.getElementById("editor-form");
+	editorInputElement = document.getElementById("newValue");
+
+
+	Object.entries(characterElements).forEach(([key, value]) => {
 		value.target.addEventListener("click", (event) => {editElement(value)});
 	});
 
 	
 	const queryParams = new URLSearchParams(window.location.search);
-	character = JSON.parse(queryParams.get("character"));
+	character = JSON.parse(queryParams.get("character")) ?? new Character();
 	console.log(character);
 
-	elements.physique.source = character.attributes.physique.raw;
-	elements.intimidation.source = character.attributes.physique.intimidation;
-	elements.strength.source = character.attributes.physique.strength;
-	elements.precision.source = character.attributes.precision.raw
-	elements.pickpocket.source = character.attributes.precision.pickpocket;
-	elements.hide.source = character.attributes.precision.hide;
-	elements.intuition.source = character.attributes.intuition.raw
-	elements.blend.source = character.attributes.intuition.blend;
-	elements.diplomacy.source = character.attributes.intuition.diplomacy;
-	elements.smarts.source = character.attributes.smarts.raw
-	elements.focus.source = character.attributes.smarts.focus;
-	elements.tinkering.source = character.attributes.smarts.tinkering;
-	elements.wit.source = character.attributes.wit.raw
-	elements.business.source = character.attributes.wit.business;
-	elements.bluff.source = character.attributes.wit.bluff;
-	elements.soul.source = character.attributes.soul.raw
-	elements.readPerson.source = character.attributes.soul.readPerson;
-	elements.alchemy.source = character.attributes.soul.alchemy;
+	characterElements.physique.source = character.attributes.physique.raw;
+	characterElements.intimidation.source = character.attributes.physique.intimidation;
+	characterElements.strength.source = character.attributes.physique.strength;
+	characterElements.precision.source = character.attributes.precision.raw
+	characterElements.pickpocket.source = character.attributes.precision.pickpocket;
+	characterElements.hide.source = character.attributes.precision.hide;
+	characterElements.intuition.source = character.attributes.intuition.raw
+	characterElements.blend.source = character.attributes.intuition.blend;
+	characterElements.diplomacy.source = character.attributes.intuition.diplomacy;
+	characterElements.smarts.source = character.attributes.smarts.raw
+	characterElements.focus.source = character.attributes.smarts.focus;
+	characterElements.tinkering.source = character.attributes.smarts.tinkering;
+	characterElements.wit.source = character.attributes.wit.raw
+	characterElements.business.source = character.attributes.wit.business;
+	characterElements.bluff.source = character.attributes.wit.bluff;
+	characterElements.soul.source = character.attributes.soul.raw
+	characterElements.readPerson.source = character.attributes.soul.readPerson;
+	characterElements.alchemy.source = character.attributes.soul.alchemy;
+
+	characterElements.weaponsTraining.source = character.weaponsTraining;
+	characterElements.explorationBoons.source = character.boons.exploration;
 
 	updateElements();
 
