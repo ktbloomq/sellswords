@@ -1,4 +1,4 @@
-export default class Player {
+export default class Character {
 	race;
 	pastLife;
 	archetype;
@@ -6,33 +6,33 @@ export default class Player {
 	attributes = {
 		physique: {
 			raw: -4,
-			intimidation: -4,
-			strength: -4
+			intimidation: -20,
+			strength: -20
 		},
 		precision: {
 			raw: -4,
-			pickpocket: -4,
-			hide: -4
+			pickpocket: -20,
+			hide: -20
 		},
 		intuition: {
 			raw: -4,
-			blend: -4,
-			diplomacy: -4
+			blend: -20,
+			diplomacy: -20
 		},
 		smarts: {
 			raw: -4,
-			focus: -4,
-			tinkering: -4
+			focus: -20,
+			tinkering: -20
 		},
 		wit: {
 			raw: -4,
-			business: -4,
-			bluff: -4
+			business: -20,
+			bluff: -20
 		},
 		soul: {
 			raw: -4,
-			readPerson: -4,
-			alchemy: -4
+			readPerson: -20,
+			alchemy: -20
 		}
 	};
 	specializations = [];

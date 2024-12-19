@@ -1,4 +1,5 @@
 import Boons from "./boons.js"
+import WeaponTypes from "./weaponTypes.js"
 import Character from "./character.js"
 
 let character;
@@ -48,15 +49,16 @@ function updateElements() {
 
 	characterElements.weaponsTraining.target.innerHTML = ""; 
 	character.weaponsTraining.forEach(element => {
+		const weaponType = WeaponTypes[element] ?? {id:element, displayName:element};
 		const newElement = document.createElement("div");
-		newElement.textContent = element;
+		newElement.textContent = weaponType.displayName;
 		characterElements.weaponsTraining.target.appendChild(newElement); 
 
 	});
 
 	characterElements.explorationBoons.target.innerHTML = "";
 	character.boons.exploration.forEach(element => {
-		const boon = Boons[element]
+		const boon = Boons[element] ?? {id:element, displayName:element};
 		const newElement = document.createElement("div");
 		newElement.textContent = boon.displayName;
 		characterElements.explorationBoons.target.appendChild(newElement);
@@ -178,5 +180,5 @@ window.onload = function() {
 	});
 	editorRemoveElement.addEventListener("click", (event) => {
 		editorInputElement.lastElementChild ? (editorInputElement.lastElementChild.outerHTML = "") : null;
-	})
+	});
 }

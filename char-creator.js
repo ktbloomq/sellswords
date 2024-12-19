@@ -73,10 +73,11 @@ window.onload = function() {
     character.archetype = archetype;
 
     character.calcSkills();
-    console.log(character);
-
+    
     const queryParams = new URLSearchParams();
-    queryParams.append("character", JSON.stringify(character));
+    const characterString = JSON.stringify(character);
+    console.log(characterString);
+    queryParams.append("character", characterString);
     const redirect = `/char-sheet.html?${queryParams.toString()}`
     window.open(redirect, '_blank');
   })
