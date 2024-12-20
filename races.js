@@ -1,6 +1,7 @@
 import Boons from "./boons.js";
 
 export class Race {
+	name;
 	modifiers;
 	choices;
 	static raceChoices = {};
@@ -29,6 +30,7 @@ export class Race {
 }
 
 export class Human extends Race {
+	name = "Human";
 	static raceChoices = {
 		boon1: [
 			Boons.adaptable,
@@ -56,6 +58,7 @@ export class Human extends Race {
 }
 
 export class Elf extends Race {
+	name = "Elf";
 	static raceChoices = {
 		boon1: [
 			Boons.hawksight,
@@ -83,6 +86,7 @@ export class Elf extends Race {
 }
 
 export class Dwarf extends Race {
+	name = "Dwarf";
 	static raceChoices = {
 		boon1: [
 			Boons.mountainBorn,
@@ -114,6 +118,7 @@ export class Dwarf extends Race {
 }
 
 export class Esborn extends Race {
+	name = "Esborn";
 	static raceChoices = {
 		boon1: [
 			Boons.elderSight,
@@ -131,6 +136,7 @@ export class Esborn extends Race {
 }
 
 export class Orc extends Race {
+	name = "Orc";
 	static raceChoices = {
 		boon1: [
 			Boons.mountainBorn,
@@ -156,6 +162,7 @@ export class Orc extends Race {
 }
 
 export class Catfolk extends Race {
+	name = "Catfolk";
 	static raceChoices = {
 		boon1: [
 			Boons.nightvision,

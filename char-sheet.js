@@ -5,6 +5,7 @@ import Character from "./character.js"
 let character;
 let characterElements = {
 	name: {},
+	race: {},
 	physique: {},
 	intimidation: {},
 	strength: {},
@@ -30,6 +31,7 @@ let editorModalElement, editorInputElement, editorFormElement, editorAddElement,
 
 function updateElements() {
 	characterElements.name.target.textContent = characterElements.name.source();
+	characterElements.race.target.textContent = characterElements.race.source();
 	characterElements.physique.target.textContent = characterElements.physique.source();
 	characterElements.intimidation.target.textContent = characterElements.intimidation.source();
 	characterElements.strength.target.textContent = characterElements.strength.source();
@@ -127,6 +129,7 @@ window.onload = async function() {
 	console.log(character);
 
 	characterElements.name.target = document.getElementById("name");
+	characterElements.race.target = document.getElementById("race");
 	characterElements.physique.target = document.getElementById("physique-bonus");
 	characterElements.intimidation.target = document.getElementById("intimidation-bonus");
 	characterElements.strength.target = document.getElementById("strength-bonus");
@@ -159,6 +162,7 @@ window.onload = async function() {
 	});
 
 	characterElements.name.source = (v) => {if(v!==undefined) character.name = v; return character.name};
+	characterElements.race.source = (v) => {if(v!==undefined) character.race.name = v; return character.race.name};
 	characterElements.physique.source = (v) => {if(v!==undefined) character.attributes.physique.raw = v; return character.attributes.physique.raw};
 	characterElements.intimidation.source = (v) => {if(v!==undefined) character.attributes.physique.intimidation=v; return character.attributes.physique.intimidation;};
 	characterElements.strength.source = (v) => {if(v!==undefined) character.attributes.physique.strength=v; return character.attributes.physique.strength;};

@@ -76,7 +76,7 @@ window.onload = async function() {
     
     const characterString = JSON.stringify(character);
     console.log(characterString);
-    const response = await fetch(`saveCharacter.php/?name=${name}`, {
+    const response = await fetch(`saveCharacter.php/?name=${character.name}`, {
       method: "POST",
       body: characterString,
     });
