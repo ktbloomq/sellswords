@@ -4,6 +4,7 @@ import Character from "./character.js"
 
 let character;
 let characterElements = {
+	name: {},
 	physique: {},
 	intimidation: {},
 	strength: {},
@@ -28,6 +29,7 @@ let characterElements = {
 let editorModalElement, editorInputElement, editorFormElement, editorAddElement, editorRemoveElement, editorTarget;
 
 function updateElements() {
+	characterElements.name.target.textContent = characterElements.name.source();
 	characterElements.physique.target.textContent = characterElements.physique.source();
 	characterElements.intimidation.target.textContent = characterElements.intimidation.source();
 	characterElements.strength.target.textContent = characterElements.strength.source();
@@ -112,11 +114,19 @@ function applyChange(event) {
 	editorModalElement.close();
 }
 
-window.onload = function() {
+window.onload = async function() {
 	const queryParams = new URLSearchParams(window.location.search);
-	character = JSON.parse(queryParams.get("character")) ?? new Character();
+	const characterParam = queryParams.get("character");
+	const nameParam = queryParams.get("name");
+	if(characterParam!==null) {
+		character = JSON.parse(characterParam);
+	} else if(nameParam!==null) {
+		const response = await fetch(`getCharacter.php/?name=${nameParam}`);
+		character = await response.json();
+	}
 	console.log(character);
 
+	characterElements.name.target = document.getElementById("name");
 	characterElements.physique.target = document.getElementById("physique-bonus");
 	characterElements.intimidation.target = document.getElementById("intimidation-bonus");
 	characterElements.strength.target = document.getElementById("strength-bonus");
@@ -148,6 +158,7 @@ window.onload = function() {
 		value.target.addEventListener("click", (event) => {openModal(value)});
 	});
 
+	characterElements.name.source = (v) => {if(v!==undefined) character.name = v; return character.name};
 	characterElements.physique.source = (v) => {if(v!==undefined) character.attributes.physique.raw = v; return character.attributes.physique.raw};
 	characterElements.intimidation.source = (v) => {if(v!==undefined) character.attributes.physique.intimidation=v; return character.attributes.physique.intimidation;};
 	characterElements.strength.source = (v) => {if(v!==undefined) character.attributes.physique.strength=v; return character.attributes.physique.strength;};

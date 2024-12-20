@@ -1,4 +1,4 @@
-import Player from "./character.js"
+import Character from "./character.js"
 import * as Races from "./races.js"
 import * as Archetypes from "./archetypes.js"
 import * as PastLife from "./pastLife.js"
@@ -25,18 +25,18 @@ function updateArchetypeChoices(e) {
 
 }
 
-window.onload = function() {
+window.onload = async function() {
   const raceElement = document.getElementById("race");
   const archetypeElement = document.getElementById("archetype");
   raceElement.addEventListener("change", updateRaceChoices);
   archetypeElement.addEventListener("change", updateArchetypeChoices);
 
   const charForm = document.getElementById("char-form");
-  charForm.addEventListener("submit", (e) => {
+  charForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formdata = new FormData(charForm);
-    // console.log(Object.fromEntries(formdata.entries()));
-    const character = new Player();
+    const character = new Character();
+    character.name = formdata.get("name") ?? "";
     const race = new Races[formdata.get("race")]();
     race.choices = formdata.entries().reduce((a,e) => {
       if(e[0].startsWith("race-")) {
@@ -74,11 +74,15 @@ window.onload = function() {
 
     character.calcSkills();
     
-    const queryParams = new URLSearchParams();
     const characterString = JSON.stringify(character);
     console.log(characterString);
-    queryParams.append("character", characterString);
-    const redirect = `/char-sheet.html?${queryParams.toString()}`
-    window.open(redirect, '_blank');
+    const response = await fetch(`saveCharacter.php/?name=${name}`, {
+      method: "POST",
+      body: characterString,
+    });
+    // const queryParams = new URLSearchParams();
+    // queryParams.append("character", characterString);
+    // const redirect = `/char-sheet.html?${queryParams.toString()}`
+    // window.open(redirect, '_blank');
   })
 }
