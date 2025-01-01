@@ -6,89 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Character Sheet</title>
 	<script type="module" src="char-sheet.js"></script>
-	<style>
-		:root {
-			--physical: LightSalmon;
-			--mental: LightGreen;
-			--spiritual: LightSkyBlue;
-			print-color-adjust: exact;
-		}
-
-		.flex {
-			display: flex;
-			justify-content: space-between;
-		}
-
-		.flex-none {
-			flex: none;
-		}
-
-		.flex-col {
-			display: flex;
-			flex-direction: column;
-		}
-
-		.box {
-			border: 1px solid;
-			margin: .25rem auto .25rem auto;
-			padding: 0 .5rem 0 .5rem;
-			width: min-content;
-			min-width: 1rem;
-			min-height: 2rem;
-			align-content: center;
-			background-color: white;
-		}
-
-		.text-box {
-			border: 1px solid;
-			margin: 2px auto 2px auto;
-			padding: 2px;
-			width: min-content;
-			background-color: white;
-		}
-
-		.specialization-box {
-			border: 1px solid;
-			margin: .5rem;
-			height: 100%;
-			background-color: white;
-		}
-
-		.boon-subcategories {
-			border-top: 1px solid;
-			height: 10rem;
-			padding: 0 2px;
-			display: grid;
-			justify-content: space-between;
-			justify-items: start;
-		}
-
-		#attributes {
-			display: grid;
-			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
-			grid-auto-rows: max-content;
-			text-align: center;
-		}
-
-		#attributes>div {
-			display: flex;
-			flex-direction: column;
-			justify-content: space-around;
-			align-content: center;
-		}
-
-		input {
-			display: block;
-		}
-
-		.hidden-button {
-			all: unset;
-		}
-
-		.hidden-button:focus {
-			color: blue;
-		}
-	</style>
+	<link rel="stylesheet" href="char-sheet.css">
 </head>
 
 <body>
@@ -100,9 +18,9 @@
 			<button type="submit">Edit</button>
 		</form>
 	</dialog>
-	<div>Character name: <span id="name">__________</span></div>
-	<div>Race: <span id="race">__________</span></div>
-	<div>Master Level: <span id="master-level"></span></div>
+	<div><label for="name">Character name: </label> <button id="name" class="hidden-button" name="name" type="button">__________</button></div>
+	<div><label for="race">Race: </label> <button id="race" class="hidden-button" name="race" type="button">__________</button></div>
+	<div>Master Level: <span id="masterLevel"></span></div>
 	<div id="attributes">
 		<!-- Title Row -->
 		<div>Attribute</div>
@@ -118,15 +36,15 @@
 			<div class="text-box">Physique</div>
 		</div>
 		<div style="background-color: var(--physical);">
-			<div id="physique-bonus" class="box"></div>
+			<div id="physique" class="box"></div>
 		</div>
 		<div style="background-color: var(--physical);">
 			<div class="text-box">Intimidation</div>
 			<div class="text-box">Strength</div>
 		</div>
 		<div style="background-color: var(--physical);">
-			<div id="intimidation-bonus" class="box"></div>
-			<div id="strength-bonus" class="box"></div>
+			<div id="intimidation" class="box"></div>
+			<div id="strength" class="box"></div>
 		</div>
 		<div style="background-color: var(--physical);">
 			<div id="intimidation-injury" class="box"></div>
@@ -146,15 +64,15 @@
 			<div class="text-box">Precision</div>
 		</div>
 		<div style="background-color: var(--physical);">
-			<div id="precision-bonus" class="box"></div>
+			<div id="precision" class="box"></div>
 		</div>
 		<div style="background-color: var(--physical);">
 			<div class="text-box">Pickpocket</div>
 			<div class="text-box">Hide</div>
 		</div>
 		<div style="background-color: var(--physical);">
-			<div id="pickpocket-bonus" class="box"></div>
-			<div id="hide-bonus" class="box"></div>
+			<div id="pickpocket" class="box"></div>
+			<div id="hide" class="box"></div>
 		</div>
 		<div style="background-color: var(--physical);">
 			<div id="pickpocket-injury" class="box"></div>
@@ -174,15 +92,15 @@
 			<div class="text-box">Intuition</div>
 		</div>
 		<div style="background-color: var(--mental);">
-			<div id="intuition-bonus" class="box"></div>
+			<div id="intuition" class="box"></div>
 		</div>
 		<div style="background-color: var(--mental);">
 			<div class="text-box">Blend</div>
 			<div class="text-box">Diplomacy</div>
 		</div>
 		<div style="background-color: var(--mental);">
-			<div id="blend-bonus" class="box"></div>
-			<div id="diplomacy-bonus" class="box"></div>
+			<div id="blend" class="box"></div>
+			<div id="diplomacy" class="box"></div>
 		</div>
 		<div style="background-color: var(--mental);">
 			<div id="blend-injury" class="box"></div>
@@ -202,15 +120,15 @@
 			<div class="text-box">Smarts</div>
 		</div>
 		<div style="background-color: var(--mental);">
-			<div id="smarts-bonus" class="box"></div>
+			<div id="smarts" class="box"></div>
 		</div>
 		<div style="background-color: var(--mental);">
 			<div class="text-box">Focus</div>
 			<div class="text-box">Tinkering</div>
 		</div>
 		<div style="background-color: var(--mental);">
-			<div id="focus-bonus" class="box"></div>
-			<div id="tinkering-bonus" class="box"></div>
+			<div id="focus" class="box"></div>
+			<div id="tinkering" class="box"></div>
 		</div>
 		<div style="background-color: var(--mental);">
 			<div id="focus-injury" class="box"></div>
@@ -230,15 +148,15 @@
 			<div class="text-box">Wit</div>
 		</div>
 		<div style="background-color: var(--spiritual);">
-			<div id="wit-bonus" class="box"></div>
+			<div id="wit" class="box"></div>
 		</div>
 		<div style="background-color: var(--spiritual);">
 			<div class="text-box">Business</div>
 			<div class="text-box">Bluff</div>
 		</div>
 		<div style="background-color: var(--spiritual);">
-			<div id="business-bonus" class="box"></div>
-			<div id="bluff-bonus" class="box"></div>
+			<div id="business" class="box"></div>
+			<div id="bluff" class="box"></div>
 		</div>
 		<div style="background-color: var(--spiritual);">
 			<div id="business-injury" class="box"></div>
@@ -258,18 +176,18 @@
 			<div class="text-box">Soul</div>
 		</div>
 		<div style="background-color: var(--spiritual);">
-			<div id="soul-bonus" class="box"></div>
+			<div id="soul" class="box"></div>
 		</div>
 		<div style="background-color: var(--spiritual);">
 			<div class="text-box">Read Person</div>
 			<div class="text-box">Alchemy</div>
 		</div>
 		<div style="background-color: var(--spiritual);">
-			<div id="read-person-bonus" class="box"></div>
-			<div id="alchemy-bonus" class="box"></div>
+			<div id="readPerson" class="box"></div>
+			<div id="alchemy" class="box"></div>
 		</div>
 		<div style="background-color: var(--spiritual);">
-			<div id="read-person-injury" class="box"></div>
+			<div id="readPerson-injury" class="box"></div>
 			<div id="alchemy-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--spiritual);">
@@ -286,24 +204,27 @@
 			<div>Health
 				<div style="border: 1px solid; text-align: left;">
 					<div id="hp" style="height: 3rem; text-align: center; align-content: center;"></div>
-					<div style="border-top: 1px solid; padding: 0 2px;">Max HP
-						<span id="max-hp"></span>
+					<div style="border-top: 1px solid; padding: 0 2px;">
+						<label for="hpMax">Max HP</label>
+						<button id="hpMax" name="hpMax" class="hidden-button" type="button"></button>
 					</div>
 				</div>
 			</div>
 			<div>Energy
 				<div style="border: 1px solid; text-align: left;">
 					<div id="ep" style="height: 3rem; text-align: center; align-content: center;"></div>
-					<div style="border-top: 1px solid; padding: 0 2px;">Max EP
-						<span id="max-ep"></span>
+					<div style="border-top: 1px solid; padding: 0 2px;">
+						<label for="epMax">Max EP</label>
+						<button id="epMax" name="epMax" class="hidden-button" type="button"></button>
 					</div>
 				</div>
 			</div>
 			<div>Mana
 				<div style="border: 1px solid; text-align: left;">
 					<div id="mp" style="height: 3rem; text-align: center; align-content: center;"></div>
-					<div style="border-top: 1px solid; padding: 0 2px;">Max MP
-						<span id="max-mp"></span>
+					<div style="border-top: 1px solid; padding: 0 2px;">
+						<label for="mpMax">Max MP</label>
+						<button id="mpMax" name="mpMax" class="hidden-button" type="button"></button>
 					</div>
 				</div>
 			</div>
@@ -344,8 +265,8 @@
 					<div id="magic-school"></div>
 				</div>
 				<div>
-					<label for="weapons-training" style="display: block;">Weapons Training:</label>
-					<button id="weapons-training" class="hidden-button" type="button" name="weapons-training"></button>
+					<label for="weaponsTraining" style="display: block;">Weapons Training:</label>
+					<button id="weaponsTraining" class="hidden-button" type="button" name="weaponsTraining"></button>
 				</div>
 			</div>
 		</div>
@@ -370,8 +291,8 @@
 					<div id="regional-knowledge"></div>
 				</div>
 				<div>
-					<label for="exploration-boons" style="display: block;">Boons:</label>
-					<button id="exploration-boons" name="exploration-boons" class="hidden-button" type="button"></button>
+					<label for="explorationBoons" style="display: block;">Boons:</label>
+					<button id="explorationBoons" name="explorationBoons" class="hidden-button" type="button"></button>
 				</div>
 			</div>
 		</div>

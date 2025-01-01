@@ -1,0 +1,81 @@
+:root {
+  --physical: LightSalmon;
+  --mental: LightGreen;
+  --spiritual: LightSkyBlue;
+  print-color-adjust: exact;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  border: 1px solid;
+  margin: .25rem auto .25rem auto;
+  padding: 0 .5rem 0 .5rem;
+  width: min-content;
+  min-width: 1rem;
+  min-height: 2rem;
+  align-content: center;
+  background-color: white;
+}
+
+.text-box {
+  border: 1px solid;
+  margin: 2px auto 2px auto;
+  padding: 2px;
+  width: min-content;
+  background-color: white;
+}
+
+.specialization-box {
+  border: 1px solid;
+  margin: .5rem;
+  height: 100%;
+  background-color: white;
+}
+
+.boon-subcategories {
+  border-top: 1px solid;
+  height: 10rem;
+  padding: 0 2px;
+  display: grid;
+  justify-content: space-between;
+  justify-items: start;
+}
+
+#attributes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
+  grid-auto-rows: max-content;
+  text-align: center;
+}
+
+#attributes>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+}
+
+input {
+  display: block;
+}
+
+.hidden-button {
+  all: unset;
+}
+
+.hidden-button:focus {
+  color: blue;
+}

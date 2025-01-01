@@ -1,6 +1,8 @@
+import { Race } from "./races.js";
+
 export default class Character {
-	name;
-	race;
+	name = "";
+	race = new Race;
 	pastLife;
 	archetype;
 	weaponsTraining = [];

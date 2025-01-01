@@ -1,7 +1,7 @@
 import Boons from "./boons.js";
 
 export class Race {
-	name;
+	name = "";
 	modifiers;
 	choices;
 	static raceChoices = {};

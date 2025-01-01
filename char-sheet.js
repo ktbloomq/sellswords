@@ -6,6 +6,12 @@ let character;
 let characterElements = {
 	name: {},
 	race: {},
+	hp: {},
+	hpMax: {},
+	mp: {},
+	mpMax: {},
+	ep: {},
+	epMax: {},
 	physique: {},
 	intimidation: {},
 	strength: {},
@@ -30,26 +36,13 @@ let characterElements = {
 let editorModalElement, editorInputElement, editorFormElement, editorAddElement, editorRemoveElement, editorTarget;
 
 function updateElements() {
-	characterElements.name.target.textContent = characterElements.name.source();
-	characterElements.race.target.textContent = characterElements.race.source();
-	characterElements.physique.target.textContent = characterElements.physique.source();
-	characterElements.intimidation.target.textContent = characterElements.intimidation.source();
-	characterElements.strength.target.textContent = characterElements.strength.source();
-	characterElements.precision.target.textContent = characterElements.precision.source();
-	characterElements.pickpocket.target.textContent = characterElements.pickpocket.source();
-	characterElements.hide.target.textContent = characterElements.hide.source();
-	characterElements.intuition.target.textContent = characterElements.intuition.source();
-	characterElements.blend.target.textContent = characterElements.blend.source();
-	characterElements.diplomacy.target.textContent = characterElements.diplomacy.source();
-	characterElements.smarts.target.textContent = characterElements.smarts.source();
-	characterElements.focus.target.textContent = characterElements.focus.source();
-	characterElements.tinkering.target.textContent = characterElements.tinkering.source();
-	characterElements.wit.target.textContent = characterElements.wit.source();
-	characterElements.business.target.textContent = characterElements.business.source();
-	characterElements.bluff.target.textContent = characterElements.bluff.source();
-	characterElements.soul.target.textContent = characterElements.soul.source();
-	characterElements.readPerson.target.textContent = characterElements.readPerson.source();
-	characterElements.alchemy.target.textContent = characterElements.alchemy.source();
+	Object.entries(characterElements).forEach(([key,value]) => {
+		const source = value.source()
+		const type = typeof(source);
+		if(type==="number") {
+			value.target.textContent = source;
+		}
+	});
 
 	characterElements.weaponsTraining.target.innerHTML = ""; 
 	character.weaponsTraining.forEach(element => {
@@ -125,31 +118,14 @@ window.onload = async function() {
 	} else if(nameParam!==null) {
 		const response = await fetch(`getCharacter.php/?name=${nameParam}`);
 		character = await response.json();
+	} else {
+		character = new Character();
 	}
 	console.log(character);
 
-	characterElements.name.target = document.getElementById("name");
-	characterElements.race.target = document.getElementById("race");
-	characterElements.physique.target = document.getElementById("physique-bonus");
-	characterElements.intimidation.target = document.getElementById("intimidation-bonus");
-	characterElements.strength.target = document.getElementById("strength-bonus");
-	characterElements.precision.target = document.getElementById("precision-bonus");
-	characterElements.pickpocket.target = document.getElementById("pickpocket-bonus");
-	characterElements.hide.target = document.getElementById("hide-bonus");
-	characterElements.intuition.target = document.getElementById("intuition-bonus");
-	characterElements.blend.target = document.getElementById("blend-bonus");
-	characterElements.diplomacy.target = document.getElementById("diplomacy-bonus");
-	characterElements.smarts.target = document.getElementById("smarts-bonus");
-	characterElements.focus.target = document.getElementById("focus-bonus");
-	characterElements.tinkering.target = document.getElementById("tinkering-bonus");
-	characterElements.wit.target = document.getElementById("wit-bonus");
-	characterElements.business.target = document.getElementById("business-bonus");
-	characterElements.bluff.target = document.getElementById("bluff-bonus");
-	characterElements.soul.target = document.getElementById("soul-bonus");
-	characterElements.readPerson.target = document.getElementById("read-person-bonus");
-	characterElements.alchemy.target = document.getElementById("alchemy-bonus");
-	characterElements.weaponsTraining.target = document.getElementById("weapons-training");
-	characterElements.explorationBoons.target = document.getElementById("exploration-boons");
+	Object.keys(characterElements).forEach((key) => {
+		characterElements[key].target = document.getElementById(key);
+	});
 
 	editorModalElement = document.getElementById("editor");
 	editorFormElement = document.getElementById("editor-form");
@@ -157,12 +133,18 @@ window.onload = async function() {
 	editorAddElement = document.getElementById("add-entry");
 	editorRemoveElement = document.getElementById("remove-entry");
 
-	Object.entries(characterElements).forEach(([key, value]) => {
+	Object.values(characterElements).forEach((value) => {
 		value.target.addEventListener("click", (event) => {openModal(value)});
 	});
 
 	characterElements.name.source = (v) => {if(v!==undefined) character.name = v; return character.name};
 	characterElements.race.source = (v) => {if(v!==undefined) character.race.name = v; return character.race.name};
+	characterElements.hp.source = (v) => {if(v!==undefined) character.health.current = v; return character.health.current};
+	characterElements.hpMax.source = (v) => {if(v!==undefined) character.health.max = v; return character.health.max};
+	characterElements.ep.source = (v) => {if(v!==undefined) character.energy.current = v; return character.energy.current};
+	characterElements.epMax.source = (v) => {if(v!==undefined) character.energy.max = v; return character.energy.max};
+	characterElements.mp.source = (v) => {if(v!==undefined) character.mana.current = v; return character.mana.current};
+	characterElements.mpMax.source = (v) => {if(v!==undefined) character.mana.max = v; return character.mana.max};
 	characterElements.physique.source = (v) => {if(v!==undefined) character.attributes.physique.raw = v; return character.attributes.physique.raw};
 	characterElements.intimidation.source = (v) => {if(v!==undefined) character.attributes.physique.intimidation=v; return character.attributes.physique.intimidation;};
 	characterElements.strength.source = (v) => {if(v!==undefined) character.attributes.physique.strength=v; return character.attributes.physique.strength;};
