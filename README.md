@@ -2,9 +2,10 @@
 - most example character sheets have at least one value that is lower than expected
 - Criminal Contacts boon 
 ## TODO
+- [ ] favored skills
 - [ ] combat pools
 - [ ] action dice
-- [ ] past life skills
+- [x] past life skills
 - [ ] past life options
-- [ ] allow manual adjustments
+- [X] allow manual adjustments
 - [ ] magic

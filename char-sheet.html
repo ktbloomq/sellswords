@@ -18,9 +18,14 @@
 			<button type="submit">Edit</button>
 		</form>
 	</dialog>
-	<div><label for="name">Character name: </label> <button id="name" class="hidden-button" name="name" type="button">__________</button></div>
-	<div><label for="race">Race: </label> <button id="race" class="hidden-button" name="race" type="button">__________</button></div>
-	<div>Master Level: <span id="masterLevel"></span></div>
+	<div style="display: flex; justify-content: space-between;">
+		<div>
+			<div><label for="name">Character name: </label> <button id="name" class="hidden-button" name="name" type="button">__________</button></div>
+			<div><label for="race">Race: </label> <button id="race" class="hidden-button" name="race" type="button">__________</button></div>
+			<div>Master Level: <span id="masterLevel"></span></div>
+		</div>
+		<button id="save" type="button" style="width: 25%; font-size: xx-large;">Save</button>
+	</div>
 	<div id="attributes">
 		<!-- Title Row -->
 		<div>Attribute</div>
@@ -257,7 +262,7 @@
 			</div>
 		</div>
 	</div>
-	<div style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr));">
+	<div style="display: grid; grid-template-columns: repeat(4, minmax(0,1fr));">
 		<div style="border: 1px solid; flex-grow:1; margin: .25rem;">
 			<div style="padding: 0 2px; background-color: red;">Combat</div>
 			<div class="boon-subcategories">
@@ -294,6 +299,12 @@
 					<label for="explorationBoons" style="display: block;">Boons:</label>
 					<button id="explorationBoons" name="explorationBoons" class="hidden-button" type="button"></button>
 				</div>
+			</div>
+		</div>
+		<div style="border: 1px solid; flex-grow:1; margin: .25rem;">
+			<label for="specializations" style="display: block; padding: 0 2px; background-color: green;">Specializations</label>
+			<div class="boon-subcategories">
+				<button id="specializations" name="specializations" class="hidden-button" type="button"></button>
 			</div>
 		</div>
 	</div>

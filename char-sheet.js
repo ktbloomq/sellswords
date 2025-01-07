@@ -32,6 +32,7 @@ let characterElements = {
 	alchemy: {},
 	weaponsTraining: {},
 	explorationBoons: {},
+	specializations: {}
 };
 let editorModalElement, editorInputElement, editorFormElement, editorAddElement, editorRemoveElement, editorTarget;
 
@@ -39,7 +40,7 @@ function updateElements() {
 	Object.entries(characterElements).forEach(([key,value]) => {
 		const source = value.source()
 		const type = typeof(source);
-		if(type==="number") {
+		if(type==="number" || type==="string") {
 			value.target.textContent = source;
 		}
 	});
@@ -59,6 +60,13 @@ function updateElements() {
 		const newElement = document.createElement("div");
 		newElement.textContent = boon.displayName;
 		characterElements.explorationBoons.target.appendChild(newElement);
+	});
+
+	characterElements.specializations.target.innerHTML = "";
+	character.specializations.forEach(element => {
+		const newElement = document.createElement("div");
+		newElement.textContent = element;
+		characterElements.specializations.target.appendChild(newElement);
 	});
 }
 
@@ -109,6 +117,19 @@ function applyChange(event) {
 	editorModalElement.close();
 }
 
+async function saveCharacter(event) {
+	const characterString = JSON.stringify(character);
+	const response = await fetch(`saveCharacter.php/?name=${character.name}`, {
+		method: "POST",
+		body: characterString,
+	});
+	if(response.status===200) {
+		alert("saved");
+	} else {
+		alert("error: could not save");
+	}
+}
+
 window.onload = async function() {
 	const queryParams = new URLSearchParams(window.location.search);
 	const characterParam = queryParams.get("character");
@@ -136,6 +157,7 @@ window.onload = async function() {
 	Object.values(characterElements).forEach((value) => {
 		value.target.addEventListener("click", (event) => {openModal(value)});
 	});
+	document.getElementById("save").addEventListener("click", saveCharacter);
 
 	characterElements.name.source = (v) => {if(v!==undefined) character.name = v; return character.name};
 	characterElements.race.source = (v) => {if(v!==undefined) character.race.name = v; return character.race.name};
@@ -165,6 +187,7 @@ window.onload = async function() {
 	characterElements.alchemy.source = (v) => {if(v!==undefined) character.attributes.soul.alchemy=v; return character.attributes.soul.alchemy;};
 	characterElements.weaponsTraining.source = (v) => {if(v!==undefined) character.weaponsTraining=v; return character.weaponsTraining;};
 	characterElements.explorationBoons.source = (v) => {if(v!==undefined) character.boons.exploration=v; return character.boons.exploration;};
+	characterElements.specializations.source = (v) => {if(v!==undefined) character.specializations=v; return character.specializations;};
 
 	updateElements();
 

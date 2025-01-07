@@ -59,8 +59,10 @@ window.onload = async function() {
     const pastLife = new PastLife[formdata.get("past")]();
     character.pastLife = pastLife;
 
-    character.weaponsTraining.push(formdata.get("weapon1"));
-    character.weaponsTraining.push(formdata.get("weapon2"));
+    let weapon = formdata.get("weapon1");
+    if (weapon!=="none") character.weaponsTraining.push(weapon);
+    weapon = formdata.get("weapon2");
+    if (weapon!=="none") character.weaponsTraining.push(formdata.get("weapon2"));
 
     const archetype = new Archetypes[formdata.get("archetype")]();
     archetype.choices =  formdata.entries().reduce((a,e) => {

@@ -30,7 +30,7 @@ export class Burglar extends PastLife {
   setModifiers(character) {
     this.modifiers = [
       () => {character.attributes.precision.hide += 10},
-      // TODO: Boon: Criminal Contacts
+      () => {character.skills.push("Criminal Contacts")}
     ];
   }
 }
@@ -152,8 +152,8 @@ export class MagicInitiate extends PastLife {
 export class Sailor extends PastLife {
   setModifiers(character) {
     this.modifiers = [
-      // TODO: Swimming
-      // TODO: Climbing
+      () => {character.skills.push("Swimming")},
+      () => {character.skills.push("Climbing")},
     ];
   }
 }

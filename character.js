@@ -44,6 +44,7 @@ export default class Character {
 		social: [],
 		exploration: []
 	};
+	specializations = [];
 	level;
 	health = {
 		current: 0,
@@ -57,10 +58,9 @@ export default class Character {
 		current: 0,
 		max: 0
 	};
-	freeActions;
-	actions;
-	actionDice;
-	actionDiceType;
+	freeActions = 1;
+	actions = 1;
+	actionDice = 0;
 	applyAttributeBuy(selections) {
 		Object.entries(selections).forEach(([key,val]) => {
 			this.attributes[key].raw += val;
