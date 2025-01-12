@@ -17,12 +17,9 @@ export class Race {
 		});
 	};
 	applyBoons(character) {
-		// console.log(this.choices);
 		Object.entries(this.choices).forEach(([key,value]) => {
-			// console.log(key,value);
 			if(key.startsWith("boon")) {
 				const boon = Boons[value];
-				// console.log(boon);
 				character.boons[boon.target].push(value);
 			}
 		});

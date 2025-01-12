@@ -47,16 +47,16 @@ export default class Character {
 	specializations = [];
 	level;
 	health = {
-		current: 0,
-		max: 0,
+		current: 10,
+		max: 10,
 	};
 	energy = {
-		current: 0,
-		max: 0
+		current: 10,
+		max: 10
 	};
 	mana = {
-		current: 0,
-		max: 0
+		current: 10,
+		max: 10
 	};
 	freeActions = 1;
 	actions = 1;

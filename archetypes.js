@@ -1,7 +1,7 @@
 import Boons from "./boons.js";
 
 export class Archetype {
-    choices
+    choices = [];
     applyBonuses(character) {
 		// console.log(this.choices);
 		Object.entries(this.choices).forEach(([key,value]) => {

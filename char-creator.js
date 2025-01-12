@@ -3,26 +3,57 @@ import * as Races from "./races.js"
 import * as Archetypes from "./archetypes.js"
 import * as PastLife from "./pastLife.js"
 
-function updateRaceChoices(e) {
+function updateRaceChoices(event) {
   const raceChoicesElement = document.getElementById("race-choices");
-  // console.log(Races[e.target.value]);
-  raceChoicesElement.innerHTML = Object.entries(Races[e.target.value].raceChoices).reduce((a,e) => (
-    `${a}<select name='race-${e[0]}'>${e[1].reduce((a2,e2) => (
-      `${a2}<option value='${e2.id}'>${e2.displayName}</option>`
-    ),"")}</select>`
-  ),"");
-
+  raceChoicesElement.textContent = '';
+  Object.entries(Races[event.target.value].raceChoices).forEach((e1) => {
+    const select = document.createElement("select");
+    select.name = `race-${e1[0]}`
+    select.required = true;
+    let option = document.createElement("option");
+    option.value = "";
+    option.selected = true;
+    option.disabled = true;
+    option.hidden = true;
+    option.textContent = "choose";
+    select.appendChild(option);
+    e1[1].forEach((e2) => {
+      option = document.createElement("option");
+      option.value = e2.id;
+      option.textContent = e2.displayName;
+      select.appendChild(option);
+    });
+    raceChoicesElement.appendChild(select);
+  });
 }
 
-function updateArchetypeChoices(e) {
+function updateArchetypeChoices(event) {
   const archetypeChoicesElement = document.getElementById("archetype-choices");
-  // console.log(Archetypes[e.target.value]);
-  archetypeChoicesElement.innerHTML = Object.entries(Archetypes[e.target.value].archetypeLevelChoices).reduce((a,e) => (
-    `${a}<select name='archetype-${e[0]}'>${e[1].reduce((a2,e2) => (
-      `${a2}<option value='${e2.id}'>${e2.displayName}</option>`
-    ),"")}</select>`
-  ),"");
-
+  archetypeChoicesElement.textContent = '';
+  Object.entries(Archetypes[event.target.value].archetypeLevelChoices).forEach((e1) => {
+    const select = document.createElement("select");
+    select.name = `archetype-${e1[0]}`
+    select.required = true;
+    let option = document.createElement("option");
+    option.value = "";
+    option.selected = true;
+    option.disabled = true;
+    option.hidden = true;
+    option.textContent = "choose";
+    select.appendChild(option);
+    e1[1].forEach((e2) => {
+      option = document.createElement("option");
+      option.value = e2.id;
+      option.textContent = e2.displayName;
+      select.appendChild(option);
+    });
+    archetypeChoicesElement.appendChild(select);
+  });
+  // archetypeChoicesElement.innerHTML = Object.entries(Archetypes[event.target.value].archetypeLevelChoices).reduce((a,e) => (
+  //   `${a}<select name='archetype-${e[0]}' required>${e[1].reduce((a2,e2) => (
+  //     `${a2}<option value='${e2.id}'>${e2.displayName}</option>`
+  //   ),"")}</select>`
+  // ),"");
 }
 
 window.onload = async function() {
@@ -64,6 +95,7 @@ window.onload = async function() {
     weapon = formdata.get("weapon2");
     if (weapon!=="none") character.weaponsTraining.push(formdata.get("weapon2"));
 
+    
     const archetype = new Archetypes[formdata.get("archetype")]();
     archetype.choices =  formdata.entries().reduce((a,e) => {
       if(e[0].startsWith("archetype-")) {
@@ -74,10 +106,37 @@ window.onload = async function() {
     archetype.applyBonuses(character);
     character.archetype = archetype;
 
+    // Combat Pools
+    let bonus = Math.max(character.attributes.physique.raw, character.attributes.precision.raw);
+    character.health.max = character.health.current = 10+Math.ceil(bonus/2);
+    
+
+    bonus = Math.max(character.attributes.intuition.raw, character.attributes.smarts.raw);
+    character.energy.max = character.energy.current = 10+Math.ceil(bonus/2);
+
+    bonus = Math.max(character.attributes.wit.raw, character.attributes.soul.raw);
+    character.mana.max = character.mana.current = 10+Math.ceil(bonus/2);
+    
     character.calcSkills();
     
+    // depends on calcSkills
+    let skillInterest = formdata.get("skill-interest1");
+    console.log(skillInterest);
+    if (skillInterest!=="none") {
+      let split = skillInterest.split(".");
+      console.log(split);
+      character.attributes[split[0]][split[1]] = Math.ceil((character.attributes[split[0]][split[1]]+1)/5)*5;
+    }
+    skillInterest = formdata.get("skill-interest2");
+    console.log(skillInterest);
+    if (skillInterest!=="none") {
+      let split = skillInterest.split(".");
+      console.log(split);
+      character.attributes[split[0]][split[1]] = Math.ceil((character.attributes[split[0]][split[1]]+1)/5)*5;
+    }
+    
     const characterString = JSON.stringify(character);
-    console.log(characterString);
+    // console.log(character);
     const response = await fetch(`saveCharacter.php/?name=${character.name}`, {
       method: "POST",
       body: characterString,

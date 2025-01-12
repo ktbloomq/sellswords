@@ -16,10 +16,11 @@
 <body>
 	<form id="char-form">
 		<h2>Name</h2>
-		<input type="text" name="name"/>
+		<input type="text" name="name" required/>
 		<h2>Body</h2>
 		<h3>Race</h3>
-		<select name="race" id="race">
+		<select name="race" id="race" required>
+			<option value="" selected disabled hidden>choose</option>
 			<option value="Human">Human</option>
 			<option value="Elf">Elf</option>
 			<option value="Dwarf">Dwarf</option>
@@ -44,7 +45,8 @@
 			<input type="number" placeholder="0" name="soul" id="" />
 		</div>
 		<h3>Archetype</h3>
-		<select name="archetype" id="archetype">
+		<select name="archetype" id="archetype" required>
+			<option value="" selected disabled hidden>choose</option>
 			<option value="Warrior">Warrior</option>
 			<option value="Scholar">Scholar</option>
 			<option value="Mage">Mage</option>
@@ -52,7 +54,8 @@
 		<h3>Appearance</h3>
 		<h2>Mind</h2>
 		<h3>Past Life</h3>
-		<select name="past" id="">
+		<select name="past" id="" required>
+			<option value="" selected disabled hidden>choose</option>
 			<option value="Bard">Bard</option>
 			<option value="Noble">Noble</option>
 			<option value="Burglar">Burglar</option>
@@ -75,7 +78,7 @@
 		<h3>Background</h3>
 		<h3>Weapons Training</h3>
 		<label for="weapon1">weapon 1</label>
-		<select name="weapon1" id="weapon1">
+		<select name="weapon1" id="weapon1" required>
 			<option value="none">none</option>
 			<option value="shortBlade">Short blades</option>
 			<option value="oneHandedBlade">One-handed blades</option>
@@ -92,7 +95,7 @@
 			<option value="thrownWeapon">Thrown Weapons</option>
 		</select>
 		<label for="weapon2">weapon 2</label>
-		<select name="weapon2" id="weapon2">
+		<select name="weapon2" id="weapon2" required>
 			<option value="none">none</option>
 			<option value="shortBlade">Short blades</option>
 			<option value="oneHandedBlade">One-handed blades</option>
@@ -109,39 +112,39 @@
 			<option value="thrownWeapon">Thrown Weapons</option>
 		</select>
 		<label for="skill-interest1">skill interest 1</label>
-		<select name="skill-interest1" id="">
+		<select name="skill-interest1" id="" required>
 			<option value="none">none</option>
-			<option value="intimidation">Intimidation</option>
-			<option value="strength">Strength</option>
-			<option value="pickpocket">Pickpocket</option>
-			<option value="hide">Hide</option>
-			<option value="blend">Blend</option>
-			<option value="diplomacy">Diplomacy</option>
-			<option value="focus">Focus</option>
-			<option value="tinkering">Tinkering</option>
-			<option value="business">Business</option>
-			<option value="bluff">Bluff</option>
-			<option value="readPerson">Read Person</option>
-			<option value="alchemy">Alchemy</option>
+			<option value="physique.intimidation">Intimidation</option>
+			<option value="physique.strength">Strength</option>
+			<option value="precision.pickpocket">Pickpocket</option>
+			<option value="precision.hide">Hide</option>
+			<option value="intuition.blend">Blend</option>
+			<option value="intuition.diplomacy">Diplomacy</option>
+			<option value="smarts.focus">Focus</option>
+			<option value="smarts.tinkering">Tinkering</option>
+			<option value="wit.business">Business</option>
+			<option value="wit.bluff">Bluff</option>
+			<option value="soul.readPerson">Read Person</option>
+			<option value="soul.alchemy">Alchemy</option>
 		</select>
 		<label for="skill-interest2">skill interest 2</label>
-		<select name="skill-interest2" id="">
+		<select name="skill-interest2" id="" required>
 			<option value="none">none</option>
-			<option value="intimidation">Intimidation</option>
-			<option value="strength">Strength</option>
-			<option value="pickpocket">Pickpocket</option>
-			<option value="hide">Hide</option>
-			<option value="blend">Blend</option>
-			<option value="diplomacy">Diplomacy</option>
-			<option value="focus">Focus</option>
-			<option value="tinkering">Tinkering</option>
-			<option value="business">Business</option>
-			<option value="bluff">Bluff</option>
-			<option value="readPerson">Read Person</option>
-			<option value="alchemy">Alchemy</option>
+			<option value="physique.intimidation">Intimidation</option>
+			<option value="physique.strength">Strength</option>
+			<option value="precision.pickpocket">Pickpocket</option>
+			<option value="precision.hide">Hide</option>
+			<option value="intuition.blend">Blend</option>
+			<option value="intuition.diplomacy">Diplomacy</option>
+			<option value="smarts.focus">Focus</option>
+			<option value="smarts.tinkering">Tinkering</option>
+			<option value="wit.business">Business</option>
+			<option value="wit.bluff">Bluff</option>
+			<option value="soul.readPerson">Read Person</option>
+			<option value="soul.alchemy">Alchemy</option>
 		</select>
 		<label for="magic-school">magic school</label>
-		<select name="magic-school" id="">
+		<select name="magic-school" id="" required>
 			<option value="none">none</option>
 			<option value="water">water</option>
 			<option value="aether">aether</option>
@@ -149,7 +152,7 @@
 			<option value="earth">earth</option>
 			<option value="air">air</option>
 		</select>
-		<h3>Starting Archetype Bonus</h3>
+		<h3>Starting Archetype Boon</h3>
 		<div id="archetype-choices"></div>
 		<h3>Path</h3>
 		<h2>Soul</h2>
