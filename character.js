@@ -59,7 +59,7 @@ export default class Character {
 		max: 10
 	};
 	freeActions = 1;
-	actions = 1;
+	actionChain = 1;
 	actionDice = 0;
 	applyAttributeBuy(selections) {
 		Object.entries(selections).forEach(([key,val]) => {
@@ -77,8 +77,6 @@ export default class Character {
 					}
 				});
 			});
-		this.race.applyModifiers(this);
-		this.pastLife.applyModifiers(this);
-		// TODO: apply boons
+		this.race.applySkillModifiers(this);
 	}
 }

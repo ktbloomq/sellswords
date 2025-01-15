@@ -63,8 +63,8 @@ window.onload = async function() {
   archetypeElement.addEventListener("change", updateArchetypeChoices);
 
   const charForm = document.getElementById("char-form");
-  charForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  charForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
     const formdata = new FormData(charForm);
     const character = new Character();
     character.name = formdata.get("name") ?? "";
@@ -75,7 +75,8 @@ window.onload = async function() {
       }
       return a;
     },{});
-    race.applyBoons(character);
+    race.addBoons(character);
+    race.applyAttributeModifiers(character);
     character.race = race;
 
     let pointBuy = {
@@ -109,34 +110,29 @@ window.onload = async function() {
     // Combat Pools
     let bonus = Math.max(character.attributes.physique.raw, character.attributes.precision.raw);
     character.health.max = character.health.current = 10+Math.ceil(bonus/2);
-    
-
     bonus = Math.max(character.attributes.intuition.raw, character.attributes.smarts.raw);
     character.energy.max = character.energy.current = 10+Math.ceil(bonus/2);
-
     bonus = Math.max(character.attributes.wit.raw, character.attributes.soul.raw);
     character.mana.max = character.mana.current = 10+Math.ceil(bonus/2);
     
     character.calcSkills();
+		pastLife.applyModifiers(character);
+		// TODO: apply boons
     
     // depends on calcSkills
     let skillInterest = formdata.get("skill-interest1");
-    console.log(skillInterest);
     if (skillInterest!=="none") {
       let split = skillInterest.split(".");
-      console.log(split);
       character.attributes[split[0]][split[1]] = Math.ceil((character.attributes[split[0]][split[1]]+1)/5)*5;
     }
     skillInterest = formdata.get("skill-interest2");
-    console.log(skillInterest);
     if (skillInterest!=="none") {
       let split = skillInterest.split(".");
-      console.log(split);
       character.attributes[split[0]][split[1]] = Math.ceil((character.attributes[split[0]][split[1]]+1)/5)*5;
     }
     
     const characterString = JSON.stringify(character);
-    // console.log(character);
+    console.log(character);
     const response = await fetch(`saveCharacter.php/?name=${character.name}`, {
       method: "POST",
       body: characterString,

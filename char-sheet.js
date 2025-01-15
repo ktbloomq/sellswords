@@ -32,7 +32,10 @@ let characterElements = {
 	alchemy: {},
 	weaponsTraining: {},
 	explorationBoons: {},
-	specializations: {}
+	specializations: {},
+	freeActions: {},
+	actionChain: {},
+	actionDice: {},
 };
 let editorModalElement, editorInputElement, editorFormElement, editorAddElement, editorRemoveElement, editorTarget;
 
@@ -188,6 +191,10 @@ window.onload = async function() {
 	characterElements.weaponsTraining.source = (v) => {if(v!==undefined) character.weaponsTraining=v; return character.weaponsTraining;};
 	characterElements.explorationBoons.source = (v) => {if(v!==undefined) character.boons.exploration=v; return character.boons.exploration;};
 	characterElements.specializations.source = (v) => {if(v!==undefined) character.specializations=v; return character.specializations;};
+	characterElements.freeActions.source = (v) => {if(v!==undefined) character.freeActions=v; return character.freeActions;};
+	characterElements.actionChain.source = (v) => {if(v!==undefined) character.actionChain=v; return character.actionChain;};
+	characterElements.actionDice.source = (v) => {if(v!==undefined) character.actionDice=v; return character.actionDice;};
+
 
 	updateElements();
 

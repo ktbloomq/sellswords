@@ -5,18 +5,26 @@ export class Race {
 	modifiers;
 	choices;
 	static raceChoices = {};
-	applyModifiers(character) {
-		this.setModifiers(character);
-		this.modifiers.forEach((e) => {
+	applyAttributeModifiers(character) {
+		this.setAttributeModifiers(character);
+		this.attributeModifiers.forEach((e) => {
 			e();
 		});
 	};
+	applySkillModifiers(character) {
+		this.setSkillModifiers(character);
+		this.skillModifiers.forEach((e) => {
+			e();
+		});
+	}
 	propagateSkills(attribute, value) {
-		Object.keys(attribute).forEach((key) => {
+		Object.keys(attribute).slice(1).forEach((key) => {
+			console.log(key, attribute[key]);
 			attribute[key] += value;
+			console.log(key, attribute[key]);
 		});
 	};
-	applyBoons(character) {
+	addBoons(character) {
 		Object.entries(this.choices).forEach(([key,value]) => {
 			if(key.startsWith("boon")) {
 				const boon = Boons[value];
@@ -45,8 +53,15 @@ export class Human extends Race {
 			{id:"soul",displayName:"soul"},
 		]
 	};
-	setModifiers(character) {
-		this.modifiers = [
+	setAttributeModifiers(character) {
+		this.attributeModifiers = [
+			()=>{character.attributes.physique.raw+=5},
+			()=>{character.attributes.soul.raw+=5},
+			()=>{character.attributes[this.choices.attributeBonus].raw+=3},
+		]
+	}
+	setSkillModifiers(character) {
+		this.skillModifiers = [
 			() => { this.propagateSkills(character.attributes.physique, 5) },
 			() => { this.propagateSkills(character.attributes.soul, 5) },
 			() => { this.propagateSkills(character.attributes[this.choices.attributeBonus], 3) }
@@ -74,8 +89,14 @@ export class Elf extends Race {
 			Boons.snowstep,
 		]
 	}
-	setModifiers(character) {
-		this.modifiers = [
+	setAttributeModifiers(character) {
+		this.attributeModifiers = [
+			() => { character.attributes.precision.raw += 5 },
+			() => { character.attributes.smarts.raw += 5 }
+		];
+	}
+	setSkillModifiers(character) {
+		this.skillModifiers = [
 			() => { this.propagateSkills(character.attributes.precision, 5) },
 			() => { this.propagateSkills(character.attributes.smarts, 5) }
 		];
@@ -106,8 +127,14 @@ export class Dwarf extends Race {
 			Boons.livingStone
 		]
 	}
-	setModifiers(character) {
-		this.modifiers = [
+	setAttributeModifiers(character) {
+		this.attributeModifiers = [
+			() => { character.attributes.physique.raw += 5 },
+			() => { character.attributes.precision.raw += 5 }
+		];
+	}
+	setSkillModifiers(character) {
+		this.skillModifiers = [
 			() => { this.propagateSkills(character.attributes.physique, 5) },
 			() => { this.propagateSkills(character.attributes.precision, 5) }
 		];
@@ -125,8 +152,13 @@ export class Esborn extends Race {
 			Boons.ancestralMemory
 		]
 	}
-	setModifiers(character) {
-		this.modifiers = [
+	setAttributeModifiers(character) {
+		this.attributeModifiers = [
+			() => { character.attributes.physique.raw += 15 },
+		];
+	}
+	setSkillModifiers(character) {
+		this.skillModifiers = [
 			() => { this.propagateSkills(character.attributes.physique, 15) },
 		];
 	}
@@ -150,8 +182,14 @@ export class Orc extends Race {
 			Boons.naturalLeader
 		]
 	}
-	setModifiers(character) {
-		this.modifiers = [
+	setAttributeModifiers(character) {
+		this.attributeModifiers = [
+			() => { character.attributes.physique.raw += 5 },
+			() => { character.attributes.wit.raw += 5 }
+		];
+	}
+	setSkillModifiers(character) {
+		this.skillModifiers = [
 			() => { this.propagateSkills(character.attributes.physique, 5) },
 			() => { this.propagateSkills(character.attributes.wit, 5) }
 		];
@@ -176,8 +214,14 @@ export class Catfolk extends Race {
 			Boons.skittish
 		]
 	}
-	setModifiers(character) {
-		this.modifiers = [
+	setAttributeModifiers(character) {
+		this.attributeModifiers = [
+			() => { character.attributes.intuition.raw+= 5 },
+			() => { character.attributes.wit.raw+= 5 }
+		];
+	}
+	setSkillModifiers(character) {
+		this.skillModifiers = [
 			() => { this.propagateSkills(character.attributes.intuition, 5) },
 			() => { this.propagateSkills(character.attributes.wit, 5) }
 		];
