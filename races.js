@@ -19,16 +19,14 @@ export class Race {
 	}
 	propagateSkills(attribute, value) {
 		Object.keys(attribute).slice(1).forEach((key) => {
-			console.log(key, attribute[key]);
 			attribute[key] += value;
-			console.log(key, attribute[key]);
 		});
 	};
 	addBoons(character) {
 		Object.entries(this.choices).forEach(([key,value]) => {
 			if(key.startsWith("boon")) {
 				const boon = Boons[value];
-				character.boons[boon.target].push(value);
+				character.boons[boon.category].push(value);
 			}
 		});
 	};
@@ -110,7 +108,8 @@ export class Dwarf extends Race {
 			Boons.mountainBorn,
 			Boons.craftsmen,
 			Boons.drunkenFist,
-			Boons.fortitudeOfStone,
+			Boons.dwarvenTeamwork,
+			// Boons.fortitudeOfStone,
 			Boons.dwarvesNaturalEnemy,
 			Boons.eyeForDetail,
 			Boons.cultured,
@@ -120,7 +119,8 @@ export class Dwarf extends Race {
 			Boons.mountainBorn,
 			Boons.craftsmen,
 			Boons.drunkenFist,
-			Boons.fortitudeOfStone,
+			Boons.dwarvenTeamwork,
+			// Boons.fortitudeOfStone,
 			Boons.dwarvesNaturalEnemy,
 			Boons.eyeForDetail,
 			Boons.cultured,

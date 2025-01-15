@@ -45,7 +45,7 @@ export default class Character {
 		exploration: []
 	};
 	specializations = [];
-	level;
+	level = 1;
 	health = {
 		current: 10,
 		max: 10,
@@ -58,6 +58,7 @@ export default class Character {
 		current: 10,
 		max: 10
 	};
+	luck = 0;
 	freeActions = 1;
 	actionChain = 1;
 	actionDice = 0;

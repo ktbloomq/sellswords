@@ -7,7 +7,7 @@ export class Archetype {
 		Object.entries(this.choices).forEach(([key, value]) => {
 			const boon = Boons[value];
 			// console.log(key,value);
-			character.boons[boon.target].push(value);
+			character.boons[boon.category].push(value);
 		});
 	};
 }
@@ -15,7 +15,7 @@ export class Archetype {
 export class Warrior extends Archetype {
 	static archetypeLevelChoices = {
 		level1: [
-			Boons.hp5,
+			Boons.healthBoost,
 			Boons.advancedWeapon
 		]
 	}

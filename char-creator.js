@@ -1,4 +1,5 @@
 import Character from "./character.js"
+import Boons from "./boons.js";
 import * as Races from "./races.js"
 import * as Archetypes from "./archetypes.js"
 import * as PastLife from "./pastLife.js"
@@ -56,11 +57,34 @@ function updateArchetypeChoices(event) {
   // ),"");
 }
 
+function addBoons() {
+  const BoonChoicesElement = document.getElementById("boons");
+  BoonChoicesElement.textContent = '';
+  const select = document.createElement("select");
+  select.name = `boon1`
+  select.required = true;
+  let option = document.createElement("option");
+  option.value = "";
+  option.selected = true;
+  option.disabled = true;
+  option.hidden = true;
+  option.textContent = "choose";
+  select.appendChild(option);
+  Object.values(Boons).forEach((boon) => {
+    option = document.createElement("option");
+    option.value = boon.id;
+    option.textContent = boon.displayName;
+    select.appendChild(option);
+  });
+  BoonChoicesElement.appendChild(select);
+}
+
 window.onload = async function() {
   const raceElement = document.getElementById("race");
   const archetypeElement = document.getElementById("archetype");
   raceElement.addEventListener("change", updateRaceChoices);
   archetypeElement.addEventListener("change", updateArchetypeChoices);
+  addBoons();
 
   const charForm = document.getElementById("char-form");
   charForm.addEventListener("submit", async (event) => {
@@ -114,10 +138,30 @@ window.onload = async function() {
     character.energy.max = character.energy.current = 10+Math.ceil(bonus/2);
     bonus = Math.max(character.attributes.wit.raw, character.attributes.soul.raw);
     character.mana.max = character.mana.current = 10+Math.ceil(bonus/2);
+
+    let moreBoons = formdata.entries().reduce((a,e) => {
+      if(e[0].startsWith("boon")) {
+        a[e[0].slice(4)]=e[1];
+      }
+      return a;
+    },{});
+    console.log(moreBoons);
+    Object.entries(moreBoons).forEach(([key,value]) => {
+      const boon = Boons[value];
+      character.boons[boon.category].push(value);
+    });
     
     character.calcSkills();
 		pastLife.applyModifiers(character);
-		// TODO: apply boons
+    Object.values(character.boons).forEach((category) => {
+      category.forEach((boonid) => {
+        let boon = Boons[boonid];
+        console.log(boon);
+        if(boon.apply) {
+          boon.apply(character);
+        }
+      });
+    });
     
     // depends on calcSkills
     let skillInterest = formdata.get("skill-interest1");
