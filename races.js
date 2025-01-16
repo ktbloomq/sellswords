@@ -36,7 +36,18 @@ export class Human extends Race {
 	name = "Human";
 	static raceChoices = {
 		boon1: [
-			Boons.adaptable,
+			Boons.intimidation,
+			Boons.strength,
+			Boons.pickpocket,
+			Boons.hide,
+			Boons.blend,
+			Boons.diplomacy,
+			Boons.focus,
+			Boons.tinkering,
+			Boons.business,
+			Boons.bluff,
+			Boons.readPerson,
+			Boons.alchemy,
 			Boons.catsFootfall,
 			Boons.dimsight,
 			Boons.wellTraveled,
