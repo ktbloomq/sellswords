@@ -10,3 +10,4 @@
 - [ ] all boons
 - [X] allow manual adjustments
 - [ ] magic
+- [ ] fix scholar

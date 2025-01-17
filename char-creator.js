@@ -145,7 +145,6 @@ window.onload = async function() {
       }
       return a;
     },{});
-    console.log(moreBoons);
     Object.entries(moreBoons).forEach(([key,value]) => {
       const boon = Boons[value];
       character.boons[boon.category].push(value);
@@ -156,7 +155,6 @@ window.onload = async function() {
     Object.values(character.boons).forEach((category) => {
       category.forEach((boonid) => {
         let boon = Boons[boonid];
-        console.log(boon);
         if(boon.apply) {
           boon.apply(character);
         }

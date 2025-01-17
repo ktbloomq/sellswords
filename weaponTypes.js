@@ -1,15 +1,15 @@
 export default {
   shortBlade: {
     id: "shortBlade",
-    displayName: "Short Blade",
+    displayName: "Short Blades",
   },
   oneHandedBlade: {
     id: "oneHandedBlade",
-    displayName: "One Handed Blade",
+    displayName: "One Handed Blades",
   },
   twoHandedBlade: {
     id: "twoHandedBlade",
-    displayName: "Two Handed Blade",
+    displayName: "Two Handed Blades",
   },
   oneHandedBlunt: {
     id: "oneHandedBlunt",
@@ -50,5 +50,25 @@ export default {
   thrownWeapon: {
     id: "thrownWeapon",
     displayName: "Thrown Weapon",
+  },
+  grenadier: {
+    id: "grenadier",
+    displayName: "Grenadier",
+  },
+  improvised: {
+    id: "improvised",
+    displayName: "Improvised",
+  },
+  heavyArmor: {
+    id: "heavyArmor",
+    displayName: "Heavy Armor",
+  },
+  advancedArmor: {
+    id: "advancedArmor",
+    displayName: "Advanced Armor",
+  },
+  legendaryArmor: {
+    id: "legendaryArmor",
+    displayName: "Legendary Armor",
   },
 }

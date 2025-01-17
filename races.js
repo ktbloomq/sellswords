@@ -43,7 +43,7 @@ export class Human extends Race {
 			Boons.blend,
 			Boons.diplomacy,
 			Boons.focus,
-			Boons.tinkering,
+			Boons.education,
 			Boons.business,
 			Boons.bluff,
 			Boons.readPerson,

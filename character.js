@@ -25,7 +25,7 @@ export default class Character {
 		smarts: {
 			raw: -4,
 			focus: -20,
-			tinkering: -20
+			education: -20
 		},
 		wit: {
 			raw: -4,

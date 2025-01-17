@@ -30,7 +30,7 @@ export class Burglar extends PastLife {
   setModifiers(character) {
     this.modifiers = [
       () => {character.attributes.precision.hide += 10},
-      () => {character.skills.push("Criminal Contacts")}
+      () => {character.boons.social.push("criminalContacts")}
     ];
   }
 }

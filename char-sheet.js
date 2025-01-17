@@ -23,7 +23,7 @@ let characterElements = {
 	diplomacy: {},
 	smarts: {},
 	focus: {},
-	tinkering: {},
+	education: {},
 	wit: {},
 	business: {},
 	bluff: {},
@@ -31,6 +31,8 @@ let characterElements = {
 	readPerson: {},
 	alchemy: {},
 	weaponsTraining: {},
+	combatBoons: {},
+	socialBoons: {},
 	explorationBoons: {},
 	specializations: {},
 	freeActions: {},
@@ -55,6 +57,22 @@ function updateElements() {
 		newElement.textContent = weaponType.displayName;
 		characterElements.weaponsTraining.target.appendChild(newElement); 
 
+	});
+
+	characterElements.combatBoons.target.innerHTML = "";
+	character.boons.combat.forEach(element => {
+		const boon = Boons[element] ?? {id:element, displayName:element};
+		const newElement = document.createElement("div");
+		newElement.textContent = boon.displayName;
+		characterElements.combatBoons.target.appendChild(newElement);
+	});
+
+	characterElements.socialBoons.target.innerHTML = "";
+	character.boons.social.forEach(element => {
+		const boon = Boons[element] ?? {id:element, displayName:element};
+		const newElement = document.createElement("div");
+		newElement.textContent = boon.displayName;
+		characterElements.socialBoons.target.appendChild(newElement);
 	});
 
 	characterElements.explorationBoons.target.innerHTML = "";
@@ -181,7 +199,7 @@ window.onload = async function() {
 	characterElements.diplomacy.source = (v) => {if(v!==undefined) character.attributes.intuition.diplomacy=v; return character.attributes.intuition.diplomacy;};
 	characterElements.smarts.source = (v) => {if(v!==undefined) character.attributes.smarts.raw=v; return character.attributes.smarts.raw;};
 	characterElements.focus.source = (v) => {if(v!==undefined) character.attributes.smarts.focus=v; return character.attributes.smarts.focus;};
-	characterElements.tinkering.source = (v) => {if(v!==undefined) character.attributes.smarts.tinkering=v; return character.attributes.smarts.tinkering;};
+	characterElements.education.source = (v) => {if(v!==undefined) character.attributes.smarts.education=v; return character.attributes.smarts.education;};
 	characterElements.wit.source = (v) => {if(v!==undefined) character.attributes.wit.raw=v; return character.attributes.wit.raw;};
 	characterElements.business.source = (v) => {if(v!==undefined) character.attributes.wit.business=v; return character.attributes.wit.business;};
 	characterElements.bluff.source = (v) => {if(v!==undefined) character.attributes.wit.bluff=v; return character.attributes.wit.bluff;};
@@ -189,6 +207,8 @@ window.onload = async function() {
 	characterElements.readPerson.source = (v) => {if(v!==undefined) character.attributes.soul.readPerson=v; return character.attributes.soul.readPerson;};
 	characterElements.alchemy.source = (v) => {if(v!==undefined) character.attributes.soul.alchemy=v; return character.attributes.soul.alchemy;};
 	characterElements.weaponsTraining.source = (v) => {if(v!==undefined) character.weaponsTraining=v; return character.weaponsTraining;};
+	characterElements.combatBoons.source = (v) => {if(v!==undefined) character.boons.combat=v; return character.boons.combat;};
+	characterElements.socialBoons.source = (v) => {if(v!==undefined) character.boons.social=v; return character.boons.social;};
 	characterElements.explorationBoons.source = (v) => {if(v!==undefined) character.boons.exploration=v; return character.boons.exploration;};
 	characterElements.specializations.source = (v) => {if(v!==undefined) character.specializations=v; return character.specializations;};
 	characterElements.freeActions.source = (v) => {if(v!==undefined) character.freeActions=v; return character.freeActions;};
