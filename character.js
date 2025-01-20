@@ -74,7 +74,7 @@ export default class Character {
 				Object.keys(skills).slice(1).forEach((sKey) => {
 					skills[sKey] = skills.raw * 5;
 					if (skills.raw > 0) {
-						skills[sKey] = Math.floor(skills[sKey] / 2) + 3
+						skills[sKey] = Math.ceil((skills[sKey]+1)/2)
 					}
 				});
 			});
