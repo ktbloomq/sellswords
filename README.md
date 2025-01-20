@@ -5,6 +5,7 @@
 - [x] action dice
 - [x] past life skills
 - [ ] past life options: workaround: each option is a new boon
-- [x] all boons
+- [ ] all boons
+- [ ] Paths
 - [X] allow manual adjustments
 - [ ] magic
