@@ -24,7 +24,18 @@ export class Warrior extends Archetype {
 export class Scholar extends Archetype {
 	static archetypeLevelChoices = {
 		level1: [
-			Boons.adaptable,
+			Boons.intimidation,
+			Boons.strength,
+			Boons.pickpocket,
+			Boons.hide,
+			Boons.blend,
+			Boons.diplomacy,
+			Boons.focus,
+			Boons.education,
+			Boons.business,
+			Boons.bluff,
+			Boons.readPerson,
+			Boons.alchemy,
 			Boons.catsFootfall,
 			Boons.dimsight,
 			Boons.wellTraveled,

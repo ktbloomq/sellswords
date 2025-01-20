@@ -57,12 +57,10 @@ function updateArchetypeChoices(event) {
   // ),"");
 }
 
-function addBoons() {
+function addBoonInput() {
   const BoonChoicesElement = document.getElementById("boons");
-  BoonChoicesElement.textContent = '';
   const select = document.createElement("select");
-  select.name = `boon1`
-  select.required = true;
+  select.name = `boon${Date.now()}`
   let option = document.createElement("option");
   option.value = "";
   option.selected = true;
@@ -79,12 +77,20 @@ function addBoons() {
   BoonChoicesElement.appendChild(select);
 }
 
+function removeBoonInput() {
+  const BoonChoicesElement = document.getElementById("boons");
+  BoonChoicesElement.lastElementChild ? (BoonChoicesElement.lastElementChild.outerHTML = "") : null;
+}
+
 window.onload = async function() {
   const raceElement = document.getElementById("race");
   const archetypeElement = document.getElementById("archetype");
+  const addBoonElement = document.getElementById("add-boon");
+  const removeBoonElement = document.getElementById("remove-boon");
   raceElement.addEventListener("change", updateRaceChoices);
   archetypeElement.addEventListener("change", updateArchetypeChoices);
-  addBoons();
+  addBoonElement.addEventListener("click", addBoonInput);
+  removeBoonElement.addEventListener("click", removeBoonInput);
 
   const charForm = document.getElementById("char-form");
   charForm.addEventListener("submit", async (event) => {
@@ -146,8 +152,10 @@ window.onload = async function() {
       return a;
     },{});
     Object.entries(moreBoons).forEach(([key,value]) => {
-      const boon = Boons[value];
-      character.boons[boon.category].push(value);
+      if(value !== "") {
+        const boon = Boons[value];
+        character.boons[boon.category].push(value);
+      }
     });
     
     character.calcSkills();
