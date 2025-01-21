@@ -6,8 +6,10 @@
 - [x] combat pools
 - [x] action dice
 - [x] past life skills
-- [ ] past life options: workaround: each option is a new boon
+- [ ] past life options: workaround - each option is a new boon
 - [ ] all boons
 - [X] Paths
 - [X] allow manual adjustments
 - [ ] magic
+- [ ] armor
+- [ ] injury: may be deprecated

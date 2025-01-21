@@ -1,5 +1,6 @@
 import Character from "./character.js"
 import Boons from "./boons.js";
+import WeaponTypes from "./weaponTypes.js"
 import * as Races from "./races.js"
 import * as Archetypes from "./archetypes.js"
 import * as PastLife from "./pastLife.js"
@@ -122,9 +123,9 @@ window.onload = async function() {
 
     // Weapons Training
     let weapon = formdata.get("weapon1");
-    if (weapon!=="none") character.weaponsTraining.push(weapon);
+    if (weapon!=="none") character.weaponsTraining.push(WeaponTypes[weapon]);
     weapon = formdata.get("weapon2");
-    if (weapon!=="none") character.weaponsTraining.push(formdata.get("weapon2"));
+    if (weapon!=="none") character.weaponsTraining.push(WeaponTypes[weapon]);
 
     // Archetype
     const archetype = new Archetypes[formdata.get("archetype")]();

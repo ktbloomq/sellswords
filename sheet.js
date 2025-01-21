@@ -1,4 +1,3 @@
-import WeaponTypes from "./weaponTypes.js"
 import Character from "./character.js"
 
 let character;
@@ -57,48 +56,38 @@ function updateElements() {
 		const type = typeof (source);
 		if (type === "number" || type === "string") {
 			value.target.textContent = source;
+		} else if (Array.isArray(source)) {
+			value.target.innerHTML = "";
+			source.forEach(entry => {
+				const newElement = document.createElement("div");
+				newElement.textContent = entry.displayName;
+				value.target.appendChild(newElement);
+			});
+		} else {
+			console.log("invalid type", source)
 		}
 	});
+}
 
-	characterElements.weaponsTraining.target.innerHTML = "";
-	character.weaponsTraining.forEach(element => {
-		const weaponType = WeaponTypes[element] ?? { id: element, displayName: element };
-		const newElement = document.createElement("div");
-		newElement.textContent = weaponType.displayName;
-		characterElements.weaponsTraining.target.appendChild(newElement);
-
-	});
-
-	characterElements.combatBoons.target.innerHTML = "";
-	character.boons.combat.forEach(boon => {
-		// const boon = Boons[element] ?? {id:element, displayName:element};
-		const newElement = document.createElement("div");
-		newElement.textContent = boon.displayName;
-		characterElements.combatBoons.target.appendChild(newElement);
-	});
-
-	characterElements.socialBoons.target.innerHTML = "";
-	character.boons.social.forEach(boon => {
-		// const boon = Boons[element] ?? {id:element, displayName:element};
-		const newElement = document.createElement("div");
-		newElement.textContent = boon.displayName;
-		characterElements.socialBoons.target.appendChild(newElement);
-	});
-
-	characterElements.explorationBoons.target.innerHTML = "";
-	character.boons.exploration.forEach(boon => {
-		// const boon = Boons[element] ?? {id:element, displayName:element};
-		const newElement = document.createElement("div");
-		newElement.textContent = boon.displayName;
-		characterElements.explorationBoons.target.appendChild(newElement);
-	});
-
-	characterElements.specializations.target.innerHTML = "";
-	character.specializations.forEach(element => {
-		const newElement = document.createElement("div");
-		newElement.textContent = element;
-		characterElements.specializations.target.appendChild(newElement);
-	});
+function editorAppend(entry, type) {
+	if (type === "boon") {
+		const div = document.createElement("div");
+		const displayNameInput = document.createElement("input");
+		const descriptionInput = document.createElement("textarea");
+		displayNameInput.name = Date.now();
+		displayNameInput.value = entry.displayName ?? "";
+		descriptionInput.name = Date.now();
+		descriptionInput.textContent = entry.description ?? "";
+		div.appendChild(displayNameInput);
+		div.appendChild(descriptionInput);
+		editorInputElement.appendChild(div);
+	} else {
+		const newInput = document.createElement("input");
+		newInput.name = Date.now();
+		if (type === "number") newInput.setAttribute("type", "number");
+		newInput.value = entry ?? "";
+		editorInputElement.appendChild(newInput);
+	}
 }
 
 function openModal(element) {
@@ -107,38 +96,19 @@ function openModal(element) {
 	const type = typeof (source[0] ?? source);
 	if (Array.isArray(source)) {
 		document.getElementById("editor-array-controls").style.display = "inline";
-		if(type==="object"&&source[0].id) {
-			source.forEach((entry, i) => {
-				const idInput = document.createElement("input");
-				const displayNameInput = document.createElement("input");
-				const descriptionInput = document.createElement("textarea");
-				idInput.name = i + "-id";
-				idInput.value = entry.id;
-				displayNameInput.name = i + "-displayName";
-				displayNameInput.value = entry.displayName;
-				descriptionInput.name = i + "-description";
-				descriptionInput.textContent = entry.description;
-				editorInputElement.appendChild(idInput);
-				editorInputElement.appendChild(displayNameInput);
-				editorInputElement.appendChild(descriptionInput);
+		if (type === "object" && source[0].displayName) {
+			source.forEach((entry) => {
+				editorAppend(entry, "boon");
 			});
 		}
 		else {
-			source.forEach((entry, i) => {
-				const newInput = document.createElement("input");
-				newInput.setAttribute("name", i);
-				if (type === "number") newInput.setAttribute("type", "number");
-				newInput.value = entry;
-				editorInputElement.appendChild(newInput);
+			source.forEach((entry) => {
+				editorAppend(entry, type);
 			});
 		}
 	} else {
 		document.getElementById("editor-array-controls").style.display = "none";
-		const newInput = document.createElement("input");
-		newInput.setAttribute("name", 0);
-		if (type === "number") newInput.setAttribute("type", "number");
-		newInput.value = source;
-		editorInputElement.appendChild(newInput);
+		editorAppend(source, type);
 	}
 	editorTarget = element;
 	editorModalElement.showModal();
@@ -152,15 +122,17 @@ function applyChange(event) {
 	if (Array.isArray(source)) {
 		if (typeof (source[0]) === "number") {
 			values = values.map((entry) => { return Number(entry) });
-		} 
+		}
 		// if boon
-		else if (typeof (source[0]) === "object" && source[0].id) {
-			values = source.map((entry,i) => {
-				entry.id = values[i*3];
-				entry.displayName = values[i*3+1];
-				entry.description = values[i*3+2];
-				return entry;
-			});
+		else if (typeof (source[0]) === "object" && source[0].displayName) {
+			let tmpOutput = [];
+			for (let i = 0; i < values.length; i += 2) {
+				let entry = {};
+				entry.displayName = values[i];
+				entry.description = values[i + 1];
+				tmpOutput.push(entry);
+			}
+			values = tmpOutput;
 		}
 	} else {
 		if (typeof (source) == "number") {
@@ -268,10 +240,14 @@ window.onload = async function () {
 
 	editorFormElement.addEventListener("submit", applyChange);
 	editorAddElement.addEventListener("click", (event) => {
-		// const newInput = editorInputElement.lastElementChild.cloneNode(false);
-		const newInput = document.createElement("input");
-		newInput.name = Date.now();
-		editorInputElement.appendChild(newInput);
+		const source = editorTarget.source();
+		let type = typeof (source[0] ?? source);
+		let entry = "";
+		if (type === "object" && source[0].displayName) {
+			type = "boon";
+			entry = { displayName: "", description: "" };
+		}
+		editorAppend(entry, type);
 	});
 	editorRemoveElement.addEventListener("click", (event) => {
 		editorInputElement.lastElementChild ? (editorInputElement.lastElementChild.outerHTML = "") : null;
