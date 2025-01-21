@@ -92,7 +92,10 @@ window.onload = async function() {
     event.preventDefault();
     const formdata = new FormData(charForm);
     const character = new Character();
+    // Name
     character.name = formdata.get("name") ?? "";
+
+    //Race
     const race = new Races[formdata.get("race")]();
     race.choices = formdata.entries().reduce((a,e) => {
       if(e[0].startsWith("race-")) {
@@ -104,6 +107,7 @@ window.onload = async function() {
     race.applyAttributeModifiers(character);
     character.race = race;
 
+    // Attributes
     let pointBuy = {
       physique: Number(formdata.get("physique")) ?? 0,
       precision: Number(formdata.get("precision")) ?? 0,
@@ -116,12 +120,13 @@ window.onload = async function() {
     const pastLife = new PastLife[formdata.get("past")]();
     character.pastLife = pastLife;
 
+    // Weapons Training
     let weapon = formdata.get("weapon1");
     if (weapon!=="none") character.weaponsTraining.push(weapon);
     weapon = formdata.get("weapon2");
     if (weapon!=="none") character.weaponsTraining.push(formdata.get("weapon2"));
 
-    
+    // Archetype
     const archetype = new Archetypes[formdata.get("archetype")]();
     archetype.choices =  formdata.entries().reduce((a,e) => {
       if(e[0].startsWith("archetype-")) {
@@ -131,6 +136,20 @@ window.onload = async function() {
     },{});
     archetype.applyBonuses(character);
     character.archetype = archetype;
+
+    // Lore
+    character.lore.appearance = formdata.get("appearance") ?? "";
+    character.lore.socialCircle = formdata.get("socialCircle") ?? "";
+    character.lore.regionalKnowledge = formdata.get("regionalKnowledge") ?? "";
+    character.lore.call = formdata.get("call") ?? "";
+    character.lore.quirks = formdata.get("quirks") ?? "";
+    character.lore.religion = formdata.get("religion") ?? "";
+    character.lore.oath = formdata.get("oath") ?? "";
+    character.lore.politics = formdata.get("politics") ?? "";
+    character.lore.organizations = formdata.get("organizations") ?? "";
+    character.lore.backstory = formdata.get("backstory") ?? "";
+
+    // TODO: traits
 
     let path = formdata.get("path");
     const pathBoon = Boons[path];
@@ -158,6 +177,8 @@ window.onload = async function() {
     });
     
     character.calcSkills();
+
+    // Past Life: depends on calcSkills
 		pastLife.applyModifiers(character);
     Object.values(character.boons).forEach((category) => {
       category.forEach((boon) => {
@@ -167,7 +188,7 @@ window.onload = async function() {
       });
     });
     
-    // depends on calcSkills
+    // Preferred Skills: depends on calcSkills
     let skillInterest = formdata.get("skill-interest1");
     if (skillInterest!=="none") {
       let split = skillInterest.split(".");

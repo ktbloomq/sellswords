@@ -37,6 +37,17 @@ let characterElements = {
 	freeActions: {},
 	actionChain: {},
 	actionDice: {},
+	appearance: {},
+	socialCircle: {},
+	regionalKnowledge: {},
+	call: {},
+	quirks: {},
+	religion: {},
+	oath: {},
+	politics: {},
+	organizations: {},
+	backstory: {},
+	notes: {},
 };
 let editorModalElement, editorInputElement, editorFormElement, editorAddElement, editorRemoveElement, editorTarget;
 
@@ -240,6 +251,17 @@ window.onload = async function () {
 	characterElements.freeActions.source = (v) => { if (v !== undefined) character.freeActions = v; return character.freeActions; };
 	characterElements.actionChain.source = (v) => { if (v !== undefined) character.actionChain = v; return character.actionChain; };
 	characterElements.actionDice.source = (v) => { if (v !== undefined) character.actionDice = v; return character.actionDice; };
+	characterElements.appearance.source = (v) => { if (v !== undefined) character.lore.appearance = v; return character.lore.appearance; };
+	characterElements.socialCircle.source = (v) => { if (v !== undefined) character.lore.socialCircle = v; return character.lore.socialCircle; };
+	characterElements.regionalKnowledge.source = (v) => { if (v !== undefined) character.lore.regionalKnowledge = v; return character.lore.regionalKnowledge; };
+	characterElements.call.source = (v) => { if (v !== undefined) character.lore.call = v; return character.lore.call; };
+	characterElements.quirks.source = (v) => { if (v !== undefined) character.lore.quirks = v; return character.lore.quirks; };
+	characterElements.religion.source = (v) => { if (v !== undefined) character.lore.religion = v; return character.lore.religion; };
+	characterElements.oath.source = (v) => { if (v !== undefined) character.lore.oath = v; return character.lore.oath; };
+	characterElements.politics.source = (v) => { if (v !== undefined) character.lore.politics = v; return character.lore.politics; };
+	characterElements.organizations.source = (v) => { if (v !== undefined) character.lore.organizations = v; return character.lore.organizations; };
+	characterElements.backstory.source = (v) => { if (v !== undefined) character.lore.backstory = v; return character.lore.backstory; };
+	characterElements.notes.source = (v) => { if (v !== undefined) character.lore.notes = v; return character.lore.notes; };
 
 
 	updateElements();

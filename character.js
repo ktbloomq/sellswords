@@ -58,6 +58,19 @@ export default class Character {
 		current: 10,
 		max: 10
 	};
+	lore = {
+		appearance: "",
+		socialCircle: "",
+		regionalKnowledge: "",
+		call: "",
+		quirks: "",
+		religion: "",
+		oath: "",
+		politics: "",
+		organizations: "",
+		backstory: "",
+		notes: ""
+	}
 	luck = 0;
 	freeActions = 1;
 	actionChain = 1;

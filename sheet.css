@@ -3,14 +3,16 @@
     --bg: black;
     --text: white;
   }
-  .boons > :first-child {
+
+  .boons> :first-child {
     color: black;
   }
 }
+
 @media(prefers-color-scheme: light) {
   :root {
-    --bg:white;
-    --text:black;
+    --bg: white;
+    --text: black;
   }
 }
 
@@ -66,7 +68,7 @@
 
 .boon-subcategories {
   border-top: 1px solid;
-  height: 10rem;
+  min-height: 10rem;
   padding: 0 2px;
   display: grid;
   justify-content: space-between;
@@ -106,4 +108,8 @@ input {
 .boons {
   border: 1px solid;
   margin: .25rem;
+}
+
+#lore button {
+  display: block;
 }
