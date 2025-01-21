@@ -979,7 +979,7 @@ export default {
     "id": "cleansingPower",
     "category": "exploration",
     "displayName": "Cleansing Power",
-    "description": "You know the light spell, Raider\u2019s Fire spell, and the cleansing beam spell. These do double damage against corrupted creatures."
+    "description": "You know the light spell, Raider's Fire spell, and the cleansing beam spell. These do double damage against corrupted creatures."
   },
   "compassion": {
     "id": "compassion",
