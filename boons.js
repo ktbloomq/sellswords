@@ -579,4 +579,466 @@ export default {
     displayName: "air",
     description: "",
   },
+  "thisWeaponIsYourLife": {
+    "id": "thisWeaponIsYourLife",
+    "category": "combat",
+    "displayName": "This Weapon Is Your Life",
+    "description": "You cannot be disarmed when using a learned weapon. "
+  },
+  "bloodtoCourage": {
+    "id": "bloodtoCourage",
+    "category": "combat",
+    "displayName": "Blood to Courage",
+    "description": "Use an action to convert up to 10 health to energy at a 1:3 ratio. This can be done once per sleep."
+  },
+  "firstBlood": {
+    "id": "firstBlood",
+    "category": "combat",
+    "displayName": "First Blood",
+    "description": "Start off with +1 free action at the beginning of combat."
+  },
+  "makethemhurt": {
+    "id": "makethemhurt",
+    "category": "combat",
+    "displayName": "Make them hurt",
+    "description": "Add +1d4 damage per round when dealing critical hits."
+  },
+  "doOver": {
+    "id": "doOver",
+    "category": "exploration",
+    "displayName": "Do Over",
+    "description": "Reroll a skill roll in combat. You must use the results of the second roll. This may be done once per sleep."
+  },
+  "endurePain": {
+    "id": "endurePain",
+    "category": "exploration",
+    "displayName": "Endure Pain",
+    "description": "Heal your career first injury (either in past or future)"
+  },
+  "armorExpert": {
+    "id": "armorExpert",
+    "category": "combat",
+    "displayName": "Armor Expert",
+    "description": "Add 3d6 armor to a defensive action twice per sleep. "
+  },
+  "forcedError": {
+    "id": "forcedError",
+    "category": "combat",
+    "displayName": "Forced Error",
+    "description": "Create a critical hit once per enemy per combat."
+  },
+  "comeAtMeBro": {
+    "id": "comeAtMeBro",
+    "category": "combat",
+    "displayName": "Come At Me Bro",
+    "description": "Once per combat gain a free defensive action, even after a broken chain. "
+  },
+  "increasedDamage": {
+    "id": "increasedDamage",
+    "category": "combat",
+    "displayName": "Increased Damage",
+    "description": "Add +1 damage dice to your damage per weapon wielded. "
+  },
+  "failureisNotanoption": {
+    "id": "failureisNotanoption",
+    "category": "combat",
+    "displayName": "Failure is Not an option",
+    "description": "Once per combat, reroll some or all failed dice in a chained action and use the new value. "
+  },
+  "doIHaveYourAttention": {
+    "id": "doIHaveYourAttention",
+    "category": "combat",
+    "displayName": "Do I Have Your Attention?",
+    "description": "Force an enemy to focus all their effort on you. They need not spend all actions attacking but will move or redirect any offensive actions towards you. "
+  },
+  "mountedCombat": {
+    "id": "mountedCombat",
+    "category": "combat",
+    "displayName": "Mounted Combat",
+    "description": "You can fight while mounted without penalties. This applies to vehicles and combat trained mounts. "
+  },
+  "penetration": {
+    "id": "penetration",
+    "category": "combat",
+    "displayName": "Penetration",
+    "description": "Upon dealing lethal damage to an enemy, cut through them and deal remaining damage to another enemy within melee range. "
+  },
+  "execution": {
+    "id": "execution",
+    "category": "combat",
+    "displayName": "Execution",
+    "description": "Deal critical damage to enemies with negative status effects"
+  },
+  "charge": {
+    "id": "charge",
+    "category": "combat",
+    "displayName": "Charge",
+    "description": "Expend 1 MP to move 10+ feet in a straight line and knock a lighter enemy prone."
+  },
+  "criticalCharge": {
+    "id": "criticalCharge",
+    "category": "combat",
+    "displayName": "Critical Charge",
+    "description": "Spend 2 MP and move 10+ feet in a straight line and deal critical damage on your first attack."
+  },
+  "everLearning": {
+    "id": "everLearning",
+    "category": "exploration",
+    "displayName": "Ever Learning",
+    "description": "Gain training with a shield or another weapon type of your choice and use them while mounted."
+  },
+  "improvedCharge": {
+    "id": "improvedCharge",
+    "category": "combat",
+    "displayName": "Improved Charge",
+    "description": "When charging for 30+ feet on a mount, sacrifice a long reach weapon to instantly kill an enemy of a lower level than you. If the enemy is of equal or higher level, it will reduce all combat points by half, and they will spend their next turn attempting to move away from you. Their movement will not provoke free attacks. "
+  },
+  "soundingCharge": {
+    "id": "soundingCharge",
+    "category": "combat",
+    "displayName": "Sounding Charge",
+    "description": "At the start of combat, blow a horn announcing your presence. On their next turn, enemy movement can only be used to move towards one of their allies or in direct retreat from your current position. They may attack, stay in place, or perform other actions as normal. "
+  },
+  "increasedDamage": {
+    "id": "increasedDamage",
+    "category": "combat",
+    "displayName": "Increased Damage",
+    "description": "As an action and spending 1 MP, add +1 damage dice to your weapon damage until the beginning of your next turn. May be done once per combat.  "
+  },
+  "rally": {
+    "id": "rally",
+    "category": "combat",
+    "displayName": "Rally",
+    "description": "As your turn, sound your horn, giving 10 energy to each ally within 30 feet. May be done once per day."
+  },
+  "rout": {
+    "id": "rout",
+    "category": "combat",
+    "displayName": "Rout",
+    "description": "Free (defensive action) attacks no longer need to be chained."
+  },
+  "trample": {
+    "id": "trample",
+    "category": "combat",
+    "displayName": "Trample",
+    "description": "Once per sleep, expend all actions and 2MP and charge 60 feet on a mount in a straight line. In addition to the charge, deal an additional half of the rolled damage to units in that line as your stead bludgeons them. You do not trigger Free attacks during this charge. "
+  },
+  "sprinter": {
+    "id": "sprinter",
+    "category": "combat",
+    "displayName": "Sprinter",
+    "description": "Double movement distance on your first turn."
+  },
+  "meatShield": {
+    "id": "meatShield",
+    "category": "combat",
+    "displayName": "Meat Shield",
+    "description": "Grab an enemy within arm's reach and forcibly move them between you and an incoming attack. This can be done for 3 energy once per turn. "
+  },
+  "featsofStrength": {
+    "id": "featsofStrength",
+    "category": "combat",
+    "displayName": "Feats of Strength",
+    "description": "Feats of strength require only half as many actions to accomplish. You may expend energy points to increase a roll on a feat of strength or endurance by the amount of energy used. "
+  },
+  "supplex": {
+    "id": "supplex",
+    "category": "combat",
+    "displayName": "Supplex",
+    "description": "If an opponent is at less than half health, body slam them to the ground, leaving them prone and unable to perform defensive actions. "
+  },
+  "carousing": {
+    "id": "carousing",
+    "category": "exploration",
+    "displayName": "Carousing",
+    "description": "Once a week you can spend the night on the town. This counts as a successful hard information gathering check and 8-hours of sleep. "
+  },
+  "onePunch": {
+    "id": "onePunch",
+    "category": "combat",
+    "displayName": "One Punch",
+    "description": "You have learned how to hit people without hurting yourself. Increase unarmed fighting dice by one size."
+  },
+  "grappleMaster": {
+    "id": "grappleMaster",
+    "category": "combat",
+    "displayName": "Grapple Master",
+    "description": "Grapple two creatures simultaneously. Grappled creatures cannot move, have only half their actions, and action energy costs are doubled. The grappler cannot attack while grappling. "
+  },
+  "locche": {
+    "id": "locche",
+    "category": "exploration",
+    "displayName": "Locche",
+    "description": "If out of combat, you spend 1 minute interacting with a creature or 5 minutes purposefully observing them, you may reduce all incoming weapon damage rolls from them by 2 and you do not need to spend energy to use armor to defend against their attacks. "
+  },
+  "competitiveNature": {
+    "id": "competitiveNature",
+    "category": "combat",
+    "displayName": "Competitive Nature",
+    "description": "Once per day, when in a competition with another creature and the stakes are greater than 100 gold, you may add a +20 to a single roll and a -10 to a roll made by your opponent on a different turn. Only one of these effects may be applied during a contested roll."
+  },
+  "decathlete": {
+    "id": "decathlete",
+    "category": "exploration",
+    "displayName": "Decathlete",
+    "description": "You can now climb, swim, wall run for 10 feet, backflip, standing jump double your Physique RAB, and double the range of your javelin throw; but probably not all in the same turn. "
+  },
+  "celebrity": {
+    "id": "celebrity",
+    "category": "social",
+    "displayName": "Celebrity",
+    "description": "You are now a big deal. People actively recognize you wherever you go and are more likely to do favors and bend the rules to accommodate or impress you but may also expect you to perform some minor favors in return. "
+  },
+  "crushingPower": {
+    "id": "crushingPower",
+    "category": "exploration",
+    "displayName": "Crushing Power",
+    "description": "Add Physique RAB (max of 3) to damage rolls made with blunt weapons or unarmed attacks."
+  },
+  "favoriteSong": {
+    "id": "favoriteSong",
+    "category": "exploration",
+    "displayName": "Favorite Song",
+    "description": "Use a Turn or three actions to calm down or pump up an ally. They may roll a d10 + your Level and add it to a d100 roll (or equivalent) they make in the next five minutes. "
+  },
+  "themeSongs": {
+    "id": "themeSongs",
+    "category": "combat",
+    "displayName": "Theme Songs",
+    "description": "Roll a dice the same size as your max chain ability. Give an ally the number of free actions. This uses a full turn. "
+  },
+  "adoringFans": {
+    "id": "adoringFans",
+    "category": "social",
+    "displayName": "Adoring Fans",
+    "description": "At places you have performed before, you may run into fans. Treating them kindly will result in advantage on communication checks with them and favors, including discounts up to 10% more than they would normally give. "
+  },
+  "theAxe": {
+    "id": "theAxe",
+    "category": "combat",
+    "displayName": "The Axe",
+    "description": "You've unlocked the true potential of your instrument. You can now use it as a melee weapon without danger of damaging it. Add +1d6 per attack action when using a stinged instrument as a 2 handed blunt melee weapon. "
+  },
+  "dynamicDuo": {
+    "id": "dynamicDuo",
+    "category": "combat",
+    "displayName": "Dynamic Duo",
+    "description": "Use your turn to amplify a spell. The spell is naturally amplified by one school level (spending half of its cost in your own mana. Alternatively, you may share your mana pool with the casting mage for that turn. "
+  },
+  "iNeedaHerooo": {
+    "id": "iNeedaHerooo",
+    "category": "combat",
+    "displayName": "I Need a Herooo",
+    "description": "Start a magically infused theme song that inspires your teammates, giving each one a free action every turn and raising their maximum chain number by one. This requires a full turn and 1 energy per person to start. You may sustain the song for half the starting energy. Every time a teammate uses a free action granted by this spell it consumes one of your mana. "
+  },
+  "inspiringRiff": {
+    "id": "inspiringRiff",
+    "category": "exploration",
+    "displayName": "Inspiring Riff",
+    "description": "The Favorite Song bonus may now be rolled with advantage. "
+  },
+  "areYouElvish": {
+    "id": "areYouElvish",
+    "category": "social",
+    "displayName": "Are You Elvish?",
+    "description": "You have advantage on all friendly interpersonal checks with the opposite gender."
+  },
+  "orpheus": {
+    "id": "orpheus",
+    "category": "combat",
+    "displayName": "Orpheus",
+    "description": "Your musical skills have grown to a point where even the gods know of you, and Death is known to be a softie for a good ballad. Once in your career, play a song so sweet that death gives up a soul. You may bring a fully dead person back to life. They must still be warm for it to work. The target returns fully healthy and healed of whatever ailed them or caused their death."
+  },
+  "rageRoom": {
+    "id": "rageRoom",
+    "category": "exploration",
+    "displayName": "Rage Room",
+    "description": "Sometimes, you just can't handle the pressure of being nice all the time. For the next four turns, you become an unstoppable wrecking ball as you destroy everything around you. You cannot be stopped. You cannot die. In combat you, this equates to plus +3 damage per weapon attack during this time and an increase of half your action dice. At the end, you have advantage on intimidation checks for the rest of the day against anyone who saw the display and destruction. At the end of the fit, you are exhausted and cannot attack for the round and cannot move more than half your normal speed and have your total actions reduced by half until you sleep. This ability recharges every 10+1d4 days. "
+  },
+  "partyLifestyle": {
+    "id": "partyLifestyle",
+    "category": "combat",
+    "displayName": "Party Lifestyle",
+    "description": "Requires Adoring Fans boon. You've consumed so much... everything... during your career that your constitution has increased, giving you advantages against being sick and immunity to poisoning."
+  },
+  "healingTouch": {
+    "id": "healingTouch",
+    "category": "combat",
+    "displayName": "Healing Touch",
+    "description": "Patch up a creature within reach with emergency first aid and herbal medicine. On a successful healing check, spend 1 action and heal 1d4 HP + your number of Physician Path levels. Two successful checks on one turn halt any bleeding effect. "
+  },
+  "combatDrugs": {
+    "id": "combatDrugs",
+    "category": "combat",
+    "displayName": "Combat Drugs",
+    "description": "Your herbal remedies increase combat effectiveness. In addition to healing, Healing Touch now adds 1d4 energy."
+  },
+  "springwireTrap": {
+    "id": "springwireTrap",
+    "category": "combat",
+    "displayName": "Springwire Trap",
+    "description": "Create a wall 3 tiles long (or 15 feet) through which an enemy cannot move. If an enemy is within the area when deployed, it will not deploy fully, and instead entangle them, preventing them from attacking. Creatures attempting to move through will come to a stop and be unable to attack until they move out on a subsequent turn. Costs 5 gold and 2 mana. The caster may not use any attack/harmful actions the turn that this is played. "
+  },
+  "tourniquet": {
+    "id": "tourniquet",
+    "category": "combat",
+    "displayName": "Tourniquet",
+    "description": "Inflict an injury but stabilize a creature for 4 turns. Stabilization ends early if the creature uses an action."
+  },
+  "medSchoolDropout": {
+    "id": "medSchoolDropout",
+    "category": "combat",
+    "displayName": "Med School Dropout",
+    "description": "Spend a turn to eliminate a minor status effect. This takes only 1 action. "
+  },
+  "puttheWorldBackTogether": {
+    "id": "puttheWorldBackTogether",
+    "category": "combat",
+    "displayName": "Put the World Back Together",
+    "description": "If you take damage, you may spend a defensive action to use Healing Touch on another creature. "
+  },
+  "triage": {
+    "id": "triage",
+    "category": "combat",
+    "displayName": "Triage",
+    "description": "If you spend an entire turn only healing allies, then each healed ally heals an additional 1d8 HP."
+  },
+  "bedrest": {
+    "id": "bedrest",
+    "category": "combat",
+    "displayName": "Bedrest",
+    "description": "Injuries require 7 successful medicine checks of a difficulty of 90. One check may be made per player per day. Only one injury may be healed at a time. Each check consumes 5g of supplies instead of the normal 15g requirement."
+  },
+  "were-beast": {
+    "id": "were-beast",
+    "category": "combat",
+    "displayName": "Were-beast",
+    "description": "Choose an animal form that you can shift into. Shifting costs 5 mana and uses one turn or 3 actions each time you shift. This can last up to 1d4 hours. People can tell you are a magical creature and may react hastily. You have a free transform once per day during a full moon, recharging when the moon rises that night. "
+  },
+  "practicedForm": {
+    "id": "practicedForm",
+    "category": "combat",
+    "displayName": "Practiced Form",
+    "description": "When you shift into a beast, you can decide if it appears magical or natural in nature. You can now shift into your were-beast form with only one action. "
+  },
+  "bestialSpellcasting": {
+    "id": "bestialSpellcasting",
+    "category": "combat",
+    "displayName": "Bestial Spellcasting",
+    "description": "You can cast known spells at a single school level while in bestial form. "
+  },
+  "commonParlance": {
+    "id": "commonParlance",
+    "category": "exploration",
+    "displayName": "Common Parlance",
+    "description": "You can speak in languages you know when you are in animal form. Additionally, the length of time of a transformation increases to six hours. "
+  },
+  "transform": {
+    "id": "transform",
+    "category": "combat",
+    "displayName": "Transform",
+    "description": "Shapeshift into a creature you have had a chance to observe. This costs 10 mana and increases by 5 for every subsequent shift before a sleep. "
+  },
+  "anonymity": {
+    "id": "anonymity",
+    "category": "exploration",
+    "displayName": "Anonymity",
+    "description": "You can spend a sleep to carefully alter your appearance to be different, including changing hair, prominent facial features, and size and weight by up to 25% of your normal size (you must maintain the same mass and gender). Your eyes cannot be changed. This effect slowly fades over the course of the next few days."
+  },
+  "elementalEnhancement": {
+    "id": "elementalEnhancement",
+    "category": "exploration",
+    "displayName": "Elemental Enhancement",
+    "description": "Expend 5 mana on a transform to enhance the creature form with a magical school that you know. Take one of the following effects: A) receive only half damage from that element,B) Imbue attacks with 2d8 elemental damage per turn from that school, if you attack. "
+  },
+  "bestialTrait": {
+    "id": "bestialTrait",
+    "category": "exploration",
+    "displayName": "Bestial Trait",
+    "description": "The separation between beast and man has decreased. You know have one of the racial abilities of your were-form. This can be something like movement speed, an enhanced sense, etc. "
+  },
+  "elementalMaster": {
+    "id": "elementalMaster",
+    "category": "combat",
+    "displayName": "Elemental Master",
+    "description": "You can turn into an elemental spirit of a level 2 school that you know. This costs 20 mana and can be done once per school per sleep. Elemental Spirits are immune to damage from their element and may have additional abilities. "
+  },
+  "massHasNoMeaning": {
+    "id": "massHasNoMeaning",
+    "category": "combat",
+    "displayName": "Mass Has No Meaning",
+    "description": "You can now transform into creatures larger than you."
+  },
+  "biggify": {
+    "id": "biggify",
+    "category": "combat",
+    "displayName": "Biggify",
+    "description": "For double the casting cost plus 5 mana, you double the size, weight, abilities, and attack of the creature you transform into."
+  },
+  "cleansingPower": {
+    "id": "cleansingPower",
+    "category": "exploration",
+    "displayName": "Cleansing Power",
+    "description": "You know the light spell, Raider\u2019s Fire spell, and the cleansing beam spell. These do double damage against corrupted creatures."
+  },
+  "compassion": {
+    "id": "compassion",
+    "category": "exploration",
+    "displayName": "Compassion",
+    "description": "Over the course of 1 minute (2 turns), you can remove the corruption of a recently corrupted creature without killing it. If they move during this process it is interrupted and must be started again. "
+  },
+  "fluentCaster": {
+    "id": "fluentCaster",
+    "category": "combat",
+    "displayName": "Fluent Caster",
+    "description": "Casting a spell no longer ends action chains, enabling defensive actions. "
+  },
+  "purifiedSoul": {
+    "id": "purifiedSoul",
+    "category": "combat",
+    "displayName": "Purified Soul",
+    "description": "As a defensive action, become immune to corruption, poison, and illness till the start of your next turn. The cost is 2 actions, and 1 MP per action negated. Attackers cannot tell you are immune. "
+  },
+  "purifierAdept": {
+    "id": "purifierAdept",
+    "category": "combat",
+    "displayName": "Purifier Adept",
+    "description": "Known fire school spells cost half mana."
+  },
+  "purifierSpecialist": {
+    "id": "purifierSpecialist",
+    "category": "combat",
+    "displayName": "Purifier Specialist",
+    "description": "Gain a fire school level. Requires all previous boons. Also allows you to purify stagnant aeyther locations."
+  },
+  "sparetheGood": {
+    "id": "sparetheGood",
+    "category": "combat",
+    "displayName": "Spare the Good",
+    "description": "You can guide your ranged fire and light AOE spells to avoid up to 3 uncorrupted creatures of your choice."
+  },
+  "purity'sGuard": {
+    "id": "purity'sGuard",
+    "category": "combat",
+    "displayName": "Purity's Guard",
+    "description": "Gain three natural armor against attacks and effects from corrupted creatures, or one natural armor from other attacks. You are also immune to illnesses spread by corruption or injuries caused by corruption. "
+  },
+  "creatureofLight": {
+    "id": "creatureofLight",
+    "category": "combat",
+    "displayName": "Creature of Light",
+    "description": "Summon a creature of light to protect an ally. It extends your natural armor to an active creature. If cast on a downed creature, it forms a protective shield around them and puts them in stasis until combat ends or all allies are downed. Cost of 10 mana and 2 actions. "
+  },
+  "scourgeofEvil": {
+    "id": "scourgeofEvil",
+    "category": "combat",
+    "displayName": "Scourge of Evil",
+    "description": "You can now cast Flamethrower, Firebolt, Cleansing Beam, and Light at one school level higher. When cast at level 3 or higher, Light now becomes a radial effect where corruption will flee its presence."
+  },
+  "redeemtheFallen": {
+    "id": "redeemtheFallen",
+    "category": "combat",
+    "displayName": "Redeem the Fallen",
+    "description": "Spend 2 turns ripping the corruption out of a creature in reach with moderate corruption or healing all severe mental effects. If successful, the creature will fall unconscious with 2 injuries. This can done once per day and requires 4 more uninterrupted actions and 10 MP. You may reattempt to save the same creature if an attempt fails, but may not try on another one. Saving a creature results in a burst of radiant Aeyther energy, dealing 1d10 per actions spent healing. Good creatures do not take damage. "
+  },
 }

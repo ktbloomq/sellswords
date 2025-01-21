@@ -137,6 +137,10 @@ window.onload = async function() {
     archetype.applyBonuses(character);
     character.archetype = archetype;
 
+    let path = formdata.get("path");
+    const pathBoon = Boons[path];
+    character.boons[pathBoon.category].push(path);
+
     // Combat Pools
     let bonus = Math.max(character.attributes.physique.raw, character.attributes.precision.raw);
     character.health.max = character.health.current = 10+Math.ceil(bonus/2);
