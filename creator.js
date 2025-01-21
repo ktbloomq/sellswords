@@ -78,7 +78,7 @@ function removeBoonInput() {
   BoonChoicesElement.lastElementChild ? (BoonChoicesElement.lastElementChild.outerHTML = "") : null;
 }
 
-window.onload = async function() {
+window.onload = async function () {
   const raceElement = document.getElementById("race");
   const archetypeElement = document.getElementById("archetype");
   const addBoonElement = document.getElementById("add-boon");
@@ -93,17 +93,26 @@ window.onload = async function() {
     event.preventDefault();
     const formdata = new FormData(charForm);
     const character = new Character();
+    const race = new Races[formdata.get("race")]();
+    const archetype = new Archetypes[formdata.get("archetype")]();
+
+    race.choices = [];
+    archetype.choices = []; 
+    let moreBoons = [];
+    formdata.entries().forEach(([key, value]) => {
+      if (key.startsWith("race-")) {
+        race.choices.push(value);
+      } else if (key.startsWith("archetype-")) {
+        archetype.choices.push(value);
+      } else if (key.startsWith("boon")) {
+        moreBoons.push(value);
+      }
+    });
+
     // Name
     character.name = formdata.get("name") ?? "";
 
-    //Race
-    const race = new Races[formdata.get("race")]();
-    race.choices = formdata.entries().reduce((a,e) => {
-      if(e[0].startsWith("race-")) {
-        a[e[0].slice(5)]=e[1];
-      }
-      return a;
-    },{});
+    // Race
     race.addBoons(character);
     race.applyAttributeModifiers(character);
     character.race = race;
@@ -123,18 +132,11 @@ window.onload = async function() {
 
     // Weapons Training
     let weapon = formdata.get("weapon1");
-    if (weapon!=="none") character.weaponsTraining.push(WeaponTypes[weapon]);
+    if (weapon !== "none") character.weaponsTraining.push(WeaponTypes[weapon]);
     weapon = formdata.get("weapon2");
-    if (weapon!=="none") character.weaponsTraining.push(WeaponTypes[weapon]);
+    if (weapon !== "none") character.weaponsTraining.push(WeaponTypes[weapon]);
 
     // Archetype
-    const archetype = new Archetypes[formdata.get("archetype")]();
-    archetype.choices =  formdata.entries().reduce((a,e) => {
-      if(e[0].startsWith("archetype-")) {
-        a[e[0].slice(10)]=e[1];
-      }
-      return a;
-    },{});
     archetype.applyBonuses(character);
     character.archetype = archetype;
 
@@ -158,49 +160,44 @@ window.onload = async function() {
 
     // Combat Pools
     let bonus = Math.max(character.attributes.physique.raw, character.attributes.precision.raw);
-    character.health.max = character.health.current = 10+Math.ceil(bonus/2);
+    character.health.max = character.health.current = 10 + Math.ceil(bonus / 2);
     bonus = Math.max(character.attributes.intuition.raw, character.attributes.smarts.raw);
-    character.energy.max = character.energy.current = 10+Math.ceil(bonus/2);
+    character.energy.max = character.energy.current = 10 + Math.ceil(bonus / 2);
     bonus = Math.max(character.attributes.wit.raw, character.attributes.soul.raw);
-    character.mana.max = character.mana.current = 10+Math.ceil(bonus/2);
+    character.mana.max = character.mana.current = 10 + Math.ceil(bonus / 2);
 
-    let moreBoons = formdata.entries().reduce((a,e) => {
-      if(e[0].startsWith("boon")) {
-        a[e[0].slice(4)]=e[1];
-      }
-      return a;
-    },{});
-    Object.values(moreBoons).forEach((value) => {
-      if(value !== "") {
+    // More Boons
+    moreBoons.forEach((value) => {
+      if (value !== "") {
         const boon = Boons[value];
         character.boons[boon.category].push(boon);
       }
     });
-    
+
     character.calcSkills();
 
     // Past Life: depends on calcSkills
-		pastLife.applyModifiers(character);
+    pastLife.applyModifiers(character);
     Object.values(character.boons).forEach((category) => {
       category.forEach((boon) => {
-        if(boon.apply) {
+        if (boon.apply) {
           boon.apply(character);
         }
       });
     });
-    
+
     // Preferred Skills: depends on calcSkills
     let skillInterest = formdata.get("skill-interest1");
-    if (skillInterest!=="none") {
+    if (skillInterest !== "none") {
       let split = skillInterest.split(".");
-      character.attributes[split[0]][split[1]] = Math.ceil((character.attributes[split[0]][split[1]]+1)/5)*5;
+      character.attributes[split[0]][split[1]] = Math.ceil((character.attributes[split[0]][split[1]] + 1) / 5) * 5;
     }
     skillInterest = formdata.get("skill-interest2");
-    if (skillInterest!=="none") {
+    if (skillInterest !== "none") {
       let split = skillInterest.split(".");
-      character.attributes[split[0]][split[1]] = Math.ceil((character.attributes[split[0]][split[1]]+1)/5)*5;
+      character.attributes[split[0]][split[1]] = Math.ceil((character.attributes[split[0]][split[1]] + 1) / 5) * 5;
     }
-    
+
     const characterString = JSON.stringify(character);
     console.log(character);
     const response = await fetch(`saveCharacter.php/?name=${character.name}`, {
@@ -210,6 +207,6 @@ window.onload = async function() {
     // const queryParams = new URLSearchParams();
     // queryParams.append("character", characterString);
     // const redirect = `/char-sheet.html?${queryParams.toString()}`
-    // window.open(redirect, '_blank');
+    window.open(`/sheet.html?name=${character.name}`, '_blank');
   })
 }

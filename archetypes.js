@@ -4,7 +4,7 @@ export class Archetype {
 	choices = [];
 	applyBonuses(character) {
 		// console.log(this.choices);
-		Object.entries(this.choices).forEach(([key, value]) => {
+		this.choices.forEach((value) => {
 			const boon = Boons[value];
 			// console.log(key,value);
 			character.boons[boon.category].push(boon);

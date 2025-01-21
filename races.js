@@ -3,7 +3,7 @@ import Boons from "./boons.js";
 export class Race {
 	name = "";
 	modifiers;
-	choices;
+	choices = [];
 	static raceChoices = {};
 	applyAttributeModifiers(character) {
 		this.setAttributeModifiers(character);
@@ -23,11 +23,11 @@ export class Race {
 		});
 	};
 	addBoons(character) {
-		Object.entries(this.choices).forEach(([key,value]) => {
-			if(key.startsWith("boon")) {
+		this.choices.forEach((value) => {
+			// if(key.startsWith("boon")) {
 				const boon = Boons[value];
 				character.boons[boon.category].push(boon);
-			}
+			// }
 		});
 	};
 }

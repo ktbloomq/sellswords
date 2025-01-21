@@ -145,6 +145,7 @@ function applyChange(event) {
 	console.log(character);
 	updateElements();
 	editorModalElement.close();
+	document.activeElement.blur();
 }
 
 async function saveCharacter(event) {

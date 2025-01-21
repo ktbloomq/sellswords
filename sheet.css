@@ -2,6 +2,9 @@
   :root {
     --bg: black;
     --text: white;
+    --physical: Salmon;
+    --mental: Green;
+    --spiritual: DeepSkyBlue;
   }
 
   .boons> :first-child {
@@ -13,13 +16,13 @@
   :root {
     --bg: white;
     --text: black;
+    --physical: LightSalmon;
+    --mental: LightGreen;
+    --spiritual: LightSkyBlue;
   }
 }
 
 :root {
-  --physical: LightSalmon;
-  --mental: LightGreen;
-  --spiritual: LightSkyBlue;
   color-scheme: light dark;
   background-color: var(--bg);
   color: var(--text);
@@ -98,7 +101,7 @@ input {
 }
 
 .hidden-button:focus {
-  color: blue;
+  color: AccentColor;
 }
 
 #editor-inputs textarea {
