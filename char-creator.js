@@ -50,11 +50,6 @@ function updateArchetypeChoices(event) {
     });
     archetypeChoicesElement.appendChild(select);
   });
-  // archetypeChoicesElement.innerHTML = Object.entries(Archetypes[event.target.value].archetypeLevelChoices).reduce((a,e) => (
-  //   `${a}<select name='archetype-${e[0]}' required>${e[1].reduce((a2,e2) => (
-  //     `${a2}<option value='${e2.id}'>${e2.displayName}</option>`
-  //   ),"")}</select>`
-  // ),"");
 }
 
 function addBoonInput() {
@@ -139,7 +134,7 @@ window.onload = async function() {
 
     let path = formdata.get("path");
     const pathBoon = Boons[path];
-    character.boons[pathBoon.category].push(path);
+    character.boons[pathBoon.category].push(pathBoon);
 
     // Combat Pools
     let bonus = Math.max(character.attributes.physique.raw, character.attributes.precision.raw);
@@ -155,18 +150,17 @@ window.onload = async function() {
       }
       return a;
     },{});
-    Object.entries(moreBoons).forEach(([key,value]) => {
+    Object.values(moreBoons).forEach((value) => {
       if(value !== "") {
         const boon = Boons[value];
-        character.boons[boon.category].push(value);
+        character.boons[boon.category].push(boon);
       }
     });
     
     character.calcSkills();
 		pastLife.applyModifiers(character);
     Object.values(character.boons).forEach((category) => {
-      category.forEach((boonid) => {
-        let boon = Boons[boonid];
+      category.forEach((boon) => {
         if(boon.apply) {
           boon.apply(character);
         }

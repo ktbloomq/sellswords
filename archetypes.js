@@ -7,7 +7,7 @@ export class Archetype {
 		Object.entries(this.choices).forEach(([key, value]) => {
 			const boon = Boons[value];
 			// console.log(key,value);
-			character.boons[boon.category].push(value);
+			character.boons[boon.category].push(boon);
 		});
 	};
 }

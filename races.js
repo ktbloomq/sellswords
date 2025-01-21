@@ -26,7 +26,7 @@ export class Race {
 		Object.entries(this.choices).forEach(([key,value]) => {
 			if(key.startsWith("boon")) {
 				const boon = Boons[value];
-				character.boons[boon.category].push(value);
+				character.boons[boon.category].push(boon);
 			}
 		});
 	};

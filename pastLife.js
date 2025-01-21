@@ -1,3 +1,4 @@
+import Boons from "./boons.js";
 export class PastLife {
 	modifiers;
 	applyModifiers(character) {
@@ -30,7 +31,7 @@ export class Burglar extends PastLife {
   setModifiers(character) {
     this.modifiers = [
       () => {character.attributes.precision.hide += 10},
-      () => {character.boons.social.push("criminalContacts")}
+      () => {character.boons.social.push(Boons.criminalContacts)}
     ];
   }
 }

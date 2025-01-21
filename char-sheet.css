@@ -79,3 +79,7 @@ input {
 .hidden-button:focus {
   color: blue;
 }
+
+#editor-inputs textarea {
+  min-width: 25vw;
+}
