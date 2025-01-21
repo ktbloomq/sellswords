@@ -7,8 +7,37 @@
 	<title>Character Creator</title>
 	<script type="module" src="char-creator.js"></script>
 	<style>
-		input, select, label {
+		:root {
+			width: 50%;
+			margin: 0 auto;
+			color-scheme: light dark;
+			background-color: Canvas;
+			color: CanvasText;
+		}
+
+		input,
+		select,
+		label {
 			display: block;
+		}
+
+		textarea {
+			width: 100%;
+			height: 10rem;
+		}
+
+		.description {
+			margin: 1rem 0;
+		}
+
+		.description div {
+			margin: .5rem 0;
+		}
+
+		@media (max-width: 768px) {
+			:root {
+				width: 100%;
+			}
 		}
 	</style>
 </head>
@@ -16,9 +45,13 @@
 <body>
 	<form id="char-form">
 		<h2>Name</h2>
-		<input type="text" name="name" required/>
+		<input type="text" name="name" required />
 		<h2>Body</h2>
 		<h3>Race</h3>
+		<div class="description">
+			There are dozens of races in world, each one bringing unique attributes, predispositions, values, cultures, and beliefs. 
+			Races are set apart from each other by physical strength and attributes, unique abilities, as well as more mundane things such as size and lifespan. 
+		</div>
 		<select name="race" id="race" required>
 			<option value="" selected disabled hidden>choose</option>
 			<option value="Human">Human</option>
@@ -30,21 +63,46 @@
 		</select>
 		<div id="race-choices"></div>
 		<h3>Attributes</h3>
-		<div>
-			<label for="physique">Physique</label>
-			<input type="number" placeholder="0" name="physique" id="" />
-			<label for="precision">Precision</label>
-			<input type="number" placeholder="0" name="precision" id="" />
-			<label for="intuition">Intuition</label>
-			<input type="number" placeholder="0" name="intuition" id="" />
-			<label for="smarts">Smarts</label>
-			<input type="number" placeholder="0" name="smarts" id="" />
-			<label for="wit">Wit</label>
-			<input type="number" placeholder="0" name="wit" id="" />
-			<label for="soul">Soul</label>
-			<input type="number" placeholder="0" name="soul" id="" />
+		<div class="description">
+			Players start with a total of 30 attribute points to invest in the six attributes.
+			Each point increases an attribute by +1.
+			Each of the six attributes have a base starting value of –4 and may be increased to a maximum of +8 for a total of
+			12 points invested.
+			This number is your Attribute Bonus (AB) and will affect your skill and specialization bonuses.
+		</div>
+		<div style="display: flex; flex-wrap: wrap;">
+			<div>
+				<label for="physique">Physique</label>
+				<input type="number" placeholder="0" name="physique" id="" />
+			</div>
+			<div>
+				<label for="precision">Precision</label>
+				<input type="number" placeholder="0" name="precision" id="" />
+			</div>
+			<div>
+				<label for="intuition">Intuition</label>
+				<input type="number" placeholder="0" name="intuition" id="" />
+			</div>
+			<div>
+				<label for="smarts">Smarts</label>
+				<input type="number" placeholder="0" name="smarts" id="" />
+			</div>
+			<div>
+				<label for="wit">Wit</label>
+				<input type="number" placeholder="0" name="wit" id="" />
+			</div>
+			<div>
+				<label for="soul">Soul</label>
+				<input type="number" placeholder="0" name="soul" id="" />
+			</div>
 		</div>
 		<h3>Archetype</h3>
+		<div class="description">
+			Archetypes represent what a character has focused on in their free time since their last level.
+			Since levels represent growth, characters typically only have time to develop in one major area: the art of war,
+			self-improvement, or sinking deeper into the depths of arcana.
+			Taking another level in an archetype lets you choose related abilities and increase relevant combat points.
+		</div>
 		<select name="archetype" id="archetype" required>
 			<option value="" selected disabled hidden>choose</option>
 			<option value="Warrior">Warrior</option>
@@ -52,8 +110,32 @@
 			<option value="Mage">Mage</option>
 		</select>
 		<h3>Appearance</h3>
+		<div class="description">
+			On the character profile sheet, include a physical description. 
+			It is recommended to include the following details in order to assist the return of this manual to you should you lose it.
+			<div>Sex/Hardware: Male/Female/Other.</div>
+			<div>Race: The type of sentient creature.</div>
+			<div>Age: Choose the age of your character. The age of adulthood in the race descriptions is not necessarily that of physical maturity, but rather the cultural age at which they are expected to be capable of contributing to society. </div>
+			<div>Height: Self-explanatory. </div>
+			<div>Build: Body type, build, overall fitness. </div>
+			<div>Complexion: Appearance of the skin (both nature and color), medical conditions, tattoos and paint, etc.</div>
+			<div>Hair: Style and color, facial hair, etc.</div>
+			<div>Eyes: Color. Shape optional. </div>
+		</div>
+		<!-- TODO -->
+		<textarea name="appearance" id=""></textarea>
 		<h2>Mind</h2>
-		<h3>Past Life</h3>
+		<h3>Background</h3>
+		<h4>Past Life</h4>
+		<div class="description">
+			No one grows up in a vacuum. The present is marked with the thumbprints of the past. Who were you before you became an adventurer? 
+			This next section will help you identify skills from your past.
+			Nearly all adventurers come from humble beginnings. 
+			Choose a Past from the following table to represent skills you picked up before you took to a life on the road. 
+			They give minor bonuses to skills or introduce a specialization. 
+			Specializations represent specific study and esoteric knowledge which may be added to rolls involving knowledge from that specialization. 
+			These are exceptionally powerful, but are typically quite specific.
+		</div>
 		<select name="past" id="" required>
 			<option value="" selected disabled hidden>choose</option>
 			<option value="Bard">Bard</option>
@@ -75,8 +157,45 @@
 			<option value="Sailor">Sailor</option>
 			<option value="NoviceHealer">NoviceHealer</option>
 		</select>
-		<h3>Background</h3>
+		<h4>Social Circle</h4>
+		<div class="description">
+			<div>
+				Social circle represents the type of people you grew up with or are used to interacting with. 
+				This should reasonably match with your chosen background or be approved by the loremaster. 
+				For example, you may have been a peasant, but on land owned by a monastery. 
+				You can choose between either Peasant or Clergy as your social circle, giving you benefits when interacting with that group. 
+				People within this group are more likely to share information and want to assist you should you need help. 
+			</div>
+			<div>
+				Potential choices include, but are not limited to: Peasant, Middle-Class, Craftsmen, White-Collar/Artisan, Merchant, Nobility/Upper Class, Clergy, Animals, Military, Wizardry, Academia.
+			</div>
+		</div>
+		<!-- TODO -->
+		<textarea name="social-circle" id=""></textarea>
+		<h4>Regional Knowledge</h4>
+		<div class="description">
+			<div>
+				You grew up in a region. You have knowledge of geography, history, and political forces of that area. 
+				This includes major landmarks, government structure and major political figures, recent and major historic events that affected the area, local folklore, common wildlife and fauna, and cities and towns and their relative geography to each other. 
+				You can recall this general information without a check, although specific or obscure details beyond this may require a successful skill check. 
+			</div>
+			<div>
+				A region is usually about 40-100 miles square.
+			</div>
+			<div>Alternate Rule: Nomadic. If you traveled as a lifestyle, then make relevant checks with advantage to gain basic information. 
+				However, you cannot check for details. The GM may give you info from an outsider's perspective, which may not be fully accurate. 
+			</div>
+		</div>
+		<!-- TODO -->
+		<textarea name="regional-knowledge" id=""></textarea>
 		<h3>Weapons Training</h3>
+		Choose one of the following options:
+		<ul>
+			<li>Option A) Choose 2 weapon types to gain training. </li>
+			<li>Option B) Choose 1 weapon type to gain training. Choose a second skill interest. </li>
+			<li>Option C) Choose 1 weapon type to gain training. Choose a magic school.</li>
+		</ul>
+
 		<label for="weapon1">weapon 1</label>
 		<select name="weapon1" id="weapon1" required>
 			<option value="none">none</option>
@@ -153,23 +272,76 @@
 			<option value="air">air</option>
 		</select>
 		<h3>Starting Archetype Boon</h3>
-		<div id="archetype-choices"></div>
-		<h3>Path</h3>
-		<select name="path" id="" required>
-			<option value="thisWeaponIsYourLife">Man-At-Arms: This Weapon Is Your Life</option>
-			<option value="mountedCombat">Hussar: Mounted Combat</option>
-			<option value="sprinter">Athlete: Sprinter</option>
-			<option value="favoriteSong">Bard: Favorite Song</option>
-			<option value="healingTouch">Healer: Healing Touch</option>
-			<option value="were-beast">Shapeshifter: Were-beast</option>
-			<option value="cleansingPower">Purifier: Cleansing Power</option>
-		</select>
+		<div class="description">
+			<div>Archetypes provide access to various abilities called boons. </div>
+			<div>At first level, gain the following based on the starting archetype you chose:</div>
+		</div>
+		<div id="archetype-choices">Please pick an archetype</div>
 		<h2>Soul</h2>
 		<h3>The Call</h3>
+		<div class="description">
+			<div>
+				Great characters have a need: something that drives them. It can change over time, but they have a purpose. 
+				It can be a desire, a goal, a passion, a call, a duty, an oath, a guilt, a beauty, a love, a lover, or a fear. It can be positive or negative. Write it down. 
+				Whether it be to find the six-fingered man who killed your father, or to become king of the pirates, it’s good to know what you want out of life.
+			</div>
+			<div>
+				From a roleplaying perspective, it is best to work with the GM to ensure your goal makes sense with the planned story and group. 
+				While it is not strictly necessary for it to align, there will be more opportunities to involve your character personally in the main adventure threads if it does.
+			</div>
+		</div>
+		<!-- TODO -->
+		<textarea name="call" id=""></textarea>
 		<h3>Character Traits</h3>
+		<div class="description">
+			Choose a positive character trait. You may add +20 when a check is made in relation to roleplay to this trait.
+		</div>
+		<!-- TODO -->
+		<input name="trait" type="text" />
+		<div class="description">
+			Choose a character flaw. You may add +20 when a check is made in relation to roleplaying with this flaw.
+		</div>
+		<!-- TODO -->
+		<input name="flaw" type="text" />
 		<h3>Quirks</h3>
+		<div class="description">
+			Eccentricity is the spice of life. No one is normal, and adventurers least of all. Don’t be afraid to make your character just a bit odd. 
+			Having an interesting tick, especially early on, gives opportunities for interactions that can dynamically add to your character. 
+			If you have something early, it is much easier to change it out quickly in one of the earlier sessions
+		</div>
+		<!-- TODO -->
+		 <textarea name="quirks" id=""></textarea>
 		<h3>Loyalties</h3>
+		<div class="description">Religion/gods: Preferred guardian deities. </div>
+		<!-- TODO -->
+		<input name="religion" type="text" />
+		<div class="description">Oath (if any): Any promises, oaths, or codes (professional, moral, or otherwise) to which they adhere. </div>
+		<!-- TODO -->
+		<input name="oath" type="text" />
+		<div class="description">Political Loyalties: Any national/royal/political entities to which they give loyalty, or who may call upon them to pay homage or duty. </div>
+		<!-- TODO -->
+		<input name="politics" type="text" />
+		<div class="description">Organizations: Groups to which they belong, such as guilds, cults, coalitions, etc. </div>
+		<!-- TODO -->
+		<input name="organizations" type="text" />
 		<h3>Backstory</h3>
+		<div class="description">
+			<div>
+				Traditional backstory and biography. Go as in depth as you desire, but please, make a two-paragraph summary for the sake of the GM’s reference. 
+				The major element to focus on should be what led to them becoming an adventurer.
+			</div>
+			<div>
+				The only rule with backstory is nothing is canon until it makes it into a session. 
+				Be willing to rewrite and rework untold backstory to fit how the character unfolds during play. 
+				Often these updates lead to more interesting characters and better stories. 
+			</div>
+			<div>
+				Family: Parents and jobs, siblings, size of extended family, godparents, mentors, or father/mother figures.
+			</div>
+			<div>
+				Relationship with the Family: Positive, Negative, Estranged, Close, None, Orphaned, etc.
+			</div>
+		</div>
 		<h2>Level</h2>
 		<h3>Boons</h3>
 		<button id="add-boon" type="button">+</button>
@@ -178,4 +350,5 @@
 		<button type="submit">Submit</button>
 	</form>
 </body>
+
 </html>

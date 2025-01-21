@@ -1,7 +1,26 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: black;
+    --text: white;
+  }
+  .boons > :first-child {
+    color: black;
+  }
+}
+@media(prefers-color-scheme: light) {
+  :root {
+    --bg:white;
+    --text:black;
+  }
+}
+
 :root {
   --physical: LightSalmon;
   --mental: LightGreen;
   --spiritual: LightSkyBlue;
+  color-scheme: light dark;
+  background-color: var(--bg);
+  color: var(--text);
   print-color-adjust: exact;
 }
 
@@ -27,7 +46,7 @@
   min-width: 1rem;
   min-height: 2rem;
   align-content: center;
-  background-color: white;
+  background-color: var(--bg);
 }
 
 .text-box {
@@ -35,14 +54,14 @@
   margin: 2px auto 2px auto;
   padding: 2px;
   width: min-content;
-  background-color: white;
+  background-color: var(--bg);
 }
 
 .specialization-box {
   border: 1px solid;
   margin: .5rem;
   height: 100%;
-  background-color: white;
+  background-color: var(--bg);
 }
 
 .boon-subcategories {
@@ -82,4 +101,9 @@ input {
 
 #editor-inputs textarea {
   min-width: 25vw;
+}
+
+.boons {
+  border: 1px solid;
+  margin: .25rem;
 }
