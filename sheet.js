@@ -2,84 +2,81 @@ import Character from "./character.js"
 
 let character;
 let characterElements = {
-	name: {},
-	race: {},
-	hp: {},
-	hpMax: {},
-	mp: {},
-	mpMax: {},
-	ep: {},
-	epMax: {},
-	physique: {},
-	intimidation: {},
-	strength: {},
-	precision: {},
-	pickpocket: {},
-	hide: {},
-	intuition: {},
-	blend: {},
-	diplomacy: {},
-	smarts: {},
-	focus: {},
-	education: {},
-	wit: {},
-	business: {},
-	bluff: {},
-	soul: {},
-	readPerson: {},
-	alchemy: {},
-	weaponsTraining: {},
-	combatBoons: {},
-	socialBoons: {},
-	explorationBoons: {},
-	specializations: {},
-	freeActions: {},
-	actionChain: {},
-	actionDice: {},
-	appearance: {},
-	socialCircle: {},
-	regionalKnowledge: {},
-	call: {},
-	quirks: {},
-	religion: {},
-	oath: {},
-	politics: {},
-	organizations: {},
-	backstory: {},
-	notes: {},
+	name: { type: "string" },
+	race: { type: "string" },
+	hp: { type: "number" },
+	hpMax: { type: "number" },
+	mp: { type: "number" },
+	mpMax: { type: "number" },
+	ep: { type: "number" },
+	epMax: { type: "number" },
+	physique: { type: "number" },
+	intimidation: { type: "number" },
+	strength: { type: "number" },
+	precision: { type: "number" },
+	pickpocket: { type: "number" },
+	hide: { type: "number" },
+	intuition: { type: "number" },
+	blend: { type: "number" },
+	diplomacy: { type: "number" },
+	smarts: { type: "number" },
+	focus: { type: "number" },
+	education: { type: "number" },
+	wit: { type: "number" },
+	business: { type: "number" },
+	bluff: { type: "number" },
+	soul: { type: "number" },
+	readPerson: { type: "number" },
+	alchemy: { type: "number" },
+	weaponsTraining: { type: "boon" },
+	combatBoons: { type: "boon" },
+	socialBoons: { type: "boon" },
+	explorationBoons: { type: "boon" },
+	specializations: { type: "specialization" },
+	freeActions: { type: "number" },
+	actionChain: { type: "number" },
+	actionDice: { type: "number" },
+	appearance: { type: "string" },
+	socialCircle: { type: "string" },
+	regionalKnowledge: { type: "string" },
+	call: { type: "string" },
+	quirks: { type: "string" },
+	religion: { type: "string" },
+	oath: { type: "string" },
+	politics: { type: "string" },
+	organizations: { type: "string" },
+	backstory: { type: "string" },
+	notes: { type: "string" },
 };
 let editorModalElement, editorInputElement, editorFormElement, editorAddElement, editorRemoveElement, editorTarget;
 
 function updateElements() {
 	Object.entries(characterElements).forEach(([key, value]) => {
 		const source = value.source()
-		const type = typeof (source);
-		if (type === "number" || type === "string") {
+		if (value.type === "number" || value.type === "string") {
 			value.target.textContent = source;
 		} else if (Array.isArray(source)) {
 			value.target.innerHTML = "";
-			if (source[0]) {
-				// Boons / Weapons
-				if (source[0].displayName) {
-					source.forEach(entry => {
-						const newElement = document.createElement("div");
-						newElement.textContent = entry.displayName;
-						value.target.appendChild(newElement);
-					});
-				} 
-				// Specializations. TODO: assign to appropriate skill
-				else if (source[0].skill) {
-					console.log(source);
-					value.target.textContent = "";
-					source.forEach(entry => {
-						const newElement = document.createElement("div");
-						newElement.textContent = entry.name+ ": +" +entry.value;
-						value.target.appendChild(newElement);
-					})
-				}
+			// Boons / Weapons
+			if (value.type === "boon") {
+				source.forEach(entry => {
+					const newElement = document.createElement("div");
+					newElement.textContent = entry.displayName;
+					value.target.appendChild(newElement);
+				});
+			}
+			// Specializations. TODO: assign to appropriate skill
+			else if (value.type === "specialization") {
+				console.log(source);
+				value.target.textContent = "";
+				source.forEach(entry => {
+					const newElement = document.createElement("div");
+					newElement.textContent = entry.name + ": +" + entry.value;
+					value.target.appendChild(newElement);
+				})
 			}
 		} else {
-			console.log("invalid type", source)
+			console.error("invalid type", source);
 		}
 	});
 }
@@ -108,22 +105,14 @@ function editorAppend(entry, type) {
 function openModal(element) {
 	editorInputElement.innerHTML = "";
 	const source = element.source();
-	const type = typeof (source[0] ?? source);
 	if (Array.isArray(source)) {
 		document.getElementById("editor-array-controls").style.display = "inline";
-		if (type === "object" && source[0].displayName) {
-			source.forEach((entry) => {
-				editorAppend(entry, "boon");
-			});
-		}
-		else {
-			source.forEach((entry) => {
-				editorAppend(entry, type);
-			});
-		}
+		source.forEach((entry) => {
+			editorAppend(entry, element.type);
+		});
 	} else {
 		document.getElementById("editor-array-controls").style.display = "none";
-		editorAppend(source, type);
+		editorAppend(source, element.type);
 	}
 	editorTarget = element;
 	editorModalElement.showModal();
@@ -135,11 +124,11 @@ function applyChange(event) {
 	let values = Array.from(formData.values());
 	const source = editorTarget.source();
 	if (Array.isArray(source)) {
-		if (typeof (source[0]) === "number") {
+		if (editorTarget === "number") {
 			values = values.map((entry) => { return Number(entry) });
 		}
 		// if boon
-		else if (typeof (source[0]) === "object" && source[0].displayName) {
+		else if (editorTarget.type === "boon") {
 			let tmpOutput = [];
 			for (let i = 0; i < values.length; i += 2) {
 				let entry = {};
@@ -150,7 +139,7 @@ function applyChange(event) {
 			values = tmpOutput;
 		}
 	} else {
-		if (typeof (source) == "number") {
+		if (editorTarget.type == "number") {
 			values = Number(values[0]);
 		} else {
 			values = values[0];
@@ -257,13 +246,11 @@ window.onload = async function () {
 	editorFormElement.addEventListener("submit", applyChange);
 	editorAddElement.addEventListener("click", (event) => {
 		const source = editorTarget.source();
-		let type = typeof (source[0] ?? source);
 		let entry = "";
-		if (type === "object" && source[0].displayName) {
-			type = "boon";
+		if (editorTarget.type === "boon") {
 			entry = { displayName: "", description: "" };
 		}
-		editorAppend(entry, type);
+		editorAppend(entry, editorTarget.type);
 	});
 	editorRemoveElement.addEventListener("click", (event) => {
 		editorInputElement.lastElementChild ? (editorInputElement.lastElementChild.outerHTML = "") : null;
