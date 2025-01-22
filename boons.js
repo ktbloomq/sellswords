@@ -521,13 +521,13 @@ export default {
   },
   swimming: {
     id: "swimming",
-    category: "combat",
+    category: "exploration",
     displayName: "Swimming",
     description: "Congratulations, you can now swim, hold your breath for up to two minutes, and will no longer immediately sink like a screaming rock when in water. Please note that weight like gear and armor can nullify or reduce your ability to move or keep afloat."
   },
   etherealBlade: {
     id: "etherealBlade",
-    category: "combat",
+    category: "exploration",
     displayName: "Ethereal Blade",
     description: "Summon two blades of ghostly energy, one in each hand. These count as small blades."
   },

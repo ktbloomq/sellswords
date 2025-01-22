@@ -13,7 +13,7 @@ export class Bard extends PastLife {
 	setModifiers(character) {
 		this.modifiers = [
 			() => {character.attributes.intuition.diplomacy += 5}, 
-      () => {character.specializations.push({Performance: 15})},
+      () => {character.specializations.push({name: "Performance", skill: "bluff", value: 15})},
     ];
 	}
 }
@@ -47,8 +47,8 @@ export class Highwayman extends PastLife {
 export class Huntsman extends PastLife {
   setModifiers(character) {
     this.modifiers = [
-      () => {character.specializations.push({Animals: 10})},
-      () => {character.specializations.push({Nature: 5})},
+      () => {character.specializations.push({name: "Animals", skill: "readPerson", value: 15})},
+      () => {character.specializations.push({name: "Nature", skill: "alchemy", value: 15})},
     ];
   }
 }
@@ -65,7 +65,7 @@ export class Brewer extends PastLife {
 export class Priest extends PastLife {
   setModifiers(character) {
     this.modifiers = [
-      () => {character.specializations.push({Religion: 20})},
+      () => {character.specializations.push({name: "Religion", skill: "focus", value: 20})},
       () => {character.attributes.soul.readPerson += 5},
     ];
   }
@@ -74,8 +74,8 @@ export class Priest extends PastLife {
 export class Monk extends PastLife {
   setModifiers(character) {
     this.modifiers = [
-      () => {character.specializations.push({Magic: 10})},
-      () => {character.specializations.push({Religion: 10})},
+      () => {character.specializations.push({name: "Magic", skill: "readPerson", value: 10})},
+      () => {character.specializations.push({name: "Religion", skill: "focus", value: 10})},
     ];
   }
 }
@@ -84,7 +84,7 @@ export class Academic extends PastLife {
   setModifiers(character) {
     this.modifiers = [
       () => {character.attributes.soul.alchemy += 10},
-      () => {character.specializations.push({History: 15})},
+      () => {character.specializations.push({name: "History", skill: "focus", value: 15})},
     ];
   }
 }
@@ -136,7 +136,7 @@ export class Peasant extends PastLife {
   setModifiers(character) {
     this.modifiers = [
       () => {character.attributes.physique.strength += 5},
-      () => {character.specializations.push({Nature: 10})},
+      () => {character.specializations.push({name: "Nature", skill: "alchemy", value: 10})},
     ];
   }
 }
@@ -153,8 +153,8 @@ export class MagicInitiate extends PastLife {
 export class Sailor extends PastLife {
   setModifiers(character) {
     this.modifiers = [
-      () => {character.skills.push("Swimming")},
-      () => {character.skills.push("Climbing")},
+      () => {character.boons.exploration.push(Boons.swimming)},
+      () => {character.boons.exploration.push(Boons.climbing)},
     ];
   }
 }
@@ -162,7 +162,7 @@ export class Sailor extends PastLife {
 export class NoviceHealer extends PastLife {
   setModifiers(character) {
     this.modifiers = [
-      () => {character.specializations.push({Medicine: 15})},
+      () => {character.specializations.push({name: "Medicine", skill: "alchemy", value: 15})},
     ];
   }
 }

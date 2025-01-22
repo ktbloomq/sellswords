@@ -44,7 +44,6 @@ export default class Character {
 		social: [],
 		exploration: []
 	};
-	specializations = [];
 	level = 1;
 	health = {
 		current: 10,

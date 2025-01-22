@@ -58,11 +58,26 @@ function updateElements() {
 			value.target.textContent = source;
 		} else if (Array.isArray(source)) {
 			value.target.innerHTML = "";
-			source.forEach(entry => {
-				const newElement = document.createElement("div");
-				newElement.textContent = entry.displayName;
-				value.target.appendChild(newElement);
-			});
+			if (source[0]) {
+				// Boons / Weapons
+				if (source[0].displayName) {
+					source.forEach(entry => {
+						const newElement = document.createElement("div");
+						newElement.textContent = entry.displayName;
+						value.target.appendChild(newElement);
+					});
+				} 
+				// Specializations. TODO: assign to appropriate skill
+				else if (source[0].skill) {
+					console.log(source);
+					value.target.textContent = "";
+					source.forEach(entry => {
+						const newElement = document.createElement("div");
+						newElement.textContent = entry.name+ ": +" +entry.value;
+						value.target.appendChild(newElement);
+					})
+				}
+			}
 		} else {
 			console.log("invalid type", source)
 		}

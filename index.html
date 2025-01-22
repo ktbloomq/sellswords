@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sellswords</title>
+  <style>
+    :root {
+      /* width: 50%;
+			margin: 0 auto; */
+			color-scheme: light dark;
+			background-color: Canvas;
+			color: CanvasText;
+      font-size: xx-large;
+    }
+    button,
+    input {
+      height: 1rem;
+    }
+    div {
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sellswords</h1>
+  <div>
+    Open existing character
+    <form id="sheet" style="display: inline;">
+      <input id="name" name="name" type="text" placeholder="name" required />
+      <button type="submit">Go!</button>
+    </form>
+  </div>
+  <div><a href="creator.html">Character Creator</a></div>
+  <script>
+    const form = document.getElementById("sheet");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      window.open(`/sheet.html?name=${formData.get("name")}`, '_blank');
+    });
+  </script>
+</body>
+</html>
