@@ -37,7 +37,7 @@
 		<div>Skill</div>
 		<div>Skill Bonus</div>
 		<div>Injury</div>
-		<div>Specialization</div>
+		<button id="specializations" name="specializations" class="hidden-button" type="button">Specialization</button>
 		<div>Injury</div>
 		<div id="pools-title">Combat Pools</div>
 		<!-- Row -->
@@ -60,11 +60,11 @@
 			<div id="strength-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--physical);">
-			<button name="specialization" id="intimidationSpecialization" class="specialization-box flex hidden-button" type="button">
+			<label for="specializations" id="intimidationSpecialization" class="specialization-box flex" type="button">
 				<div></div>
 				<div></div>
-			</button>
-			<label for="specialization" id="strengthSpecialization" class="specialization-box flex">
+			</label>
+			<label for="specializations" id="strengthSpecialization" class="specialization-box flex">
 				<div></div>
 				<div></div>
 			</label>
@@ -92,14 +92,14 @@
 			<div id="hide-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--physical);">
-			<div id="pickpocketSpecialization" class="specialization-box flex">
+			<label for="specializations" id="pickpocketSpecialization" class="specialization-box flex">
 				<div></div>
 				<div></div>
-			</div>
-			<div id="hideSpecialization" class="specialization-box flex">
+			</label>
+			<label for="specializations" id="hideSpecialization" class="specialization-box flex">
 				<div></div>
 				<div></div>
-			</div>
+			</label>
 		</div>
 		<div style="background-color: var(--physical);">
 			<div id="precision-injury" class="box"></div>
@@ -124,14 +124,14 @@
 			<div id="diplomacy-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--mental);">
-			<div id="blendSpecialization" class="specialization-box flex">
+			<label  for="specializations" id="blendSpecialization" class="specialization-box flex">
 				<div></div>
 				<div></div>
-			</div>
-			<div id="diplomacySpecialization" class="specialization-box flex">
+			</label>
+			<label for="specializations" id="diplomacySpecialization" class="specialization-box flex">
 				<div></div>
 				<div></div>
-			</div>
+			</label>
 		</div>
 		<div style="background-color: var(--mental);">
 			<div id="intuition-injury" class="box"></div>
@@ -156,14 +156,14 @@
 			<div id="education-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--mental);">
-			<div id="focusSpecialization" class="specialization-box flex">
+			<label for="specializations" id="focusSpecialization" class="specialization-box flex">
 				<div></div>
 				<div></div>
-			</div>
-			<div id="educationSpecialization" class="specialization-box flex">
+			</label>
+			<label for="specializations" id="educationSpecialization" class="specialization-box flex">
 				<div></div>
 				<div></div>
-			</div>
+			</label>
 		</div>
 		<div style="background-color: var(--mental);">
 			<div id="smarts-injury" class="box"></div>
@@ -188,14 +188,14 @@
 			<div id="bluff-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--spiritual);">
-			<div id="businessSpecialization" class="specialization-box flex">
+			<label for="specializations" id="businessSpecialization" class="specialization-box flex">
 				<div></div>
 				<div></div>
-			</div>
-			<div id="bluffSpecialization" class="specialization-box flex">
+			</label>
+			<label for="specializations" id="bluffSpecialization" class="specialization-box flex">
 				<div></div>
 				<div></div>
-			</div>
+			</label>
 		</div>
 		<div style="background-color: var(--spiritual);">
 			<div id="wit-injury" class="box"></div>
@@ -220,14 +220,14 @@
 			<div id="alchemy-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--spiritual);">
-			<div id="readPersonSpecialization" class="specialization-box flex">
+			<label for="specializations" id="readPersonSpecialization" class="specialization-box flex">
 				<div></div>
 				<div></div>
-			</div>
-			<div id="alchemySpecialization" class="specialization-box flex">
+			</label>
+			<label for="specializations" id="alchemySpecialization" class="specialization-box flex">
 				<div></div>
 				<div></div>
-			</div>
+			</label>
 		</div>
 		<div style="background-color: var(--spiritual);">
 			<div id="soul-injury" class="box"></div>
@@ -284,7 +284,7 @@
 			</div>
 		</div>
 	</div>
-	<div style="display: grid; grid-template-columns: repeat(4, minmax(0,1fr));">
+	<div style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr));">
 		<div class="boons">
 			<div style="padding: 0 2px; background-color: red;">Combat</div>
 			<div class="boon-subcategories">

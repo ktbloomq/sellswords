@@ -94,19 +94,21 @@
   margin: 2px auto 2px auto;
   padding: 2px;
   width: min-content;
-  overflow: scroll;
+  max-width: 12vw;
+  overflow: hidden;
   background-color: var(--bg);
 }
 
 .specialization-box {
   border: 1px solid;
   height: 100%;
+  max-width: 17vw;
   background-color: var(--bg);
 }
 
 .specialization-box div {
   padding: 0 2px;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .specialization-box> :last-child {

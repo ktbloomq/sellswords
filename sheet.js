@@ -256,7 +256,7 @@ window.onload = async function () {
 	Object.values(characterElements).forEach((value) => {
 		value.target.addEventListener?.("click", (event) => { openModal(value) });
 	});
-	characterElements.specializations.target.intimidation.addEventListener("click", (event) => {openModal(characterElements.specializations)});
+	document.getElementById("specializations").addEventListener("click", (event) => {openModal(characterElements.specializations)});
 	document.getElementById("save").addEventListener("click", saveCharacter);
 
 	characterElements.name.source = (v) => { if (v !== undefined) character.name = v; return character.name };
