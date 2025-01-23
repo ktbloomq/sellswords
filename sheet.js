@@ -48,32 +48,44 @@ let characterElements = {
 	backstory: { type: "string" },
 	notes: { type: "string" },
 };
-let editorModalElement, editorInputElement, editorFormElement, editorAddElement, editorRemoveElement, editorTarget;
+let editorModalElement, editorInputElement, editorFormElement, editorTarget;
 
 function updateElements() {
-	Object.entries(characterElements).forEach(([key, value]) => {
-		const source = value.source()
-		if (value.type === "number" || value.type === "string") {
-			value.target.textContent = source;
+	Object.entries(characterElements).forEach(([key, entry]) => {
+		const source = entry.source()
+		if (entry.type === "number" || entry.type === "string") {
+			entry.target.textContent = source;
 		} else if (Array.isArray(source)) {
-			value.target.innerHTML = "";
 			// Boons / Weapons
-			if (value.type === "boon") {
-				source.forEach(entry => {
+			if (entry.type === "boon") {
+				entry.target.textContent = "";
+				source.forEach(entry2 => {
 					const newElement = document.createElement("div");
-					newElement.textContent = entry.displayName;
-					value.target.appendChild(newElement);
+					newElement.textContent = entry2.displayName;
+					entry.target.appendChild(newElement);
 				});
 			}
 			// Specializations. TODO: assign to appropriate skill
-			else if (value.type === "specialization") {
-				console.log(source);
-				value.target.textContent = "";
-				source.forEach(entry => {
-					const newElement = document.createElement("div");
-					newElement.textContent = entry.name + ": +" + entry.value;
-					value.target.appendChild(newElement);
-				})
+			else if (entry.type === "specialization") {
+				Object.values(entry.target).forEach(entry2 => {
+					entry2.textContent="";
+				});
+				source.forEach(entry2 => {
+					const name = document.createElement("div");
+					const value = document.createElement("div");
+					name.textContent = entry2.name;
+					value.textContent = entry2.value;
+					entry.target[entry2.skill].appendChild(name);
+					entry.target[entry2.skill].appendChild(value);
+				});
+				Object.values(entry.target).forEach(entry2 => {
+					if(entry2.textContent==="") {
+						const name = document.createElement("div");
+						const value = document.createElement("div");
+						entry2.appendChild(name);
+						entry2.appendChild(value);
+					}
+				});
 			}
 		} else {
 			console.error("invalid type", source);
@@ -93,10 +105,40 @@ function editorAppend(entry, type) {
 		div.appendChild(displayNameInput);
 		div.appendChild(descriptionInput);
 		editorInputElement.appendChild(div);
+	} else if (type === "specialization") {
+		const div = document.createElement("div");
+		const name = document.createElement("input");
+		const skill = document.createElement("select");
+		const value = document.createElement("input");
+		name.name = Date.now();
+		name.value = entry.name ?? "";
+		skill.name = Date.now();
+		skill.innerHTML = `
+			<option value="intimidation">Intimidation</option>
+			<option value="strength">Strength</option>
+			<option value="pickpocket">Pickpocket</option>
+			<option value="hide">Hide</option>
+			<option value="blend">Blend</option>
+			<option value="diplomacy">Diplomacy</option>
+			<option value="focus">Focus</option>
+			<option value="education">Education</option>
+			<option value="business">Business</option>
+			<option value="bluff">Bluff</option>
+			<option value="readPerson">Read Person</option>
+			<option value="alchemy">Alchemy</option>
+		`;
+		skill.value = entry.skill;
+		value.type = "number"
+		value.name = Date.now();
+		value.value = entry.value ?? "";
+		div.appendChild(name);
+		div.appendChild(skill);
+		div.appendChild(value);
+		editorInputElement.appendChild(div);
 	} else {
 		const newInput = document.createElement("input");
 		newInput.name = Date.now();
-		if (type === "number") newInput.setAttribute("type", "number");
+		if (type === "number") newInput.type = "number";
 		newInput.value = entry ?? "";
 		editorInputElement.appendChild(newInput);
 	}
@@ -124,7 +166,7 @@ function applyChange(event) {
 	let values = Array.from(formData.values());
 	const source = editorTarget.source();
 	if (Array.isArray(source)) {
-		if (editorTarget === "number") {
+		if (editorTarget.type === "number") {
 			values = values.map((entry) => { return Number(entry) });
 		}
 		// if boon
@@ -134,6 +176,17 @@ function applyChange(event) {
 				let entry = {};
 				entry.displayName = values[i];
 				entry.description = values[i + 1];
+				tmpOutput.push(entry);
+			}
+			values = tmpOutput;
+		}
+		else if (editorTarget.type === "specialization") {
+			let tmpOutput = [];
+			for (let i = 0; i < values.length; i += 3) {
+				let entry = {};
+				entry.name = values[i];
+				entry.skill = values[i + 1];
+				entry.value = values[i + 2];
 				tmpOutput.push(entry);
 			}
 			values = tmpOutput;
@@ -180,18 +233,30 @@ window.onload = async function () {
 	console.log(character);
 
 	Object.keys(characterElements).forEach((key) => {
-		characterElements[key].target = document.getElementById(key);
+		characterElements[key].target = document.getElementById(key)?? undefined;
 	});
+	characterElements.specializations.target = {}
+	characterElements.specializations.target.intimidation = document.getElementById("intimidationSpecialization");
+	characterElements.specializations.target.strength = document.getElementById("strengthSpecialization");
+	characterElements.specializations.target.pickpocket = document.getElementById("pickpocketSpecialization");
+	characterElements.specializations.target.hide = document.getElementById("hideSpecialization");
+	characterElements.specializations.target.blend = document.getElementById("blendSpecialization");
+	characterElements.specializations.target.diplomacy = document.getElementById("diplomacySpecialization");
+	characterElements.specializations.target.focus = document.getElementById("focusSpecialization");
+	characterElements.specializations.target.education = document.getElementById("educationSpecialization");
+	characterElements.specializations.target.business = document.getElementById("businessSpecialization");
+	characterElements.specializations.target.bluff = document.getElementById("bluffSpecialization");
+	characterElements.specializations.target.readPerson = document.getElementById("readPersonSpecialization");
+	characterElements.specializations.target.alchemy = document.getElementById("alchemySpecialization");
 
 	editorModalElement = document.getElementById("editor");
 	editorFormElement = document.getElementById("editor-form");
 	editorInputElement = document.getElementById("editor-inputs");
-	editorAddElement = document.getElementById("add-entry");
-	editorRemoveElement = document.getElementById("remove-entry");
 
 	Object.values(characterElements).forEach((value) => {
-		value.target.addEventListener("click", (event) => { openModal(value) });
+		value.target.addEventListener?.("click", (event) => { openModal(value) });
 	});
+	characterElements.specializations.target.intimidation.addEventListener("click", (event) => {openModal(characterElements.specializations)});
 	document.getElementById("save").addEventListener("click", saveCharacter);
 
 	characterElements.name.source = (v) => { if (v !== undefined) character.name = v; return character.name };
@@ -244,15 +309,17 @@ window.onload = async function () {
 	updateElements();
 
 	editorFormElement.addEventListener("submit", applyChange);
-	editorAddElement.addEventListener("click", (event) => {
-		const source = editorTarget.source();
+	document.getElementById("add-entry").addEventListener("click", () => {
 		let entry = "";
 		if (editorTarget.type === "boon") {
 			entry = { displayName: "", description: "" };
 		}
 		editorAppend(entry, editorTarget.type);
 	});
-	editorRemoveElement.addEventListener("click", (event) => {
+	document.getElementById("remove-entry").addEventListener("click", () => {
 		editorInputElement.lastElementChild ? (editorInputElement.lastElementChild.outerHTML = "") : null;
 	});
+	document.getElementById("editor-close").addEventListener("click", () => {
+		editorModalElement.close();
+	})
 }

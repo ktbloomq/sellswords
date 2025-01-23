@@ -22,11 +22,47 @@
   }
 }
 
+@media (max-width: 768px) {
+  #attributes {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  #pools {
+    grid-column: 1/8;
+    grid-row: 8/8;
+    flex-direction: row !important;
+  }
+
+  #pools-title {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  #attributes {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
+  }
+
+  #pools {
+    grid-column: 8/9;
+    grid-row: 2/8;
+  }
+}
+
 :root {
+  font-family: Arial, sans-serif;
   color-scheme: light dark;
   background-color: var(--bg);
   color: var(--text);
   print-color-adjust: exact;
+}
+
+.hidden-button {
+  all: unset;
+}
+
+.hidden-button:focus {
+  color: AccentColor;
 }
 
 .flex {
@@ -46,9 +82,8 @@
 .box {
   border: 1px solid;
   margin: .25rem auto .25rem auto;
-  padding: 0 .5rem 0 .5rem;
-  width: min-content;
-  min-width: 1rem;
+  padding: 0 .5rem;
+  min-width: 1.5rem;
   min-height: 2rem;
   align-content: center;
   background-color: var(--bg);
@@ -59,14 +94,24 @@
   margin: 2px auto 2px auto;
   padding: 2px;
   width: min-content;
+  overflow: scroll;
   background-color: var(--bg);
 }
 
 .specialization-box {
   border: 1px solid;
-  margin: .5rem;
   height: 100%;
   background-color: var(--bg);
+}
+
+.specialization-box div {
+  padding: 0 2px;
+  overflow: scroll;
+}
+
+.specialization-box> :last-child {
+  border-left: 1px solid;
+  min-width: 1.5rem;
 }
 
 .boon-subcategories {
@@ -80,7 +125,6 @@
 
 #attributes {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
   grid-auto-rows: max-content;
   text-align: center;
 }
@@ -90,18 +134,16 @@
   flex-direction: column;
   justify-content: space-around;
   align-content: center;
+  /* max-width: 15vw; */
+}
+
+#pools {
+  text-align: center;
+  margin: 0 1rem;
 }
 
 input {
   display: block;
-}
-
-.hidden-button {
-  all: unset;
-}
-
-.hidden-button:focus {
-  color: AccentColor;
 }
 
 #editor-inputs textarea {

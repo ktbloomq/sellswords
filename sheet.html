@@ -11,6 +11,7 @@
 
 <body>
 	<dialog id="editor">
+		<button id="editor-close" type="button" style="display: block; margin-left: auto;">cancel</button>
 		<form id="editor-form">
 			<div id="editor-inputs"></div>
 			<div id="editor-controls">
@@ -23,8 +24,8 @@
 	</dialog>
 	<div style="display: flex; justify-content: space-between;">
 		<div>
-			<div><label for="name">Character name: </label> <button id="name" class="hidden-button" name="name" type="button">__________</button></div>
-			<div><label for="race">Race: </label> <button id="race" class="hidden-button" name="race" type="button">__________</button></div>
+			<div><label for="name">Character name: </label> <button id="name" class="hidden-button" name="name" type="button"></button></div>
+			<div><label for="race">Race: </label> <button id="race" class="hidden-button" name="race" type="button"></button></div>
 			<div>Master Level: <span id="masterLevel"></span></div>
 		</div>
 		<button id="save" type="button" style="width: 25%; font-size: xx-large;">Save</button>
@@ -38,7 +39,7 @@
 		<div>Injury</div>
 		<div>Specialization</div>
 		<div>Injury</div>
-		<div>Combat Pools</div>
+		<div id="pools-title">Combat Pools</div>
 		<!-- Row -->
 		<div style="background-color: var(--physical);">
 			<div class="text-box">Physique</div>
@@ -59,10 +60,14 @@
 			<div id="strength-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--physical);">
-			<div id="physique-specialization" class="specialization-box flex">
-				<div id="physique-specialization-type"></div>
-				<div id="physique-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
-			</div>
+			<button name="specialization" id="intimidationSpecialization" class="specialization-box flex hidden-button" type="button">
+				<div></div>
+				<div></div>
+			</button>
+			<label for="specialization" id="strengthSpecialization" class="specialization-box flex">
+				<div></div>
+				<div></div>
+			</label>
 		</div>
 		<div style="background-color: var(--physical);">
 			<div id="physique-injury" class="box"></div>
@@ -87,9 +92,13 @@
 			<div id="hide-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--physical);">
-			<div id="precision-specialization" class="specialization-box flex">
-				<div id="precision-specialization-type"></div>
-				<div id="precision-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
+			<div id="pickpocketSpecialization" class="specialization-box flex">
+				<div></div>
+				<div></div>
+			</div>
+			<div id="hideSpecialization" class="specialization-box flex">
+				<div></div>
+				<div></div>
 			</div>
 		</div>
 		<div style="background-color: var(--physical);">
@@ -115,9 +124,13 @@
 			<div id="diplomacy-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--mental);">
-			<div id="intuition-specialization" class="specialization-box flex">
-				<div id="intuition-specialization-type"></div>
-				<div id="intuition-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
+			<div id="blendSpecialization" class="specialization-box flex">
+				<div></div>
+				<div></div>
+			</div>
+			<div id="diplomacySpecialization" class="specialization-box flex">
+				<div></div>
+				<div></div>
 			</div>
 		</div>
 		<div style="background-color: var(--mental);">
@@ -143,9 +156,13 @@
 			<div id="education-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--mental);">
-			<div id="smarts-specialization" class="specialization-box flex">
-				<div id="smarts-specialization-type"></div>
-				<div id="smarts-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
+			<div id="focusSpecialization" class="specialization-box flex">
+				<div></div>
+				<div></div>
+			</div>
+			<div id="educationSpecialization" class="specialization-box flex">
+				<div></div>
+				<div></div>
 			</div>
 		</div>
 		<div style="background-color: var(--mental);">
@@ -171,9 +188,13 @@
 			<div id="bluff-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--spiritual);">
-			<div id="wit-specialization" class="specialization-box flex">
-				<div id="wit-specialization-type"></div>
-				<div id="wit-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
+			<div id="businessSpecialization" class="specialization-box flex">
+				<div></div>
+				<div></div>
+			</div>
+			<div id="bluffSpecialization" class="specialization-box flex">
+				<div></div>
+				<div></div>
 			</div>
 		</div>
 		<div style="background-color: var(--spiritual);">
@@ -199,16 +220,20 @@
 			<div id="alchemy-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--spiritual);">
-			<div id="soul-specialization" class="specialization-box flex">
-				<div id="soul-specialization-type"></div>
-				<div id="soul-specialization-value" style="border-left: 1px solid; width: 40%;"></div>
+			<div id="readPersonSpecialization" class="specialization-box flex">
+				<div></div>
+				<div></div>
+			</div>
+			<div id="alchemySpecialization" class="specialization-box flex">
+				<div></div>
+				<div></div>
 			</div>
 		</div>
 		<div style="background-color: var(--spiritual);">
 			<div id="soul-injury" class="box"></div>
 		</div>
 		<!-- Pools -->
-		<div id="pools" class="flex-col" style="grid-column:8/9; grid-row:2/8; text-align: center; margin: 0 1rem;">
+		<div id="pools">
 			<div>Health
 				<div style="border: 1px solid; text-align: left;">
 					<div id="hp" style="height: 3rem; text-align: center; align-content: center;"></div>
@@ -304,12 +329,6 @@
 					<label for="explorationBoons" style="display: block;">Boons:</label>
 					<button id="explorationBoons" name="explorationBoons" class="hidden-button" type="button"></button>
 				</div>
-			</div>
-		</div>
-		<div class="boons">
-			<label for="specializations" style="display: block; padding: 0 2px; background-color: green;">Specializations</label>
-			<div class="boon-subcategories">
-				<button id="specializations" name="specializations" class="hidden-button" type="button"></button>
 			</div>
 		</div>
 	</div>
