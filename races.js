@@ -24,10 +24,8 @@ export class Race {
 	};
 	addBoons(character) {
 		this.choices.forEach((value) => {
-			// if(key.startsWith("boon")) {
-				const boon = Boons[value];
-				character.boons[boon.category].push(boon);
-			// }
+			const boon = Boons[value];
+			character.boons[boon.category].push(boon);
 		});
 	};
 }
@@ -54,19 +52,19 @@ export class Human extends Race {
 			Boons.unrelentingEndurance
 		],
 		attributeBonus: [
-			{id:"physique",displayName:"physique"},
-			{id:"precision",displayName:"precision"},
-			{id:"intuition",displayName:"intuition"},
-			{id:"smarts",displayName:"smarts"},
-			{id:"wit",displayName:"wit"},
-			{id:"soul",displayName:"soul"},
+			{ id: "physique", displayName: "physique" },
+			{ id: "precision", displayName: "precision" },
+			{ id: "intuition", displayName: "intuition" },
+			{ id: "smarts", displayName: "smarts" },
+			{ id: "wit", displayName: "wit" },
+			{ id: "soul", displayName: "soul" },
 		]
 	};
 	setAttributeModifiers(character) {
 		this.attributeModifiers = [
-			()=>{character.attributes.physique.raw+=5},
-			()=>{character.attributes.soul.raw+=5},
-			()=>{character.attributes[this.choices.attributeBonus].raw+=3},
+			() => { character.attributes.physique.raw += 5 },
+			() => { character.attributes.soul.raw += 5 },
+			() => { character.attributes[this.choices.attributeBonus].raw += 3 },
 		]
 	}
 	setSkillModifiers(character) {
@@ -227,8 +225,8 @@ export class Catfolk extends Race {
 	}
 	setAttributeModifiers(character) {
 		this.attributeModifiers = [
-			() => { character.attributes.intuition.raw+= 5 },
-			() => { character.attributes.wit.raw+= 5 }
+			() => { character.attributes.intuition.raw += 5 },
+			() => { character.attributes.wit.raw += 5 }
 		];
 	}
 	setSkillModifiers(character) {

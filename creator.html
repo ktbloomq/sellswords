@@ -157,7 +157,7 @@
 			from that specialization.
 			These are exceptionally powerful, but are typically quite specific.
 		</div>
-		<select name="past" id="" required>
+		<select name="past" id="past" required>
 			<option value="" selected disabled hidden>choose</option>
 			<option value="Bard">Bard</option>
 			<option value="Noble">Noble</option>
@@ -178,6 +178,7 @@
 			<option value="Sailor">Sailor</option>
 			<option value="NoviceHealer">NoviceHealer</option>
 		</select>
+		<div id="past-choices"></div>
 		<h4>Social Circle</h4>
 		<div class="description">
 			<div>
@@ -335,13 +336,41 @@
 		<div class="description">
 			Choose a positive character trait. You may add +20 when a check is made in relation to roleplay to this trait.
 		</div>
-		<!-- TODO -->
-		<input name="trait" type="text" />
+		<input type="text" name="trait-name" id="" />
+		<select name="trait-skill" id="">
+			<option value="" selected>choose</option>
+			<option value="intimidation">Intimidation</option>
+			<option value="strength">Strength</option>
+			<option value="pickpocket">Pickpocket</option>
+			<option value="hide">Hide</option>
+			<option value="blend">Blend</option>
+			<option value="diplomacy">Diplomacy</option>
+			<option value="focus">Focus</option>
+			<option value="education">Education</option>
+			<option value="business">Business</option>
+			<option value="bluff">Bluff</option>
+			<option value="readPerson">Read Person</option>
+			<option value="alchemy">Alchemy</option>
+		</select>
 		<div class="description">
 			Choose a character flaw. You may add +20 when a check is made in relation to roleplaying with this flaw.
 		</div>
-		<!-- TODO -->
-		<input name="flaw" type="text" />
+		<input type="text" name="flaw-name" id="" />
+		<select name="flaw-skill" id="">
+			<option value="" selected>choose</option>
+			<option value="intimidation">Intimidation</option>
+			<option value="strength">Strength</option>
+			<option value="pickpocket">Pickpocket</option>
+			<option value="hide">Hide</option>
+			<option value="blend">Blend</option>
+			<option value="diplomacy">Diplomacy</option>
+			<option value="focus">Focus</option>
+			<option value="education">Education</option>
+			<option value="business">Business</option>
+			<option value="bluff">Bluff</option>
+			<option value="readPerson">Read Person</option>
+			<option value="alchemy">Alchemy</option>
+		</select>
 		<h3>Quirks</h3>
 		<div class="description">
 			Eccentricity is the spice of life. No one is normal, and adventurers least of all. Don’t be afraid to make your

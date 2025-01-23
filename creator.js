@@ -53,6 +53,64 @@ function updateArchetypeChoices(event) {
   });
 }
 
+function updatePastChoices(event) {
+  const pastChoicesElement = document.getElementById("past-choices");
+  pastChoicesElement.textContent = '';
+  Object.entries(PastLife[event.target.value]?.pastChoices).forEach((e1) => {
+    let choice;
+    if (e1[0].startsWith("boon")) {
+      choice = document.createElement("select");
+      choice.name = `past-${e1[0]}`
+      choice.required = true;
+      let option = document.createElement("option");
+      option.value = "";
+      option.selected = true;
+      option.disabled = true;
+      option.hidden = true;
+      option.textContent = "choose";
+      choice.appendChild(option);
+      e1[1].forEach((e2) => {
+        option = document.createElement("option");
+        option.value = e2.id;
+        option.textContent = e2.displayName;
+        choice.appendChild(option);
+      });
+    } else if (e1[0].startsWith("specialization")) {
+      choice = document.createElement("div");
+      const info = document.createElement("div");
+      const name = document.createElement("input");
+      const skill = document.createElement("select");
+      const value = document.createElement("input");
+      info.textContent = "Choose a specialization";
+      name.name = `past-${e1[0]}-name`;
+      name.placeholder = "specialization name";
+      skill.name = `past-${e1[0]}-skill`;
+      value.value = e1[1];
+      skill.innerHTML = `
+        <option value="intimidation">Intimidation</option>
+        <option value="strength">Strength</option>
+        <option value="pickpocket">Pickpocket</option>
+        <option value="hide">Hide</option>
+        <option value="blend">Blend</option>
+        <option value="diplomacy">Diplomacy</option>
+        <option value="focus">Focus</option>
+        <option value="education">Education</option>
+        <option value="business">Business</option>
+        <option value="bluff">Bluff</option>
+        <option value="readPerson">Read Person</option>
+        <option value="alchemy">Alchemy</option>
+      `;
+      value.name = `past-${e1[0]}-value`;
+      value.type = "hidden";
+      choice.append(info);
+      choice.appendChild(name);
+      choice.appendChild(skill);
+      choice.appendChild(value);
+    }
+    pastChoicesElement.appendChild(choice);
+  });
+}
+
 function addBoonInput() {
   const BoonChoicesElement = document.getElementById("boons");
   const select = document.createElement("select");
@@ -85,6 +143,7 @@ window.onload = async function () {
   const removeBoonElement = document.getElementById("remove-boon");
   raceElement.addEventListener("change", updateRaceChoices);
   archetypeElement.addEventListener("change", updateArchetypeChoices);
+  document.getElementById("past").addEventListener("change", updatePastChoices);
   addBoonElement.addEventListener("click", addBoonInput);
   removeBoonElement.addEventListener("click", removeBoonInput);
 
@@ -95,15 +154,27 @@ window.onload = async function () {
     const character = new Character();
     const race = new Races[formdata.get("race")]();
     const archetype = new Archetypes[formdata.get("archetype")]();
+    const pastLife = new PastLife[formdata.get("past")]();
 
     race.choices = [];
-    archetype.choices = []; 
+    archetype.choices = [];
+    pastLife.choices = [];
     let moreBoons = [];
     formdata.entries().forEach(([key, value]) => {
       if (key.startsWith("race-")) {
         race.choices.push(value);
       } else if (key.startsWith("archetype-")) {
         archetype.choices.push(value);
+      } else if (key.startsWith("past-")) {
+        if (key.startsWith("past-specialization")) {
+          if (key.endsWith("name")) {
+            pastLife.choices.push({ type: "specialization", name: value });
+          } else if (key.endsWith("skill")) {
+            pastLife.choices[pastLife.choices.length - 1].skill = value;
+          } else if (key.endsWith("value")) {
+            pastLife.choices[pastLife.choices.length - 1].value = value;
+          }
+        }
       } else if (key.startsWith("boon")) {
         moreBoons.push(value);
       }
@@ -127,8 +198,6 @@ window.onload = async function () {
       soul: Number(formdata.get("soul")) ?? 0,
     };
     character.applyAttributeBuy(pointBuy);
-    const pastLife = new PastLife[formdata.get("past")]();
-    character.pastLife = pastLife;
 
     // Weapons Training
     let weapon = formdata.get("weapon1");
@@ -152,7 +221,13 @@ window.onload = async function () {
     character.lore.organizations = formdata.get("organizations") ?? "";
     character.lore.backstory = formdata.get("backstory") ?? "";
 
-    // TODO: traits
+    // Traits
+    const traitName = formdata.get("trait-name");
+    const traitSkill = formdata.get("trait-skill");
+    if (traitName !== "") character.specializations.push({ name: traitName, skill: traitSkill, value: 20 });
+    const flawName = formdata.get("flaw-name");
+    const flawSkill = formdata.get("flaw-skill");
+    if (flawName !== "") character.specializations.push({ name: flawName, skill: flawSkill, value: 20 });
 
     let path = formdata.get("path");
     const pathBoon = Boons[path];
@@ -177,6 +252,7 @@ window.onload = async function () {
     character.calcSkills();
 
     // Past Life: depends on calcSkills
+    pastLife.applyChoices(character);
     pastLife.applyModifiers(character);
     Object.values(character.boons).forEach((category) => {
       category.forEach((boon) => {
@@ -185,6 +261,7 @@ window.onload = async function () {
         }
       });
     });
+    character.pastLife = pastLife;
 
     // Preferred Skills: depends on calcSkills
     let skillInterest = formdata.get("skill-interest1");

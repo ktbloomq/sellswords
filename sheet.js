@@ -127,7 +127,7 @@ function editorAppend(entry, type) {
 			<option value="alchemy">Alchemy</option>
 		`;
 		skill.value = entry.skill;
-		value.type = "number"
+		value.type = "number";
 		value.name = Date.now();
 		value.value = entry.value ?? "";
 		div.appendChild(name);
