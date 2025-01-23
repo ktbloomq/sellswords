@@ -65,7 +65,6 @@ function updateElements() {
 					entry.target.appendChild(newElement);
 				});
 			}
-			// Specializations. TODO: assign to appropriate skill
 			else if (entry.type === "specialization") {
 				Object.values(entry.target).forEach(entry2 => {
 					entry2.textContent="";
