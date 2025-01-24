@@ -156,16 +156,10 @@ window.onload = async function () {
     const archetype = new Archetypes[formdata.get("archetype")]();
     const pastLife = new PastLife[formdata.get("past")]();
 
-    // TODO: race.choices broken for humans
-    race.choices = [];
-    archetype.choices = [];
-    pastLife.choices = [];
     let moreBoons = [];
     formdata.entries().forEach(([key, value]) => {
       if (key.startsWith("race-")) {
-        let type = "boon";
-        if (key.startsWith("race-attributeBonus")) type = "attributeBonus";
-        race.choices.push(value);
+        race.choices[key.slice(5)] = value;
       } else if (key.startsWith("archetype-")) {
         archetype.choices.push(value);
       } else if (key.startsWith("past-")) {
