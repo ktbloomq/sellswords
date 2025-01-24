@@ -71,19 +71,23 @@ function updateElements() {
 					entry2.textContent="";
 				});
 				source.forEach(entry2 => {
-					const name = document.createElement("div");
-					const value = document.createElement("div");
+					const specialization = document.createElement("tr");
+					const name = document.createElement("td");
+					const value = document.createElement("td");
 					name.textContent = entry2.name;
 					value.textContent = entry2.value;
-					entry.target[entry2.skill].appendChild(name);
-					entry.target[entry2.skill].appendChild(value);
+					specialization.appendChild(name);
+					specialization.appendChild(value);
+					entry.target[entry2.skill].appendChild(specialization);
 				});
 				Object.values(entry.target).forEach(entry2 => {
 					if(entry2.textContent==="") {
-						const name = document.createElement("div");
-						const value = document.createElement("div");
-						entry2.appendChild(name);
-						entry2.appendChild(value);
+						const blank = document.createElement("tr");
+						const name = document.createElement("td");
+						const value = document.createElement("td");
+						blank.appendChild(name);
+						blank.appendChild(value);
+						entry2.appendChild(blank);
 					}
 				});
 			}

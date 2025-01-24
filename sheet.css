@@ -100,20 +100,21 @@
 }
 
 .specialization-box {
+  display: table;
+  border-collapse: collapse;
+  flex-direction: column;
   border: 1px solid;
   height: 100%;
   max-width: 17vw;
   background-color: var(--bg);
 }
 
-.specialization-box div {
-  padding: 0 2px;
-  overflow: hidden;
+td {
+  border: 1px solid;
 }
 
-.specialization-box> :last-child {
-  border-left: 1px solid;
-  min-width: 1.5rem;
+tr>:first-child {
+  width: 80%;
 }
 
 .boon-subcategories {
@@ -155,6 +156,10 @@ input {
 .boons {
   border: 1px solid;
   margin: .25rem;
+}
+
+#lore {
+  white-space: wrap;
 }
 
 #lore button {
