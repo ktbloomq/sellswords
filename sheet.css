@@ -22,7 +22,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 870px) {
   #attributes {
     grid-template-columns: repeat(7, 1fr);
   }
@@ -38,7 +38,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 870px) {
   #attributes {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
   }
@@ -81,10 +81,9 @@
 
 .box {
   border: 1px solid;
-  margin: .25rem auto .25rem auto;
-  padding: 0 .5rem;
-  min-width: 1.5rem;
-  min-height: 2rem;
+  margin: .25rem auto;
+  min-width: 25px;
+  min-height: 25px;
   align-content: center;
   background-color: var(--bg);
 }
@@ -94,27 +93,30 @@
   margin: 2px auto 2px auto;
   padding: 2px;
   width: min-content;
-  max-width: 12vw;
+  max-width: 8vw;
   overflow: hidden;
   background-color: var(--bg);
 }
 
 .specialization-box {
   display: table;
+  table-layout: fixed;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 70px;
   border-collapse: collapse;
-  flex-direction: column;
-  border: 1px solid;
-  height: 100%;
-  max-width: 17vw;
+  flex-grow: 1;
   background-color: var(--bg);
 }
 
 td {
   border: 1px solid;
+  vertical-align: middle;
+  overflow: hidden;
 }
 
-tr>:first-child {
-  width: 80%;
+tr>:last-child {
+  width: 25px;
 }
 
 .boon-subcategories {
@@ -132,12 +134,24 @@ tr>:first-child {
   text-align: center;
 }
 
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 #attributes>div {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-content: center;
-  /* max-width: 15vw; */
+}
+
+#injuries {
+  border: 1px solid;
+  padding-left: 5px;
+  list-style-position: inside;
+  text-align: left;
+  margin: 0;
 }
 
 #pools {
