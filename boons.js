@@ -1,3 +1,5 @@
+import CombatTraining from "./combatTraining.js";
+
 export default {
   catsFootfall: {
     id: "catsFootfall",
@@ -303,115 +305,151 @@ export default {
     displayName: "Advanced Weapon Training",
     description: "",
   },
-  // TODO: implement apply
   smallBlades: {
     id: "smallBlades",
-    category: "combat",
+    category: "hidden",
     displayName: "Small Blades",
-    description: "Use Small cutting weapons (Daggers and short swords)"
+    description: "Use Small cutting weapons (Daggers and short swords)",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.smallWeapon)}
   },
   basicBlades: {
     id: "basicBlades",
-    category: "combat",
+    category: "hidden",
     displayName: "Basic Blades",
-    description: "Use arming swords, rapiers, and scimitars (1 hand swords)"
+    description: "Use arming swords, rapiers, and scimitars (1 hand swords)",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.smallWeapon)}
   },
   longswords: {
     id: "longswords",
-    category: "combat",
+    category: "hidden",
     displayName: "Longswords",
-    description: "Use Long cutting weapons (2 hand longswords)"
+    description: "Use Long cutting weapons (2 hand longswords)",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.longswords)}
+
   },
   smolBonk: {
     id: "smolBonk",
-    category: "combat",
+    category: "hidden",
     displayName: "Smol Bonk",
-    description: "Use Short Bludgeoning weapons (1 hand axes and blunt)"
+    description: "Use Short Bludgeoning weapons (1 hand axes and blunt)",
+    apply: (character) => {
+      character.weaponsTraining.push(CombatTraining.oneHandedBlunt);
+      character.weaponsTraining.push(CombatTraining.oneHandedAxe);
+    }
   },
   chonkyBonky: {
     id: "chonkyBonky",
-    category: "combat",
+    category: "hidden",
     displayName: "Chonky Bonky",
-    description: "Use Long Bludgeoning (2 hand axes and blunt)"
+    description: "Use Long Bludgeoning (2 hand axes and blunt)",
+    apply: (character) => {
+      character.weaponsTraining.push(CombatTraining.twoHandedBlunt);
+      character.weaponsTraining.push(CombatTraining.twoHandedAxe);
+    }
   },
   hatchetMan: {
     id: "hatchetMan",
-    category: "combat",
+    category: "hidden",
     displayName: "Hatchet Man",
-    description: "Use one-handed hammers and axes."
+    description: "Use one-handed hammers and axes.",
+    apply: (character) => {
+      character.weaponsTraining.push(CombatTraining.oneHandedBlunt);
+      character.weaponsTraining.push(CombatTraining.oneHandedAxe);
+    }
   },
   chopper: {
     id: "chopper",
-    category: "combat",
+    category: "hidden",
     displayName: "Chopper",
-    description: "Use two-handed hammers and axes."
+    description: "Use two-handed hammers and axes.",
+    apply: (character) => {
+      character.weaponsTraining.push(CombatTraining.twoHandedBlunt);
+      character.weaponsTraining.push(CombatTraining.twoHandedAxe);
+    }
   },
   ninja: {
     id: "ninja",
-    category: "combat",
+    category: "hidden",
     displayName: "Ninja",
-    description: "Use Concealed weapons (kosh, shillelagh, throwing knives, blowguns, ninja weapons, improvised weapons)"
+    description: "Use Concealed weapons (kosh, shillelagh, throwing knives, blowguns, ninja weapons, improvised weapons)",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.thrownWeapon)}
   },
   spearman: {
     id: "spearman",
-    category: "combat",
+    category: "hidden",
     displayName: "Spearman",
-    description: "Use Reach Weapons (Spears, halberds)"
+    description: "Use Reach Weapons (Spears, halberds)",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.polearm)}
   },
   rider: {
     id: "rider",
-    category: "combat",
+    category: "hidden",
     displayName: "Rider",
-    description: "Ride trained animals capable of carrying you."
+    description: "Ride trained animals capable of carrying you.",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.rider)}
   },
   cavalry: {
     id: "cavalry",
-    category: "combat",
+    category: "hidden",
     displayName: "Cavalry",
-    description: "Can wield martial weapons while mounted on a creature. Additionally, over time, you can train a creature to be a mount."
+    description: "Can wield martial weapons while mounted on a creature. Additionally, over time, you can train a creature to be a mount.",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.cavalry)}
   },
   bowman: {
     id: "bowman",
-    category: "combat",
+    category: "hidden",
     displayName: "Bowman",
-    description: "Use Bows"
+    description: "Use Bows",
+    apply: (character) => {
+      character.weaponsTraining.push(CombatTraining.longbow);
+      character.weaponsTraining.push(CombatTraining.warbow);
+      character.weaponsTraining.push(CombatTraining.crossbow);
+      character.weaponsTraining.push(CombatTraining.heavyCrossbow);
+    }
   },
   grenadier: {
     id: "grenadier",
-    category: "combat",
+    category: "hidden",
     displayName: "Grenadier",
-    description: "Use Firearms"
+    description: "Use Firearms",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.grenadier)}
   },
   improvise: {
     id: "improvise",
-    category: "combat",
+    category: "hidden",
     displayName: "Grab a Cactus and Follow Me",
-    description: "Make and use makeshift, improvised, and unconventional weapons. These weapons deal normal damage based on the number of hands it requires to wield. When you roll max or minimum damage, the weapon breaks. One new improvised weapon may be drawn/picked up each turn without using an action."
+    description: "Make and use makeshift, improvised, and unconventional weapons. These weapons deal normal damage based on the number of hands it requires to wield. When you roll max or minimum damage, the weapon breaks. One new improvised weapon may be drawn/picked up each turn without using an action.",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.improvised)}
   },
   swordAndBoard: {
     id: "swordAndBoard",
-    category: "combat",
+    category: "hidden",
     displayName: "Sword and Board",
-    description: "Simultaneously wield a single-handed melee weapon and a shield."
+    description: "Simultaneously wield a single-handed melee weapon and a shield.",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.shieldAndWeapon)}
   },
   heavyArmor: {
     id: "heavyArmor",
-    category: "combat",
+    category: "hidden",
     displayName: "Heavy Armor",
-    description: "Wear, maintain, and use heavy armor without penalties."
+    description: "Wear, maintain, and use heavy armor without penalties.",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.heavyArmor)}
   },
   advancedArmor: {
     id: "advancedArmor",
-    category: "combat",
+    category: "hidden",
     displayName: "Advanced Armor",
-    description: "Wear, maintain, and use advanced armor without penalties."
+    description: "Wear, maintain, and use advanced armor without penalties.",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.advancedArmor)}
   },
   legendaryArmor: {
     id: "legendaryArmor",
-    category: "combat",
+    category: "hidden",
     displayName: "Legendary Armor",
-    description: "Wear, maintain, and use legendary armor without penalties."
+    description: "Wear, maintain, and use legendary armor without penalties.",
+    apply: (character) => {character.weaponsTraining.push(CombatTraining.legendaryArmor)}
   },
+  // TODO: implement apply
   specialize: {
     id: "specialize",
     category: "combat",

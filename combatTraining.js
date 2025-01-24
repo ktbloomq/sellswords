@@ -79,6 +79,14 @@ export default {
     id: "improvised",
     displayName: "Improvised",
   },
+  rider: {
+    id: "rider",
+    displayName: "Rider",
+  },
+  cavalry: {
+    id: "cavalry",
+    displayName: "Cavalry",
+  },
   heavyArmor: {
     id: "heavyArmor",
     displayName: "Heavy Armor",

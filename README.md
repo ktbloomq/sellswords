@@ -1,6 +1,6 @@
+# Sellswords Character Handler
 ## Notes
 ## TODO
-- boon element titles. Suggestion: store boons in character.
 ## Roadmap
 - [x] favored skills
 - [x] combat pools
@@ -12,4 +12,5 @@
 - [X] allow manual adjustments
 - [ ] magic
 - [ ] armor
+- [ ] player leveling
 - [ ] injury: may be deprecated

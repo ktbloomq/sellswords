@@ -42,7 +42,8 @@ export default class Character {
 	boons = {
 		combat: [],
 		social: [],
-		exploration: []
+		exploration: [],
+		hidden: []
 	};
 	level = 1;
 	health = {

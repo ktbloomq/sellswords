@@ -1,5 +1,5 @@
 import Boons from "./boons.js";
-import weaponTypes from "./weaponTypes.js";
+import CombatTraining from "./combatTraining.js";
 export class PastLife {
   modifiers;
   static pastChoices = {};
@@ -16,7 +16,7 @@ export class PastLife {
         value.type = undefined;
         character.specializations.push(value);
       } else if (value.type === "weapon") {
-        const weaponType = weaponTypes[value.value];
+        const weaponType = CombatTraining[value.value];
         character.weaponsTraining.push(weaponType);
       } else {
         const boon = Boons[value];
@@ -136,32 +136,31 @@ export class Farmer extends PastLife {
 export class Soldier extends PastLife {
   static pastChoices = {
     weapon1: [
-      weaponTypes.smallWeapon,
-      weaponTypes.oneHandedBlade,
-      weaponTypes.dualSmallWeapon,
-      weaponTypes.oneHandedBlunt,
-      weaponTypes.dualOneHandedBlunt,
-      weaponTypes.twoHandedBlunt,
-      weaponTypes.oneHandedSharp,
-      weaponTypes.dualOneHandedSharp,
-      weaponTypes.twoHandedSharp,
-      weaponTypes.shieldAndWeapon,
-      weaponTypes.longbow,
-      weaponTypes.warbow,
-      weaponTypes.crossbow,
-      weaponTypes.heavyCrossbow,
-      weaponTypes.polearm,
-      weaponTypes.oneHandedAxe,
-      weaponTypes.twoHandedAxe,
-      weaponTypes.thrownWeapon,
-      weaponTypes.grenadier,
-      weaponTypes.improvised
+      CombatTraining.smallWeapon,
+      CombatTraining.oneHandedBlade,
+      CombatTraining.dualSmallWeapon,
+      CombatTraining.oneHandedBlunt,
+      CombatTraining.dualOneHandedBlunt,
+      CombatTraining.twoHandedBlunt,
+      CombatTraining.oneHandedSharp,
+      CombatTraining.dualOneHandedSharp,
+      CombatTraining.twoHandedSharp,
+      CombatTraining.shieldAndWeapon,
+      CombatTraining.longbow,
+      CombatTraining.warbow,
+      CombatTraining.crossbow,
+      CombatTraining.heavyCrossbow,
+      CombatTraining.polearm,
+      CombatTraining.oneHandedAxe,
+      CombatTraining.twoHandedAxe,
+      CombatTraining.thrownWeapon,
+      CombatTraining.grenadier,
+      CombatTraining.improvised
     ]
   }
   setModifiers(character) {
     this.modifiers = [
       () => { character.attributes.soul.readPerson += 5 },
-      // TODO: 1 Extra Weapon's Training
     ];
   }
 }

@@ -62,6 +62,7 @@ function updateElements() {
 				source.forEach(entry2 => {
 					const newElement = document.createElement("div");
 					newElement.textContent = entry2.displayName;
+					newElement.title = entry2.description ?? "";
 					entry.target.appendChild(newElement);
 				});
 			}
