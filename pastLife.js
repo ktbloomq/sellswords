@@ -1,4 +1,5 @@
 import Boons from "./boons.js";
+import weaponTypes from "./weaponTypes.js";
 export class PastLife {
   modifiers;
   static pastChoices = {};
@@ -14,6 +15,9 @@ export class PastLife {
       if (value.type === "specialization") {
         value.type = undefined;
         character.specializations.push(value);
+      } else if (value.type === "weapon") {
+        const weaponType = weaponTypes[value.value];
+        character.weaponsTraining.push(weaponType);
       } else {
         const boon = Boons[value];
         character.boons[boon.category].push(boon);
@@ -130,6 +134,30 @@ export class Farmer extends PastLife {
 }
 
 export class Soldier extends PastLife {
+  static pastChoices = {
+    weapon1: [
+      weaponTypes.smallWeapon,
+      weaponTypes.oneHandedBlade,
+      weaponTypes.dualSmallWeapon,
+      weaponTypes.oneHandedBlunt,
+      weaponTypes.dualOneHandedBlunt,
+      weaponTypes.twoHandedBlunt,
+      weaponTypes.oneHandedSharp,
+      weaponTypes.dualOneHandedSharp,
+      weaponTypes.twoHandedSharp,
+      weaponTypes.shieldAndWeapon,
+      weaponTypes.longbow,
+      weaponTypes.warbow,
+      weaponTypes.crossbow,
+      weaponTypes.heavyCrossbow,
+      weaponTypes.polearm,
+      weaponTypes.oneHandedAxe,
+      weaponTypes.twoHandedAxe,
+      weaponTypes.thrownWeapon,
+      weaponTypes.grenadier,
+      weaponTypes.improvised
+    ]
+  }
   setModifiers(character) {
     this.modifiers = [
       () => { character.attributes.soul.readPerson += 5 },

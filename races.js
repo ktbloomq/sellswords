@@ -24,8 +24,10 @@ export class Race {
 	};
 	addBoons(character) {
 		this.choices.forEach((value) => {
-			const boon = Boons[value];
-			character.boons[boon.category].push(boon);
+			if (value.type === "boon") {
+				const boon = Boons[value.value];
+				character.boons[boon.category].push(boon);
+			}
 		});
 	};
 }

@@ -1,39 +1,47 @@
 export default {
-  shortBlade: {
-    id: "shortBlade",
-    displayName: "Short Blades",
+  smallWeapon: {
+    id: "smallWeapon",
+    displayName: "Small Weapon",
   },
   oneHandedBlade: {
     id: "oneHandedBlade",
     displayName: "One Handed Blades",
   },
-  twoHandedBlade: {
-    id: "twoHandedBlade",
-    displayName: "Two Handed Blades",
+  dualSmallWeapon: {
+    id: "dualSmallWeapon",
+    displayName: "2 Small Weapons",
   },
   oneHandedBlunt: {
     id: "oneHandedBlunt",
     displayName: "One Handed Blunt",
   },
+  dualOneHandedBlunt: {
+    id: "dualOneHandedBlunt",
+    displayName: "2 One Handed Blunts",
+  },
   twoHandedBlunt: {
     id: "twoHandedBlunt",
     displayName: "Two Handed Blunt",
   },
-  oneHandedAxe: {
-    id: "oneHandedAxe",
-    displayName: "One Handed Axe",
+  oneHandedSharp: {
+    id: "oneHandedSharp",
+    displayName: "One Handed Sharp",
   },
-  twoHandedAxe: {
-    id: "twoHandedAxe",
-    displayName: "Two Handed Axe",
+  dualOneHandedSharp: {
+    id: "dualOneHandedSharp",
+    displayName: "2 One Handed Sharps",
   },
-  polearm: {
-    id: "polearm",
-    displayName: "Polearm",
+  twoHandedSharp: {
+    id: "twoHandedSharp",
+    displayName: "Two Handed Sharp",
   },
-  bow: {
-    id: "bow",
-    displayName: "Bow",
+  shieldAndWeapon: {
+    id: "shieldAndWeapon",
+    displayName: "Shield and Weapon"
+  },
+  longbow: {
+    id: "longbow",
+    displayName: "Longbow",
   },
   warbow: {
     id: "warbow",
@@ -46,6 +54,18 @@ export default {
   heavyCrossbow: {
     id: "heavyCrossbow",
     displayName: "HeavyCrossbow",
+  },
+  polearm: {
+    id: "polearm",
+    displayName: "Polearm",
+  },
+  oneHandedAxe: {
+    id: "oneHandedAxe",
+    displayName: "One Handed Axe",
+  },
+  twoHandedAxe: {
+    id: "twoHandedAxe",
+    displayName: "Two Handed Axe",
   },
   thrownWeapon: {
     id: "thrownWeapon",

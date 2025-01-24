@@ -58,7 +58,7 @@ function updatePastChoices(event) {
   pastChoicesElement.textContent = '';
   Object.entries(PastLife[event.target.value]?.pastChoices).forEach((e1) => {
     let choice;
-    if (e1[0].startsWith("boon")) {
+    if (e1[0].startsWith("boon")||e1[0].startsWith("weapon")) {
       choice = document.createElement("select");
       choice.name = `past-${e1[0]}`
       choice.required = true;
@@ -156,12 +156,15 @@ window.onload = async function () {
     const archetype = new Archetypes[formdata.get("archetype")]();
     const pastLife = new PastLife[formdata.get("past")]();
 
+    // TODO: race.choices broken for humans
     race.choices = [];
     archetype.choices = [];
     pastLife.choices = [];
     let moreBoons = [];
     formdata.entries().forEach(([key, value]) => {
       if (key.startsWith("race-")) {
+        let type = "boon";
+        if (key.startsWith("race-attributeBonus")) type = "attributeBonus";
         race.choices.push(value);
       } else if (key.startsWith("archetype-")) {
         archetype.choices.push(value);
@@ -174,6 +177,10 @@ window.onload = async function () {
           } else if (key.endsWith("value")) {
             pastLife.choices[pastLife.choices.length - 1].value = value;
           }
+        } else if (key.startsWith("past-weapon")) {
+          pastLife.choices.push({type:"weapon", value: value});
+        } else {
+          pastLife.choices.push({type:"boon", value: value});
         }
       } else if (key.startsWith("boon")) {
         moreBoons.push(value);
