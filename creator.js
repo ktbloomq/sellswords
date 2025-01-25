@@ -16,7 +16,7 @@ function updateRaceChoices(event) {
   raceChoicesElement.textContent = '';
   Object.entries(Races[event.target.value].raceChoices).forEach((e1) => {
     const select = document.createElement("select");
-    select.name = `race-${e1[0]}`
+    select.name = "race-"+e1[0];
     select.required = true;
     let option = document.createElement("option");
     option.value = "";
@@ -40,7 +40,7 @@ function updateArchetypeChoices(event) {
   archetypeChoicesElement.textContent = '';
   Object.entries(Archetypes[event.target.value].archetypeLevelChoices).forEach((e1) => {
     const select = document.createElement("select");
-    select.name = `archetype-${e1[0]}`
+    select.name = "archetype-"+e1[0];
     select.required = true;
     let option = document.createElement("option");
     option.value = "";
@@ -66,7 +66,7 @@ function updatePastChoices(event) {
     let choice;
     if (e1[0].startsWith("boon")||e1[0].startsWith("weapon")) {
       choice = document.createElement("select");
-      choice.name = `past-${e1[0]}`
+      choice.name = "past-"+e1[0];
       choice.required = true;
       let option = document.createElement("option");
       option.value = "";
@@ -88,9 +88,9 @@ function updatePastChoices(event) {
       const skill = document.createElement("select");
       const value = document.createElement("input");
       info.textContent = "Choose a specialization";
-      name.name = `past-${e1[0]}-name`;
+      name.name = "past-"+e1[0]+"-name";
       name.placeholder = "specialization name";
-      skill.name = `past-${e1[0]}-skill`;
+      skill.name = "past-"+e1[0]+"-skill";
       value.value = e1[1];
       skill.innerHTML = `
         <option value="intimidation">Intimidation</option>
@@ -106,7 +106,7 @@ function updatePastChoices(event) {
         <option value="readPerson">Read Person</option>
         <option value="alchemy">Alchemy</option>
       `;
-      value.name = `past-${e1[0]}-value`;
+      value.name = "past-"+e1[0]+"-value";
       value.type = "hidden";
       choice.append(info);
       choice.appendChild(name);
@@ -120,7 +120,7 @@ function updatePastChoices(event) {
 function addBoonInput() {
   const BoonChoicesElement = document.getElementById("boons");
   const select = document.createElement("select");
-  select.name = `boon${Date.now()}`
+  select.name = "boon"+Date.now();
   let option = document.createElement("option");
   option.value = "";
   option.selected = true;
@@ -182,7 +182,7 @@ window.onload = async function () {
     const pastLife = new PastLife[formdata.get("past")]();
 
     let moreBoons = [];
-    formdata.entries().forEach(([key, value]) => {
+    for(const [key, value] of formdata.entries()) {
       if (key.startsWith("race-")) {
         race.choices[key.slice(5)] = value;
       } else if (key.startsWith("archetype-")) {
@@ -204,7 +204,7 @@ window.onload = async function () {
       } else if (key.startsWith("boon")) {
         moreBoons.push(value);
       }
-    });
+    };
 
     // Name
     character.name = formdata.get("name") ?? "";
@@ -303,7 +303,7 @@ window.onload = async function () {
 
     const characterString = JSON.stringify(character);
     console.log(character);
-    const response = await fetch(`saveCharacter.php?name=${character.name}`, {
+    const response = await fetch("saveCharacter.php?name="+character.name, {
       method: "POST",
       body: characterString,
     });
@@ -311,5 +311,5 @@ window.onload = async function () {
     // queryParams.append("character", characterString);
     // const redirect = `/char-sheet.html?${queryParams.toString()}`
     window.open(`/sheet.html?name=${character.name}`, '_blank');
-  })
+  });
 }
