@@ -8,32 +8,32 @@ export default class Character {
 	weaponsTraining = [];
 	attributes = {
 		physique: {
-			raw: -4,
+			raw: 0,
 			intimidation: -20,
 			strength: -20
 		},
 		precision: {
-			raw: -4,
+			raw: 0,
 			pickpocket: -20,
 			hide: -20
 		},
 		intuition: {
-			raw: -4,
+			raw: 0,
 			blend: -20,
 			diplomacy: -20
 		},
 		smarts: {
-			raw: -4,
+			raw: 0,
 			focus: -20,
 			education: -20
 		},
 		wit: {
-			raw: -4,
+			raw: 0,
 			business: -20,
 			bluff: -20
 		},
 		soul: {
-			raw: -4,
+			raw: 0,
 			readPerson: -20,
 			alchemy: -20
 		}

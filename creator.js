@@ -5,6 +5,12 @@ import * as Races from "./races.js"
 import * as Archetypes from "./archetypes.js"
 import * as PastLife from "./pastLife.js"
 
+let physiqueInput, precisionInput, intuitionInput, smartsInput, witInput, soulInput, pointsSpent;
+
+function updateAttributePreview(event) {
+  pointsSpent.textContent = Number(physiqueInput.value) + Number(precisionInput.value) + Number(intuitionInput.value) + Number(smartsInput.value) + Number(witInput.value) + Number(soulInput.value) + 24;
+}
+
 function updateRaceChoices(event) {
   const raceChoicesElement = document.getElementById("race-choices");
   raceChoicesElement.textContent = '';
@@ -141,11 +147,26 @@ window.onload = async function () {
   const archetypeElement = document.getElementById("archetype");
   const addBoonElement = document.getElementById("add-boon");
   const removeBoonElement = document.getElementById("remove-boon");
+  physiqueInput = document.getElementById("physique");
+  precisionInput = document.getElementById("precision");
+  intuitionInput = document.getElementById("intuition");
+  smartsInput = document.getElementById("smarts");
+  witInput = document.getElementById("wit");
+  soulInput = document.getElementById("soul");
+  pointsSpent = document.getElementById("points-spent");
   raceElement.addEventListener("change", updateRaceChoices);
   archetypeElement.addEventListener("change", updateArchetypeChoices);
   document.getElementById("past").addEventListener("change", updatePastChoices);
   addBoonElement.addEventListener("click", addBoonInput);
   removeBoonElement.addEventListener("click", removeBoonInput);
+
+  // preview spent attributes
+  physiqueInput.addEventListener("change", updateAttributePreview);
+  precisionInput.addEventListener("change", updateAttributePreview);
+  intuitionInput.addEventListener("change", updateAttributePreview);
+  smartsInput.addEventListener("change", updateAttributePreview);
+  witInput.addEventListener("change", updateAttributePreview);
+  soulInput.addEventListener("change", updateAttributePreview);
 
   updateRaceChoices({target:{value:document.getElementById("race").value ?? "Human"}});
   updateArchetypeChoices({target:{value:document.getElementById("archetype").value ?? "Warrior"}});
@@ -195,12 +216,12 @@ window.onload = async function () {
 
     // Attributes
     let pointBuy = {
-      physique: Number(formdata.get("physique")) ?? 0,
-      precision: Number(formdata.get("precision")) ?? 0,
-      intuition: Number(formdata.get("intuition")) ?? 0,
-      smarts: Number(formdata.get("smarts")) ?? 0,
-      wit: Number(formdata.get("wit")) ?? 0,
-      soul: Number(formdata.get("soul")) ?? 0,
+      physique: Number(formdata.get("physique")) ?? -4,
+      precision: Number(formdata.get("precision")) ?? -4,
+      intuition: Number(formdata.get("intuition")) ?? -4,
+      smarts: Number(formdata.get("smarts")) ?? -4,
+      wit: Number(formdata.get("wit")) ?? -4,
+      soul: Number(formdata.get("soul")) ?? -4,
     };
     character.applyAttributeBuy(pointBuy);
 
@@ -282,7 +303,7 @@ window.onload = async function () {
 
     const characterString = JSON.stringify(character);
     console.log(character);
-    const response = await fetch(`saveCharacter.php/?name=${character.name}`, {
+    const response = await fetch(`saveCharacter.php?name=${character.name}`, {
       method: "POST",
       body: characterString,
     });
