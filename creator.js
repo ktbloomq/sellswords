@@ -147,6 +147,10 @@ window.onload = async function () {
   addBoonElement.addEventListener("click", addBoonInput);
   removeBoonElement.addEventListener("click", removeBoonInput);
 
+  updateRaceChoices({target:{value:document.getElementById("race").value ?? "Human"}});
+  updateArchetypeChoices({target:{value:document.getElementById("archetype").value ?? "Warrior"}});
+  updatePastChoices({target:{value:document.getElementById("past").value ?? "Bard"}});
+
   const charForm = document.getElementById("char-form");
   charForm.addEventListener("submit", async (event) => {
     event.preventDefault();
