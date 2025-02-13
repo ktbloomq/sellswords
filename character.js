@@ -2,10 +2,11 @@ import { Race } from "./races.js";
 
 export default class Character {
 	name = "";
-	race = new Race;
+	race = new Race();
 	pastLife;
 	archetype;
 	weaponsTraining = [];
+	userInputs;
 	attributes = {
 		physique: {
 			raw: 0,
@@ -75,22 +76,4 @@ export default class Character {
 	freeActions = 1;
 	actionChain = 1;
 	actionDice = 0;
-	applyAttributeBuy(selections) {
-		Object.entries(selections).forEach(([key,val]) => {
-			this.attributes[key].raw += val;
-		});
-	}
-	calcSkills() {
-			Object.keys(this.attributes).forEach((attrKey) => {
-				// console.log(attrKey,attrVal);
-				let skills = this.attributes[attrKey];
-				Object.keys(skills).slice(1).forEach((sKey) => {
-					skills[sKey] = skills.raw * 5;
-					if (skills.raw > 0) {
-						skills[sKey] = Math.ceil((skills[sKey]+1)/2)
-					}
-				});
-			});
-		this.race.applySkillModifiers(this);
-	}
 }

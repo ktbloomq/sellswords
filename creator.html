@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Character Creator</title>
-	<script type="module" src="creator.js?nocache=2" integrity="sha384-frm/tlXprw5p3oEDqKl6tOZJBhsQMU2rpAoCPKD2AxLyRNQhng/TCt3l13lGVJo7" crossorigin="use-credentials"></script>
+	<script type="module" src="creator.js?nocache=2"></script>
 	<style>
 		:root {
 			width: 50%;
@@ -60,7 +60,7 @@
 <body>
 	<form id="char-form">
 		<h2>Name</h2>
-		<input type="text" name="name" required />
+		<input id="name" type="text" name="name" required />
 		<h2>Body</h2>
 		<h3>Race</h3>
 		<div class="description">
@@ -69,7 +69,7 @@
 			Races are set apart from each other by physical strength and attributes, unique abilities, as well as more mundane
 			things such as size and lifespan.
 		</div>
-		<select name="race" id="race" required>
+		<select id="race" name="race" id="race" required>
 			<option value="Human">Human</option>
 			<option value="Elf">Elf</option>
 			<option value="Dwarf">Dwarf</option>
@@ -141,7 +141,7 @@
 			<div>Hair: Style and color, facial hair, etc.</div>
 			<div>Eyes: Color. Shape optional. </div>
 		</div>
-		<textarea name="appearance" id=""></textarea>
+		<textarea name="appearance" id="appearance"></textarea>
 		<h2>Mind</h2>
 		<h3>Background</h3>
 		<h4>Past Life</h4>
@@ -192,7 +192,7 @@
 				Merchant, Nobility/Upper Class, Clergy, Animals, Military, Wizardry, Academia.
 			</div>
 		</div>
-		<textarea name="socialCircle" id=""></textarea>
+		<textarea name="socialCircle" id="socialCircle"></textarea>
 		<h4>Regional Knowledge</h4>
 		<div class="description">
 			<div>
@@ -212,7 +212,7 @@
 				fully accurate.
 			</div>
 		</div>
-		<textarea name="regionalKnowledge" id=""></textarea>
+		<textarea name="regionalKnowledge" id="regionalKnowledge"></textarea>
 		<h3>Weapons Training</h3>
 		Choose one of the following options:
 		<ul>
@@ -266,7 +266,7 @@
 			<option value="thrownWeapon">Thrown Weapon</option>
 		</select>
 		<label for="skill-interest1">skill interest 1</label>
-		<select name="skill-interest1" id="" required>
+		<select name="skill-interest1" id="skill-interest1" required>
 			<option value="none">none</option>
 			<option value="physique.intimidation">Intimidation</option>
 			<option value="physique.strength">Strength</option>
@@ -282,7 +282,7 @@
 			<option value="soul.alchemy">Alchemy</option>
 		</select>
 		<label for="skill-interest2">skill interest 2</label>
-		<select name="skill-interest2" id="" required>
+		<select name="skill-interest2" id="skill-interest2" required>
 			<option value="none">none</option>
 			<option value="physique.intimidation">Intimidation</option>
 			<option value="physique.strength">Strength</option>
@@ -298,7 +298,7 @@
 			<option value="soul.alchemy">Alchemy</option>
 		</select>
 		<label for="magic-school">magic school</label>
-		<select name="magic-school" id="" required>
+		<select name="magic-school" id="magic-school" required>
 			<option value="none">none</option>
 			<option value="water">water</option>
 			<option value="aether">aether</option>
@@ -313,7 +313,7 @@
 		</div>
 		<div id="archetype-choices" style="color: red; font-weight: bold;">Please pick an archetype</div>
 		<h3>Path</h3>
-		<select name="path" id="" required>
+		<select name="path" id="path" required>
 			<option value="thisWeaponIsYourLife">Man-At-Arms: This Weapon Is Your Life</option>
 			<option value="mountedCombat">Hussar: Mounted Combat</option>
 			<option value="sprinter">Athlete: Sprinter</option>
@@ -339,13 +339,13 @@
 				personally in the main adventure threads if it does.
 			</div>
 		</div>
-		<textarea name="call" id=""></textarea>
+		<textarea name="call" id="call"></textarea>
 		<h3>Character Traits</h3>
 		<div class="description">
 			Choose a positive character trait. You may add +20 when a check is made in relation to roleplay to this trait.
 		</div>
-		<input type="text" name="trait-name" id="" />
-		<select name="trait-skill" id="">
+		<input type="text" name="trait-name" id="trait-name" />
+		<select name="trait-skill" id="trait-skill">
 			<option value="" selected>choose</option>
 			<option value="intimidation">Intimidation</option>
 			<option value="strength">Strength</option>
@@ -363,8 +363,8 @@
 		<div class="description">
 			Choose a character flaw. You may add +20 when a check is made in relation to roleplaying with this flaw.
 		</div>
-		<input type="text" name="flaw-name" id="" />
-		<select name="flaw-skill" id="">
+		<input type="text" name="flaw-name" id="flaw-name" />
+		<select name="flaw-skill" id="flaw-skill">
 			<option value="" selected>choose</option>
 			<option value="intimidation">Intimidation</option>
 			<option value="strength">Strength</option>
@@ -387,18 +387,18 @@
 			your character.
 			If you have something early, it is much easier to change it out quickly in one of the earlier sessions
 		</div>
-		<textarea name="quirks" id=""></textarea>
+		<textarea name="quirks" id="quirks"></textarea>
 		<h3>Loyalties</h3>
 		<div class="description">Religion/gods: Preferred guardian deities. </div>
-		<input name="religion" type="text" />
+		<input id="religion" name="religion" type="text" />
 		<div class="description">Oath (if any): Any promises, oaths, or codes (professional, moral, or otherwise) to which
 			they adhere. </div>
-		<input name="oath" type="text" />
+		<input id="oath" name="oath" type="text" />
 		<div class="description">Political Loyalties: Any national/royal/political entities to which they give loyalty, or
 			who may call upon them to pay homage or duty. </div>
-		<input name="politics" type="text" />
+		<input id="politics" name="politics" type="text" />
 		<div class="description">Organizations: Groups to which they belong, such as guilds, cults, coalitions, etc. </div>
-		<input name="organizations" type="text" />
+		<input id="organizations" name="organizations" type="text" />
 		<h3>Backstory</h3>
 		<div class="description">
 			<div>
@@ -417,7 +417,7 @@
 			<div>
 				Relationship with the Family: Positive, Negative, Estranged, Close, None, Orphaned, etc.
 			</div>
-			<textarea name="backstory" id=""></textarea>
+			<textarea name="backstory" id="backstory"></textarea>
 		</div>
 		<h2>Level</h2>
 		<h3>Boons</h3>

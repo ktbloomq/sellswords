@@ -36,24 +36,24 @@ let characterElements = {
 	freeActions: { type: "number" },
 	actionChain: { type: "number" },
 	actionDice: { type: "number" },
-	appearance: { type: "string" },
 	socialCircle: { type: "string" },
 	regionalKnowledge: { type: "string" },
-	call: { type: "string" },
-	quirks: { type: "string" },
-	religion: { type: "string" },
-	oath: { type: "string" },
-	politics: { type: "string" },
-	organizations: { type: "string" },
-	backstory: { type: "string" },
-	notes: { type: "string" },
+	appearance: { type: "textarea" },
+	call: { type: "textarea" },
+	quirks: { type: "textarea" },
+	religion: { type: "textarea" },
+	oath: { type: "textarea" },
+	politics: { type: "textarea" },
+	organizations: { type: "textarea" },
+	backstory: { type: "textarea" },
+	notes: { type: "textarea" },
 };
 let editorModalElement, editorInputElement, editorFormElement, editorTarget;
 
 function updateElements() {
 	Object.entries(characterElements).forEach(([key, entry]) => {
 		const source = entry.source()
-		if (entry.type === "number" || entry.type === "string") {
+		if (entry.type === "number" || entry.type === "string" || entry.type === "textarea") {
 			entry.target.textContent = source;
 		} else if (Array.isArray(source)) {
 			// Boons / Weapons
@@ -139,6 +139,11 @@ function editorAppend(entry, type) {
 		div.appendChild(skill);
 		div.appendChild(value);
 		editorInputElement.appendChild(div);
+	} else if (type === "textarea") {
+		const newInput = document.createElement("textarea");
+		newInput.name = Date.now();
+		newInput.value = entry ?? "";
+		editorInputElement.appendChild(newInput);
 	} else {
 		const newInput = document.createElement("input");
 		newInput.name = Date.now();

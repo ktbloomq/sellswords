@@ -5,18 +5,20 @@ import * as Races from "./races.js"
 import * as Archetypes from "./archetypes.js"
 import * as PastLife from "./pastLife.js"
 
-let physiqueInput, precisionInput, intuitionInput, smartsInput, witInput, soulInput, pointsSpent;
+let physiqueInput, precisionInput, intuitionInput, smartsInput, witInput, soulInput, pointsSpent, boonInputClickCount = 0;
 
 function updateAttributePreview(event) {
-  pointsSpent.textContent = Number(physiqueInput.value) + Number(precisionInput.value) + Number(intuitionInput.value) + Number(smartsInput.value) + Number(witInput.value) + Number(soulInput.value) + 24;
+  pointsSpent.textContent = Number(physiqueInput.value) + Number(precisionInput.value) +
+    Number(intuitionInput.value) + Number(smartsInput.value) +
+    Number(witInput.value) + Number(soulInput.value) + 24;
 }
 
-function updateRaceChoices(event) {
+function updateRaceChoices(event, values) {
   const raceChoicesElement = document.getElementById("race-choices");
   raceChoicesElement.textContent = '';
-  Object.entries(Races[event.target.value].raceChoices).forEach((e1) => {
+  Object.entries(Races[event.target.value].raceChoices).forEach((e1, i) => {
     const select = document.createElement("select");
-    select.name = "race-"+e1[0];
+    select.name = "race-" + e1[0];
     select.required = true;
     let option = document.createElement("option");
     option.value = "";
@@ -31,16 +33,19 @@ function updateRaceChoices(event) {
       option.textContent = e2.displayName;
       select.appendChild(option);
     });
+    if (values) {
+      select.value = values[i][1];
+    }
     raceChoicesElement.appendChild(select);
   });
 }
 
-function updateArchetypeChoices(event) {
+function updateArchetypeChoices(event, values) {
   const archetypeChoicesElement = document.getElementById("archetype-choices");
   archetypeChoicesElement.textContent = '';
-  Object.entries(Archetypes[event.target.value].archetypeLevelChoices).forEach((e1) => {
+  Object.entries(Archetypes[event.target.value].archetypeLevelChoices).forEach((e1, i) => {
     const select = document.createElement("select");
-    select.name = "archetype-"+e1[0];
+    select.name = "archetype-" + e1[0];
     select.required = true;
     let option = document.createElement("option");
     option.value = "";
@@ -55,18 +60,21 @@ function updateArchetypeChoices(event) {
       option.textContent = e2.displayName;
       select.appendChild(option);
     });
+    if (values) {
+      select.value = values[i][1];
+    }
     archetypeChoicesElement.appendChild(select);
   });
 }
 
-function updatePastChoices(event) {
+function updatePastChoices(event, values) {
   const pastChoicesElement = document.getElementById("past-choices");
   pastChoicesElement.textContent = '';
-  Object.entries(PastLife[event.target.value]?.pastChoices).forEach((e1) => {
+  Object.entries(PastLife[event.target.value]?.pastChoices).forEach((e1, i) => {
     let choice;
-    if (e1[0].startsWith("boon")||e1[0].startsWith("weapon")) {
+    if (e1[0].startsWith("boon") || e1[0].startsWith("weapon")) {
       choice = document.createElement("select");
-      choice.name = "past-"+e1[0];
+      choice.name = "past-" + e1[0];
       choice.required = true;
       let option = document.createElement("option");
       option.value = "";
@@ -81,6 +89,10 @@ function updatePastChoices(event) {
         option.textContent = e2.displayName;
         choice.appendChild(option);
       });
+      if (values) {
+        console.log(values);
+        choice.value = values[i].value;
+      }
     } else if (e1[0].startsWith("specialization")) {
       choice = document.createElement("div");
       const info = document.createElement("div");
@@ -88,9 +100,9 @@ function updatePastChoices(event) {
       const skill = document.createElement("select");
       const value = document.createElement("input");
       info.textContent = "Choose a specialization";
-      name.name = "past-"+e1[0]+"-name";
+      name.name = "past-" + e1[0] + "-name";
       name.placeholder = "specialization name";
-      skill.name = "past-"+e1[0]+"-skill";
+      skill.name = "past-" + e1[0] + "-skill";
       value.value = e1[1];
       skill.innerHTML = `
         <option value="intimidation">Intimidation</option>
@@ -106,8 +118,12 @@ function updatePastChoices(event) {
         <option value="readPerson">Read Person</option>
         <option value="alchemy">Alchemy</option>
       `;
-      value.name = "past-"+e1[0]+"-value";
+      value.name = "past-" + e1[0] + "-value";
       value.type = "hidden";
+      if (values) {
+        name.value = values[i].name;
+        skill.value = values[i].skill;
+      }
       choice.append(info);
       choice.appendChild(name);
       choice.appendChild(skill);
@@ -117,10 +133,11 @@ function updatePastChoices(event) {
   });
 }
 
-function addBoonInput() {
+function addBoonInput(event, value) {
+  boonInputClickCount ++;
   const BoonChoicesElement = document.getElementById("boons");
   const select = document.createElement("select");
-  select.name = "boon"+Date.now();
+  select.name = "boon-" + boonInputClickCount;
   let option = document.createElement("option");
   option.value = "";
   option.selected = true;
@@ -134,6 +151,7 @@ function addBoonInput() {
     option.textContent = boon.displayName;
     select.appendChild(option);
   });
+  select.value = value ?? "";
   BoonChoicesElement.appendChild(select);
 }
 
@@ -143,10 +161,6 @@ function removeBoonInput() {
 }
 
 window.onload = async function () {
-  const raceElement = document.getElementById("race");
-  const archetypeElement = document.getElementById("archetype");
-  const addBoonElement = document.getElementById("add-boon");
-  const removeBoonElement = document.getElementById("remove-boon");
   physiqueInput = document.getElementById("physique");
   precisionInput = document.getElementById("precision");
   intuitionInput = document.getElementById("intuition");
@@ -154,11 +168,11 @@ window.onload = async function () {
   witInput = document.getElementById("wit");
   soulInput = document.getElementById("soul");
   pointsSpent = document.getElementById("points-spent");
-  raceElement.addEventListener("change", updateRaceChoices);
-  archetypeElement.addEventListener("change", updateArchetypeChoices);
+  document.getElementById("race").addEventListener("change", updateRaceChoices);
+  document.getElementById("archetype").addEventListener("change", updateArchetypeChoices);
   document.getElementById("past").addEventListener("change", updatePastChoices);
-  addBoonElement.addEventListener("click", addBoonInput);
-  removeBoonElement.addEventListener("click", removeBoonInput);
+  document.getElementById("add-boon").addEventListener("click", addBoonInput);
+  document.getElementById("remove-boon").addEventListener("click", removeBoonInput);
 
   // preview spent attributes
   physiqueInput.addEventListener("change", updateAttributePreview);
@@ -168,10 +182,61 @@ window.onload = async function () {
   witInput.addEventListener("change", updateAttributePreview);
   soulInput.addEventListener("change", updateAttributePreview);
 
-  updateRaceChoices({target:{value:document.getElementById("race").value ?? "Human"}});
-  updateArchetypeChoices({target:{value:document.getElementById("archetype").value ?? "Warrior"}});
-  updatePastChoices({target:{value:document.getElementById("past").value ?? "Bard"}});
+  // set inputs to existing character
+  const queryParams = new URLSearchParams(window.location.search);
+  const nameParam = queryParams.get("name");
+  if (nameParam) {
+    const response = await fetch(`getCharacter.php/?name=${nameParam}`);
+    const inputCharacter = await response.json();
+    const userInputs = inputCharacter.userInputs;
+    console.log(userInputs);
+    document.getElementById("name").value = userInputs.name;
 
+    document.getElementById("race").value = userInputs.race;
+    updateRaceChoices({ target: { value: userInputs.race } }, Object.entries(inputCharacter.race.choices));
+    physiqueInput.value = userInputs.physique;
+    precisionInput.value = userInputs.precision;
+    intuitionInput.value = userInputs.intuition;
+    smartsInput.value = userInputs.smarts;
+    witInput.value = userInputs.wit;
+    soulInput.value = userInputs.soul;
+    document.getElementById("archetype").value = userInputs.archetype;
+    updateArchetypeChoices({ target: { value: userInputs.archetype } }, Object.entries(inputCharacter.archetype.choices));
+    document.getElementById("appearance").value = userInputs.appearance;
+    document.getElementById("past").value = userInputs.past;
+    updatePastChoices({ target: { value: userInputs.past } }, inputCharacter.pastLife.choices);
+    document.getElementById("socialCircle").value = userInputs.socialCircle;
+    document.getElementById("regionalKnowledge").value = userInputs.regionalKnowledge;
+    document.getElementById("weapon1").value = userInputs.weapon1;
+    document.getElementById("weapon2").value = userInputs.weapon2;
+    document.getElementById("skill-interest1").value = userInputs["skill-interest1"];
+    document.getElementById("skill-interest2").value = userInputs["skill-interest2"];
+    document.getElementById("magic-school").value = userInputs["magic-school"];
+    document.getElementById("path").value = userInputs.path;
+    document.getElementById("call").value = userInputs.call;
+    document.getElementById("trait-name").value = userInputs["trait-name"];
+    document.getElementById("trait-skill").value = userInputs["trait-skill"];
+    document.getElementById("flaw-name").value = userInputs["flaw-name"];
+    document.getElementById("flaw-skill").value = userInputs["flaw-skill"];
+    document.getElementById("quirks").value = userInputs.quirks;
+    document.getElementById("religion").value = userInputs.religion;
+    document.getElementById("oath").value = userInputs.oath;
+    document.getElementById("politics").value = userInputs.politics;
+    document.getElementById("organizations").value = userInputs.organizations;
+    document.getElementById("backstory").value = userInputs.backstory;
+    // TODO: set nested choices
+    Object.entries(userInputs).forEach(([key, value]) => {
+      if (key.startsWith("boon")) {
+        addBoonInput(null, value);
+      }
+    });
+  } else {
+    updateRaceChoices({ target: { value: "Human" } });
+    updateArchetypeChoices({ target: { value: "Warrior" } });
+    updatePastChoices({ target: { value: "Bard" } });
+  }
+
+  // Start Proccessing the form
   const charForm = document.getElementById("char-form");
   charForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -181,8 +246,10 @@ window.onload = async function () {
     const archetype = new Archetypes[formdata.get("archetype")]();
     const pastLife = new PastLife[formdata.get("past")]();
 
+    character.userInputs = Object.fromEntries(formdata.entries());
+
     let moreBoons = [];
-    for(const [key, value] of formdata.entries()) {
+    for (const [key, value] of formdata.entries()) {
       if (key.startsWith("race-")) {
         race.choices[key.slice(5)] = value;
       } else if (key.startsWith("archetype-")) {
@@ -197,9 +264,9 @@ window.onload = async function () {
             pastLife.choices[pastLife.choices.length - 1].value = value;
           }
         } else if (key.startsWith("past-weapon")) {
-          pastLife.choices.push({type:"weapon", value: value});
+          pastLife.choices.push({ type: "weapon", value: value });
         } else {
-          pastLife.choices.push({type:"boon", value: value});
+          pastLife.choices.push({ type: "boon", value: value });
         }
       } else if (key.startsWith("boon")) {
         moreBoons.push(value);
@@ -215,15 +282,12 @@ window.onload = async function () {
     character.race = race;
 
     // Attributes
-    let pointBuy = {
-      physique: Number(formdata.get("physique")) ?? -4,
-      precision: Number(formdata.get("precision")) ?? -4,
-      intuition: Number(formdata.get("intuition")) ?? -4,
-      smarts: Number(formdata.get("smarts")) ?? -4,
-      wit: Number(formdata.get("wit")) ?? -4,
-      soul: Number(formdata.get("soul")) ?? -4,
-    };
-    character.applyAttributeBuy(pointBuy);
+    character.attributes.physique.raw += Number(formdata.get("physique")) ?? -4
+    character.attributes.precision.raw += Number(formdata.get("precision")) ?? -4
+    character.attributes.intuition.raw += Number(formdata.get("intuition")) ?? -4
+    character.attributes.smarts.raw += Number(formdata.get("smarts")) ?? -4
+    character.attributes.wit.raw += Number(formdata.get("wit")) ?? -4
+    character.attributes.soul.raw += Number(formdata.get("soul")) ?? -4
 
     // Weapons Training
     let weapon = formdata.get("weapon1");
@@ -275,7 +339,18 @@ window.onload = async function () {
       }
     });
 
-    character.calcSkills();
+    // character.calcSkills();
+    Object.keys(character.attributes).forEach((attrKey) => {
+      // console.log(attrKey,attrVal);
+      let skills = character.attributes[attrKey];
+      Object.keys(skills).slice(1).forEach((sKey) => {
+        skills[sKey] = skills.raw * 5;
+        if (skills.raw > 0) {
+          skills[sKey] = Math.ceil((skills[sKey] + 1) / 2)
+        }
+      });
+    });
+    race.applySkillModifiers(character);
 
     // Past Life: depends on calcSkills
     pastLife.applyChoices(character);
@@ -303,13 +378,13 @@ window.onload = async function () {
 
     const characterString = JSON.stringify(character);
     console.log(character);
-    const response = await fetch("saveCharacter.php?name="+character.name, {
+    const response = await fetch("saveCharacter.php?name=" + character.name, {
       method: "POST",
       body: characterString,
     });
     // const queryParams = new URLSearchParams();
     // queryParams.append("character", characterString);
     // const redirect = `/char-sheet.html?${queryParams.toString()}`
-    window.open(`/sheet.html?name=${character.name}`, '_blank');
+    if (response.ok) window.open(`/sheet.html?name=${character.name}`, '_blank');
   });
 }
