@@ -163,8 +163,17 @@ input {
   display: block;
 }
 
-#editor-inputs textarea {
-  min-width: 25vw;
+#editor {
+  min-width: 50vw;
+}
+
+#editor input,textarea {
+  /* min-width: 25vw; */
+  width: 90%;
+}
+
+#editor-inputs > * {
+  border: solid;
 }
 
 .boons {

@@ -101,12 +101,13 @@ function editorAppend(entry, type) {
 	if (type === "boon") {
 		const div = document.createElement("div");
 		const displayNameInput = document.createElement("input");
-		const descriptionInput = document.createElement("textarea");
 		displayNameInput.name = Date.now();
 		displayNameInput.value = entry.displayName ?? "";
+		div.appendChild(displayNameInput);
+
+		const descriptionInput = document.createElement("textarea");
 		descriptionInput.name = Date.now();
 		descriptionInput.textContent = entry.description ?? "";
-		div.appendChild(displayNameInput);
 		div.appendChild(descriptionInput);
 		editorInputElement.appendChild(div);
 	} else if (type === "specialization") {
