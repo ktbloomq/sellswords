@@ -4,6 +4,7 @@ let character;
 let characterElements = {
 	name: { type: "string" },
 	race: { type: "string" },
+	level: { type: "number" },
 	hp: { type: "number" },
 	hpMax: { type: "number" },
 	mp: { type: "number" },
@@ -268,9 +269,11 @@ window.onload = async function () {
 	});
 	document.getElementById("specializations").addEventListener("click", (event) => {openModal(characterElements.specializations)});
 	document.getElementById("save").addEventListener("click", saveCharacter);
+	document.getElementById("manage").addEventListener("click", () => {window.location.href = "creator.html?name="+character.name});
 
 	characterElements.name.source = (v) => { if (v !== undefined) character.name = v; return character.name };
 	characterElements.race.source = (v) => { if (v !== undefined) character.race.name = v; return character.race.name };
+	characterElements.level.source = (v) => { if (v !== undefined) character.level = v; return character.level };
 	characterElements.hp.source = (v) => { if (v !== undefined) character.health.current = v; return character.health.current };
 	characterElements.hpMax.source = (v) => { if (v !== undefined) character.health.max = v; return character.health.max };
 	characterElements.ep.source = (v) => { if (v !== undefined) character.energy.current = v; return character.energy.current };

@@ -163,7 +163,7 @@ function boonOptions(element, options = Object.values(Boons), value) {
   element.value = value ?? "";
 }
 
-function levelUpOptions(event) {
+function levelUpOptions(event,values=[]) {
   const levelSection = document.getElementById("levelSection");
   if(event.target.value<=0) {
     event.target.value=1;
@@ -172,26 +172,36 @@ function levelUpOptions(event) {
   if (newLevel > level) {
     for (let i = level; i < newLevel; i++) {
       const div = document.createElement("div");
-      const archetypeSelect = document.createElement("select");
-      archetypeSelect.id = "levelUpArchetype" + level;
-      archetypeSelect.innerHTML = `
+      const title = document.createElement("h4");
+      title.textContent = "Level " + (i+1);
+      div.appendChild(title);
+
+      const archetype = document.createElement("select");
+      archetype.name = "levelUpArchetype" + i;
+      archetype.id = "levelUpArchetype" + i;
+      archetype.innerHTML = `
         <option value="Warrior">Warrior</option>
         <option value="Scholar">Scholar</option>
         <option value="Mage">Mage</option>
       `;
-      div.appendChild(archetypeSelect);
+      archetype.value = values[(i-1)*3] ?? "Warrior";
+      div.appendChild(archetype);
 
       const pathBoon = document.createElement("select");
-      pathBoon.name = "levelUpPathBoon" + level;
-      boonOptions(pathBoon,Object.values(Boons).filter((value) => (value.type==="Warrior")));
+      pathBoon.name = "levelUpPathBoon" + i;
+      pathBoon.id = "levelUpPathBoon" + i;
+      boonOptions(pathBoon,Object.values(Boons).filter((value) => (value.type===archetype.value)));
+      pathBoon.value = values[(i-1)*3+1] ?? "";
       div.appendChild(pathBoon);
 
       const supportBoon = document.createElement("select");
-      supportBoon.name = "levelUpSupportBoon" + level;
+      supportBoon.name = "levelUpSupportBoon" + i;
+      supportBoon.id = "levelUpSupportBoon" + i;
       boonOptions(supportBoon,Object.values(Boons).filter((value) => (value.type==="support")));
+      supportBoon.value = values[(i-1)*3+2] ?? "";
       div.appendChild(supportBoon);
 
-      archetypeSelect.addEventListener("change", (event) => {
+      archetype.addEventListener("change", (event) => {
         pathBoon.textContent = "";
         boonOptions(pathBoon,Object.values(Boons).filter((value) => (value.type===event.target.value)))
       });
@@ -270,19 +280,23 @@ window.onload = async function () {
     document.getElementById("politics").value = userInputs.politics;
     document.getElementById("organizations").value = userInputs.organizations;
     document.getElementById("backstory").value = userInputs.backstory;
-    // TODO: Load level up data
+    document.getElementById("level").value = userInputs.level;
+    let levelUp = [];
     Object.entries(userInputs).forEach(([key, value]) => {
       if (key.startsWith("boon")) {
         addBoonInput(null, value);
+      } else if (key.startsWith("levelUp")) {
+        levelUp.push(value);
       }
     });
+    levelUpOptions({target:{value:userInputs.level}}, levelUp);
   } else {
     updateRaceChoices({ target: { value: "Human" } });
     updateArchetypeChoices({ target: { value: "Warrior" } });
     updatePastChoices({ target: { value: "Bard" } });
   }
 
-  // Start Processing the form
+  // Start reading the form
   const charForm = document.getElementById("char-form");
   charForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -404,7 +418,6 @@ window.onload = async function () {
     character.mana.current += levelUpArchetype.Warrior * 2 + levelUpArchetype.Scholar * 4 + levelUpArchetype.Mage * 7;
     character.mana.max += levelUpArchetype.Warrior * 2 + levelUpArchetype.Scholar * 4 + levelUpArchetype.Mage * 7;
     const actionLevel = actionLevelTable[level - 1];
-    console.log(actionLevel);
     character.freeActions = actionLevel.free;
     character.actionChain = actionLevel.chain;
     character.actionDice = actionLevel.dice;

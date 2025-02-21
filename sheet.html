@@ -19,16 +19,22 @@
 					<button id="add-entry" type="button">+</button>
 					<button id="remove-entry" type="button">-</button>
 				</span>
-				<button type="submit">Edit</button></div>
+				<button type="submit">Edit</button>
+			</div>
 		</form>
 	</dialog>
 	<div style="display: flex; justify-content: space-between;">
 		<div>
-			<div><label for="name">Character name: </label> <button id="name" class="hidden-button" name="name" type="button"></button></div>
-			<div><label for="race">Race: </label> <button id="race" class="hidden-button" name="race" type="button"></button></div>
-			<div>Master Level: <span id="masterLevel"></span></div>
+			<div><label for="name">Character name: </label> <button id="name" class="hidden-button" name="name"
+					type="button"></button></div>
+			<div><label for="race">Race: </label> <button id="race" class="hidden-button" name="race" type="button"></button>
+			</div>
+			<div>Master Level: <span id="level"></span></div>
 		</div>
-		<button id="save" type="button" style="width: 25%; font-size: xx-large;">Save</button>
+		<div>
+			<button id="manage" type="button" style="font-size: xx-large;">Manage</button>
+			<button id="save" type="button" style="font-size: xx-large;">Save</button>
+		</div>
 	</div>
 	<div id="attributes">
 		<!-- Title Row -->
@@ -37,7 +43,8 @@
 		<div class="title">Skill</div>
 		<div class="title">Skill Bonus</div>
 		<div class="title">Injury</div>
-		<button id="specializations" name="specializations" class="hidden-button title" type="button">Specialization</button>
+		<button id="specializations" name="specializations" class="hidden-button title"
+			type="button">Specialization</button>
 		<div class="title">Injury</div>
 		<div id="pools-title" class="title">Combat Pools</div>
 		<!-- Row -->
@@ -132,7 +139,7 @@
 			<div id="diplomacy-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--mental);">
-			<label  for="specializations" id="blendSpecialization" class="specialization-box">
+			<label for="specializations" id="blendSpecialization" class="specialization-box">
 				<tr>
 					<td></td>
 					<td></td>
@@ -295,15 +302,15 @@
 			</div>
 			<div>Actions
 				<div style="border: 1px solid; text-align: left;">
-						<label for="freeActions" class="flex" style="border-bottom: 1px solid; padding: 0 2px;">Free Actions
-							<button id="freeActions" name="freeActions" type="button" class="hidden-button"></button>
-						</label>
-						<label for="actionChain" class="flex" style="border-bottom: 1px solid; padding: 0 2px;">Max Chain
-							<button id="actionChain" name="actionChain" type="button" class="hidden-button"></button>
-						</label>
-						<label for="actionDice" class="flex" style="padding: 0 2px;">Total Action Dice
-							<button id="actionDice" name="actionDice" type="button" class="hidden-button"></button>
-						</label>
+					<label for="freeActions" class="flex" style="border-bottom: 1px solid; padding: 0 2px;">Free Actions
+						<button id="freeActions" name="freeActions" type="button" class="hidden-button"></button>
+					</label>
+					<label for="actionChain" class="flex" style="border-bottom: 1px solid; padding: 0 2px;">Max Chain
+						<button id="actionChain" name="actionChain" type="button" class="hidden-button"></button>
+					</label>
+					<label for="actionDice" class="flex" style="padding: 0 2px;">Total Action Dice
+						<button id="actionDice" name="actionDice" type="button" class="hidden-button"></button>
+					</label>
 				</div>
 			</div>
 		</div>
@@ -335,7 +342,8 @@
 					<div id="character-flaws"></div>
 				</div>
 				<label for="socialCircle">Social Circle:
-					<button id="socialCircle" name="socialCircle" class="hidden-button" style="display: block;" type="button"></button>
+					<button id="socialCircle" name="socialCircle" class="hidden-button" style="display: block;"
+						type="button"></button>
 				</label>
 				<div>
 					<label for="socialBoons" style="display: block;">Boons:</label>
@@ -347,7 +355,8 @@
 			<div style="padding: 0 2px; background-color: yellow;">Exploration</div>
 			<div class="boon-subcategories">
 				<label for="regionalKnowledge">Regional Knowledge:
-					<button id="regionalKnowledge" name="regionalKnowledge" class="hidden-button" style="display: block;" type="button"></button>
+					<button id="regionalKnowledge" name="regionalKnowledge" class="hidden-button" style="display: block;"
+						type="button"></button>
 				</label>
 				<div>
 					<label for="explorationBoons" style="display: block;">Boons:</label>
@@ -362,7 +371,8 @@
 			<div class="boon-subcategories">
 				<div>
 					<label for="appearance">Appearance:</label>
-					<button id="appearance" name="appearance" class="hidden-button" style="white-space: preserve-breaks;" type="button"></button>
+					<button id="appearance" name="appearance" class="hidden-button" style="white-space: preserve-breaks;"
+						type="button"></button>
 				</div>
 				<!-- <div>
 					<label for="socialCircle">Social Circle:</label>
@@ -374,35 +384,43 @@
 				</div> -->
 				<div>
 					<label for="call">Call:</label>
-					<button id="call" name="call" class="hidden-button" style="white-space: preserve-breaks;" type="button"></button>
+					<button id="call" name="call" class="hidden-button" style="white-space: preserve-breaks;"
+						type="button"></button>
 				</div>
 				<div>
 					<label for="quirks">Quirks:</label>
-					<button id="quirks" name="quirks" class="hidden-button" style="white-space: preserve-breaks;" type="button"></button>
+					<button id="quirks" name="quirks" class="hidden-button" style="white-space: preserve-breaks;"
+						type="button"></button>
 				</div>
 				<div>
 					<label for="religion">Religion:</label>
-					<button id="religion" name="religion" class="hidden-button" style="white-space: preserve-breaks;" type="button"></button>
+					<button id="religion" name="religion" class="hidden-button" style="white-space: preserve-breaks;"
+						type="button"></button>
 				</div>
 				<div>
 					<label for="oath">Oath:</label>
-					<button id="oath" name="oath" class="hidden-button" style="white-space: preserve-breaks;" type="button"></button>
+					<button id="oath" name="oath" class="hidden-button" style="white-space: preserve-breaks;"
+						type="button"></button>
 				</div>
 				<div>
 					<label for="politics">Politics:</label>
-					<button id="politics" name="politics" class="hidden-button" style="white-space: preserve-breaks;" type="button"></button>
+					<button id="politics" name="politics" class="hidden-button" style="white-space: preserve-breaks;"
+						type="button"></button>
 				</div>
 				<div>
 					<label for="organizations">Organizations:</label>
-					<button id="organizations" name="organizations" class="hidden-button" style="white-space: preserve-breaks;" type="button"></button>
+					<button id="organizations" name="organizations" class="hidden-button" style="white-space: preserve-breaks;"
+						type="button"></button>
 				</div>
 				<div>
 					<label for="backstory">Backstory:</label>
-					<button id="backstory" name="backstory" class="hidden-button" style="white-space: preserve-breaks;" type="button"></button>
+					<button id="backstory" name="backstory" class="hidden-button" style="white-space: preserve-breaks;"
+						type="button"></button>
 				</div>
 				<div>
 					<label for="notes">Notes:</label>
-					<button id="notes" name="notes" class="hidden-button" style="white-space: preserve-breaks;" type="button"></button>
+					<button id="notes" name="notes" class="hidden-button" style="white-space: preserve-breaks;"
+						type="button"></button>
 				</div>
 			</div>
 		</div>
