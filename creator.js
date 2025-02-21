@@ -347,7 +347,7 @@ window.onload = async function () {
 
     // Race
     race.addBoons(character);
-    race.applyAttributeModifiers(character);
+    race.applyModifiers(character);
     character.race = race;
 
     // Attributes

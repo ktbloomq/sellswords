@@ -5,9 +5,9 @@ export class Race {
 	modifiers;
 	choices = {};
 	static raceChoices = {};
-	applyAttributeModifiers(character) {
-		this.setAttributeModifiers(character);
-		this.attributeModifiers.forEach((e) => {
+	applyModifiers(character) {
+		this.setModifiers(character);
+		this.modifiers.forEach((e) => {
 			e();
 		});
 	};
@@ -62,8 +62,8 @@ export class Human extends Race {
 			{ id: "soul", displayName: "soul" },
 		]
 	};
-	setAttributeModifiers(character) {
-		this.attributeModifiers = [
+	setModifiers(character) {
+		this.modifiers = [
 			() => { character.attributes.physique.raw += 5 },
 			() => { character.attributes.soul.raw += 5 },
 			() => { character.attributes[this.choices.attributeBonus].raw += 3 },
@@ -98,8 +98,8 @@ export class Elf extends Race {
 			Boons.snowstep,
 		]
 	}
-	setAttributeModifiers(character) {
-		this.attributeModifiers = [
+	setModifiers(character) {
+		this.modifiers = [
 			() => { character.attributes.precision.raw += 5 },
 			() => { character.attributes.smarts.raw += 5 }
 		];
@@ -138,8 +138,8 @@ export class Dwarf extends Race {
 			Boons.livingStone
 		]
 	}
-	setAttributeModifiers(character) {
-		this.attributeModifiers = [
+	setModifiers(character) {
+		this.modifiers = [
 			() => { character.attributes.physique.raw += 5 },
 			() => { character.attributes.precision.raw += 5 }
 		];
@@ -163,8 +163,8 @@ export class Esborn extends Race {
 			Boons.ancestralMemory
 		]
 	}
-	setAttributeModifiers(character) {
-		this.attributeModifiers = [
+	setModifiers(character) {
+		this.modifiers = [
 			() => { character.attributes.physique.raw += 15 },
 		];
 	}
@@ -193,8 +193,8 @@ export class Orc extends Race {
 			Boons.naturalLeader
 		]
 	}
-	setAttributeModifiers(character) {
-		this.attributeModifiers = [
+	setModifiers(character) {
+		this.modifiers = [
 			() => { character.attributes.physique.raw += 5 },
 			() => { character.attributes.wit.raw += 5 }
 		];
@@ -225,8 +225,8 @@ export class Catfolk extends Race {
 			Boons.skittish
 		]
 	}
-	setAttributeModifiers(character) {
-		this.attributeModifiers = [
+	setModifiers(character) {
+		this.modifiers = [
 			() => { character.attributes.intuition.raw += 5 },
 			() => { character.attributes.wit.raw += 5 }
 		];
