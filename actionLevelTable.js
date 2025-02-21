@@ -1,0 +1,19 @@
+export default [
+  {"free":1,"chain":1,"dice":0},
+  {"free":1,"chain":2,"dice":1},
+  {"free":1,"chain":2,"dice":2},
+  {"free":1,"chain":3,"dice":3},
+  {"free":1,"chain":3,"dice":4},
+  {"free":1,"chain":3,"dice":5},
+  {"free":1,"chain":4,"dice":6},
+  {"free":1,"chain":4,"dice":6},
+  {"free":2,"chain":4,"dice":6},
+  {"free":2,"chain":5,"dice":7},
+  {"free":2,"chain":5,"dice":8},
+  {"free":2,"chain":5,"dice":8},
+  {"free":2,"chain":6,"dice":8},
+  {"free":2,"chain":6,"dice":8},
+  {"free":2,"chain":6,"dice":9},
+  {"free":2,"chain":7,"dice":9},
+  {"free":2,"chain":7,"dice":9}
+]

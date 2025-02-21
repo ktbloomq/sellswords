@@ -4,8 +4,9 @@ import CombatTraining from "./combatTraining.js"
 import * as Races from "./races.js"
 import * as Archetypes from "./archetypes.js"
 import * as PastLife from "./pastLife.js"
+import actionLevelTable from "./actionLevelTable.js"
 
-let physiqueInput, precisionInput, intuitionInput, smartsInput, witInput, soulInput, pointsSpent, boonInputClickCount = 0;
+let physiqueInput, precisionInput, intuitionInput, smartsInput, witInput, soulInput, pointsSpent, boonInputClickCount = 0, level = 1;
 
 function updateAttributePreview(event) {
   pointsSpent.textContent = Number(physiqueInput.value) + Number(precisionInput.value) +
@@ -90,7 +91,6 @@ function updatePastChoices(event, values) {
         choice.appendChild(option);
       });
       if (values) {
-        console.log(values);
         choice.value = values[i].value;
       }
     } else if (e1[0].startsWith("specialization")) {
@@ -134,30 +134,75 @@ function updatePastChoices(event, values) {
 }
 
 function addBoonInput(event, value) {
-  boonInputClickCount ++;
+  boonInputClickCount++;
   const BoonChoicesElement = document.getElementById("boons");
   const select = document.createElement("select");
   select.name = "boon-" + boonInputClickCount;
-  let option = document.createElement("option");
-  option.value = "";
-  option.selected = true;
-  option.disabled = true;
-  option.hidden = true;
-  option.textContent = "choose";
-  select.appendChild(option);
-  Object.values(Boons).forEach((boon) => {
-    option = document.createElement("option");
-    option.value = boon.id;
-    option.textContent = boon.displayName;
-    select.appendChild(option);
-  });
-  select.value = value ?? "";
+  boonOptions(select,undefined,value);
   BoonChoicesElement.appendChild(select);
 }
 
 function removeBoonInput() {
   const BoonChoicesElement = document.getElementById("boons");
   BoonChoicesElement.lastElementChild ? (BoonChoicesElement.lastElementChild.outerHTML = "") : null;
+}
+
+function boonOptions(element, options = Object.values(Boons), value) {
+  let option = document.createElement("option");
+  option.value = "";
+  option.disabled = true;
+  option.hidden = true;
+  option.textContent = "choose";
+  element.appendChild(option);
+  options.forEach((boon) => {
+    option = document.createElement("option");
+    option.value = boon.id;
+    option.textContent = boon.displayName;
+    element.appendChild(option);
+  });
+  element.value = value ?? "";
+}
+
+function levelUpOptions(event) {
+  const levelSection = document.getElementById("levelSection");
+  if(event.target.value<=0) {
+    event.target.value=1;
+  }
+  let newLevel = Number(event.target.value);
+  if (newLevel > level) {
+    for (let i = level; i < newLevel; i++) {
+      const div = document.createElement("div");
+      const archetypeSelect = document.createElement("select");
+      archetypeSelect.id = "levelUpArchetype" + level;
+      archetypeSelect.innerHTML = `
+        <option value="Warrior">Warrior</option>
+        <option value="Scholar">Scholar</option>
+        <option value="Mage">Mage</option>
+      `;
+      div.appendChild(archetypeSelect);
+
+      const pathBoon = document.createElement("select");
+      pathBoon.name = "levelUpPathBoon" + level;
+      boonOptions(pathBoon,Object.values(Boons).filter((value) => (value.type==="Warrior")));
+      div.appendChild(pathBoon);
+
+      const supportBoon = document.createElement("select");
+      supportBoon.name = "levelUpSupportBoon" + level;
+      boonOptions(supportBoon,Object.values(Boons).filter((value) => (value.type==="support")));
+      div.appendChild(supportBoon);
+
+      archetypeSelect.addEventListener("change", (event) => {
+        pathBoon.textContent = "";
+        boonOptions(pathBoon,Object.values(Boons).filter((value) => (value.type===event.target.value)))
+      });
+      levelSection.appendChild(div);
+    }
+  } else if (newLevel < level) {
+    for (let i = level; i > newLevel; i--) {
+      levelSection.removeChild(levelSection.lastChild);
+    }
+  }
+  level = newLevel;
 }
 
 window.onload = async function () {
@@ -173,6 +218,7 @@ window.onload = async function () {
   document.getElementById("past").addEventListener("change", updatePastChoices);
   document.getElementById("add-boon").addEventListener("click", addBoonInput);
   document.getElementById("remove-boon").addEventListener("click", removeBoonInput);
+  document.getElementById("level").addEventListener("change", levelUpOptions);
 
   // preview spent attributes
   physiqueInput.addEventListener("change", updateAttributePreview);
@@ -224,7 +270,7 @@ window.onload = async function () {
     document.getElementById("politics").value = userInputs.politics;
     document.getElementById("organizations").value = userInputs.organizations;
     document.getElementById("backstory").value = userInputs.backstory;
-    // TODO: set nested choices
+    // TODO: Load level up data
     Object.entries(userInputs).forEach(([key, value]) => {
       if (key.startsWith("boon")) {
         addBoonInput(null, value);
@@ -236,7 +282,7 @@ window.onload = async function () {
     updatePastChoices({ target: { value: "Bard" } });
   }
 
-  // Start Proccessing the form
+  // Start Processing the form
   const charForm = document.getElementById("char-form");
   charForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -248,7 +294,14 @@ window.onload = async function () {
 
     character.userInputs = Object.fromEntries(formdata.entries());
 
+
+    // Pre-process nested choices
     let moreBoons = [];
+    let levelUpArchetype = {
+      Warrior: 0,
+      Scholar: 0,
+      Mage: 0,
+    };
     for (const [key, value] of formdata.entries()) {
       if (key.startsWith("race-")) {
         race.choices[key.slice(5)] = value;
@@ -261,15 +314,17 @@ window.onload = async function () {
           } else if (key.endsWith("skill")) {
             pastLife.choices[pastLife.choices.length - 1].skill = value;
           } else if (key.endsWith("value")) {
-            pastLife.choices[pastLife.choices.length - 1].value = value;
+            pastLife.choices[pastLife.choices.length - 1].value = Number(value);
           }
         } else if (key.startsWith("past-weapon")) {
           pastLife.choices.push({ type: "weapon", value: value });
         } else {
           pastLife.choices.push({ type: "boon", value: value });
         }
-      } else if (key.startsWith("boon")) {
+      } else if (key.startsWith("boon") || key.startsWith("levelUpPathBoon") || key.startsWith("levelUpSupportBoon")) {
         moreBoons.push(value);
+      } else if (key.startsWith("levelUpArchetype")) {
+        levelUpArchetype[value]++;
       }
     };
 
@@ -339,9 +394,23 @@ window.onload = async function () {
       }
     });
 
+    // Master Level
+    let level = Number(formdata.get("level"));
+    character.level = level;
+    character.health.current += levelUpArchetype.Warrior * 2 + levelUpArchetype.Scholar * 2 + levelUpArchetype.Mage * 2;
+    character.health.max += levelUpArchetype.Warrior * 2 + levelUpArchetype.Scholar * 2 + levelUpArchetype.Mage * 2;
+    character.energy.current += levelUpArchetype.Warrior * 7 + levelUpArchetype.Scholar * 5 + levelUpArchetype.Mage * 2;
+    character.energy.max += levelUpArchetype.Warrior * 7 + levelUpArchetype.Scholar * 5 + levelUpArchetype.Mage * 2;
+    character.mana.current += levelUpArchetype.Warrior * 2 + levelUpArchetype.Scholar * 4 + levelUpArchetype.Mage * 7;
+    character.mana.max += levelUpArchetype.Warrior * 2 + levelUpArchetype.Scholar * 4 + levelUpArchetype.Mage * 7;
+    const actionLevel = actionLevelTable[level - 1];
+    console.log(actionLevel);
+    character.freeActions = actionLevel.free;
+    character.actionChain = actionLevel.chain;
+    character.actionDice = actionLevel.dice;
+
     // character.calcSkills();
     Object.keys(character.attributes).forEach((attrKey) => {
-      // console.log(attrKey,attrVal);
       let skills = character.attributes[attrKey];
       Object.keys(skills).slice(1).forEach((sKey) => {
         skills[sKey] = skills.raw * 5;
@@ -382,9 +451,6 @@ window.onload = async function () {
       method: "POST",
       body: characterString,
     });
-    // const queryParams = new URLSearchParams();
-    // queryParams.append("character", characterString);
-    // const redirect = `/char-sheet.html?${queryParams.toString()}`
     if (response.ok) window.open(`/sheet.html?name=${character.name}`, '_blank');
   });
 }
