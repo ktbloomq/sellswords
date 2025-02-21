@@ -17,7 +17,6 @@
 			<div id="editor-controls">
 				<span id="editor-array-controls">
 					<button id="add-entry" type="button">+</button>
-					<button id="remove-entry" type="button">-</button>
 				</span>
 				<button type="submit">Edit</button>
 			</div>
@@ -31,7 +30,7 @@
 			</div>
 			<div>Master Level: <span id="level"></span></div>
 		</div>
-		<div>
+		<div style="text-align: right;">
 			<button id="manage" type="button" style="font-size: xx-large;">Manage</button>
 			<button id="save" type="button" style="font-size: xx-large;">Save</button>
 		</div>
@@ -67,17 +66,21 @@
 			<div id="strength-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--physical);">
-			<label for="specializations" id="intimidationSpecialization" class="specialization-box" type="button">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box" type="button">
+				<table id="intimidationSpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
-			<label for="specializations" id="strengthSpecialization" class="specialization-box">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box">
+				<table id="strengthSpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
 		</div>
 		<div style="background-color: var(--physical);">
@@ -103,17 +106,21 @@
 			<div id="hide-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--physical);">
-			<label for="specializations" id="pickpocketSpecialization" class="specialization-box">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box">
+				<table id="pickpocketSpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
-			<label for="specializations" id="hideSpecialization" class="specialization-box">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box">
+				<table id="hideSpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
 		</div>
 		<div style="background-color: var(--physical);">
@@ -139,17 +146,21 @@
 			<div id="diplomacy-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--mental);">
-			<label for="specializations" id="blendSpecialization" class="specialization-box">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box">
+				<table id="blendSpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
-			<label for="specializations" id="diplomacySpecialization" class="specialization-box">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box">
+				<table id="diplomacySpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
 		</div>
 		<div style="background-color: var(--mental);">
@@ -175,17 +186,21 @@
 			<div id="education-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--mental);">
-			<label for="specializations" id="focusSpecialization" class="specialization-box">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box">
+				<table id="focusSpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
-			<label for="specializations" id="educationSpecialization" class="specialization-box">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box">
+				<table id="educationSpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
 		</div>
 		<div style="background-color: var(--mental);">
@@ -211,17 +226,21 @@
 			<div id="bluff-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--spiritual);">
-			<label for="specializations" id="businessSpecialization" class="specialization-box">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box">
+				<table id="businessSpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
-			<label for="specializations" id="bluffSpecialization" class="specialization-box">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box">
+				<table id="bluffSpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
 		</div>
 		<div style="background-color: var(--spiritual);">
@@ -247,17 +266,21 @@
 			<div id="alchemy-injury" class="box"></div>
 		</div>
 		<div style="background-color: var(--spiritual);">
-			<label for="specializations" id="readPersonSpecialization" class="specialization-box">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box">
+				<table id="readPersonSpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
-			<label for="specializations" id="alchemySpecialization" class="specialization-box">
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+			<label for="specializations" class="specialization-box">
+				<table id="alchemySpecialization">
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</label>
 		</div>
 		<div style="background-color: var(--spiritual);">
@@ -371,8 +394,7 @@
 			<div class="boon-subcategories">
 				<div>
 					<label for="appearance">Appearance:</label>
-					<button id="appearance" name="appearance" class="hidden-button" style="white-space: preserve-breaks;"
-						type="button"></button>
+					<button id="appearance" name="appearance" class="hidden-button" type="button"></button>
 				</div>
 				<!-- <div>
 					<label for="socialCircle">Social Circle:</label>
@@ -384,43 +406,35 @@
 				</div> -->
 				<div>
 					<label for="call">Call:</label>
-					<button id="call" name="call" class="hidden-button" style="white-space: preserve-breaks;"
-						type="button"></button>
+					<button id="call" name="call" class="hidden-button" type="button"></button>
 				</div>
 				<div>
 					<label for="quirks">Quirks:</label>
-					<button id="quirks" name="quirks" class="hidden-button" style="white-space: preserve-breaks;"
-						type="button"></button>
+					<button id="quirks" name="quirks" class="hidden-button" type="button"></button>
 				</div>
 				<div>
 					<label for="religion">Religion:</label>
-					<button id="religion" name="religion" class="hidden-button" style="white-space: preserve-breaks;"
-						type="button"></button>
+					<button id="religion" name="religion" class="hidden-button" type="button"></button>
 				</div>
 				<div>
 					<label for="oath">Oath:</label>
-					<button id="oath" name="oath" class="hidden-button" style="white-space: preserve-breaks;"
-						type="button"></button>
+					<button id="oath" name="oath" class="hidden-button" type="button"></button>
 				</div>
 				<div>
 					<label for="politics">Politics:</label>
-					<button id="politics" name="politics" class="hidden-button" style="white-space: preserve-breaks;"
-						type="button"></button>
+					<button id="politics" name="politics" class="hidden-button" type="button"></button>
 				</div>
 				<div>
 					<label for="organizations">Organizations:</label>
-					<button id="organizations" name="organizations" class="hidden-button" style="white-space: preserve-breaks;"
-						type="button"></button>
+					<button id="organizations" name="organizations" class="hidden-button" type="button"></button>
 				</div>
 				<div>
 					<label for="backstory">Backstory:</label>
-					<button id="backstory" name="backstory" class="hidden-button" style="white-space: preserve-breaks;"
-						type="button"></button>
+					<button id="backstory" name="backstory" class="hidden-button" type="button"></button>
 				</div>
 				<div>
 					<label for="notes">Notes:</label>
-					<button id="notes" name="notes" class="hidden-button" style="white-space: preserve-breaks;"
-						type="button"></button>
+					<button id="notes" name="notes" class="hidden-button" type="button"></button>
 				</div>
 			</div>
 		</div>

@@ -69,7 +69,7 @@ function updateElements() {
 			}
 			else if (entry.type === "specialization") {
 				Object.values(entry.target).forEach(entry2 => {
-					entry2.textContent="";
+					entry2.textContent = "";
 				});
 				source.forEach(entry2 => {
 					const specialization = document.createElement("tr");
@@ -82,7 +82,7 @@ function updateElements() {
 					entry.target[entry2.skill].appendChild(specialization);
 				});
 				Object.values(entry.target).forEach(entry2 => {
-					if(entry2.textContent==="") {
+					if (entry2.textContent === "") {
 						const blank = document.createElement("tr");
 						const name = document.createElement("td");
 						const value = document.createElement("td");
@@ -101,23 +101,45 @@ function updateElements() {
 function editorAppend(entry, type) {
 	if (type === "boon") {
 		const div = document.createElement("div");
+		div.style.display = "flex";
+		div.style.justifyContent = "space-between";
+		const inputs = document.createElement("div");
+		inputs.style.flexGrow = 1;
+
 		const displayNameInput = document.createElement("input");
 		displayNameInput.name = Date.now();
 		displayNameInput.value = entry.displayName ?? "";
-		div.appendChild(displayNameInput);
+		displayNameInput.placeholder = "name";
+		inputs.appendChild(displayNameInput);
 
 		const descriptionInput = document.createElement("textarea");
 		descriptionInput.name = Date.now();
 		descriptionInput.textContent = entry.description ?? "";
-		div.appendChild(descriptionInput);
+		descriptionInput.placeholder = "description";
+		inputs.appendChild(descriptionInput);
+		div.appendChild(inputs);
+
+		const remove = document.createElement("button");
+		remove.type = "button";
+		remove.textContent = "delete";
+		remove.addEventListener("click", () => { editorInputElement.removeChild(div) });
+		div.appendChild(remove);
+
 		editorInputElement.appendChild(div);
 	} else if (type === "specialization") {
 		const div = document.createElement("div");
+		div.style.display = "flex";
+		div.style.justifyContent = "space-between";
+		const inputs = document.createElement("div");
+		inputs.style.flexGrow = 1;
+
 		const name = document.createElement("input");
-		const skill = document.createElement("select");
-		const value = document.createElement("input");
 		name.name = Date.now();
 		name.value = entry.name ?? "";
+		name.placeholder = "name";
+		inputs.appendChild(name);
+
+		const skill = document.createElement("select");
 		skill.name = Date.now();
 		skill.innerHTML = `
 			<option value="intimidation">Intimidation</option>
@@ -133,13 +155,22 @@ function editorAppend(entry, type) {
 			<option value="readPerson">Read Person</option>
 			<option value="alchemy">Alchemy</option>
 		`;
-		skill.value = entry.skill;
+		skill.value = entry.skill ?? "intimidation";
+		inputs.appendChild(skill);
+
+		const value = document.createElement("input");
 		value.type = "number";
 		value.name = Date.now();
-		value.value = entry.value ?? "";
-		div.appendChild(name);
-		div.appendChild(skill);
-		div.appendChild(value);
+		value.value = entry.value ?? 0;
+		inputs.appendChild(value);
+		div.appendChild(inputs);
+
+		const remove = document.createElement("button");
+		remove.type = "button";
+		remove.textContent = "delete";
+		remove.addEventListener("click", () => { editorInputElement.removeChild(div) });
+		div.appendChild(remove);
+
 		editorInputElement.appendChild(div);
 	} else if (type === "textarea") {
 		const newInput = document.createElement("textarea");
@@ -244,7 +275,7 @@ window.onload = async function () {
 	console.log(character);
 
 	Object.keys(characterElements).forEach((key) => {
-		characterElements[key].target = document.getElementById(key)?? undefined;
+		characterElements[key].target = document.getElementById(key) ?? undefined;
 	});
 	characterElements.specializations.target = {}
 	characterElements.specializations.target.intimidation = document.getElementById("intimidationSpecialization");
@@ -267,9 +298,9 @@ window.onload = async function () {
 	Object.values(characterElements).forEach((value) => {
 		value.target.addEventListener?.("click", (event) => { openModal(value) });
 	});
-	document.getElementById("specializations").addEventListener("click", (event) => {openModal(characterElements.specializations)});
+	document.getElementById("specializations").addEventListener("click", (event) => { openModal(characterElements.specializations) });
 	document.getElementById("save").addEventListener("click", saveCharacter);
-	document.getElementById("manage").addEventListener("click", () => {window.location.href = "creator.html?name="+character.name});
+	document.getElementById("manage").addEventListener("click", () => { window.location.href = "creator.html?name=" + character.name });
 
 	characterElements.name.source = (v) => { if (v !== undefined) character.name = v; return character.name };
 	characterElements.race.source = (v) => { if (v !== undefined) character.race.name = v; return character.race.name };
@@ -329,10 +360,8 @@ window.onload = async function () {
 		}
 		editorAppend(entry, editorTarget.type);
 	});
-	document.getElementById("remove-entry").addEventListener("click", () => {
-		editorInputElement.lastElementChild ? (editorInputElement.lastElementChild.outerHTML = "") : null;
-	});
 	document.getElementById("editor-close").addEventListener("click", () => {
 		editorModalElement.close();
+		document.activeElement.blur();
 	})
 }
