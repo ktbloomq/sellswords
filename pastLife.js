@@ -137,7 +137,6 @@ export class Soldier extends PastLife {
   static pastChoices = {
     weapon1: [
       CombatTraining.smallWeapon,
-      CombatTraining.oneHandedBlade,
       CombatTraining.dualSmallWeapon,
       CombatTraining.oneHandedBlunt,
       CombatTraining.dualOneHandedBlunt,

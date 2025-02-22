@@ -37,6 +37,21 @@ export default class Character {
 			alchemy: -20
 		}
 	};
+	magic = {
+		level: 0,
+		schoolPoints: 0,
+		water: 0,
+		aether: 0,
+		fire: 0,
+		earth: 0,
+		air: 0,
+		spells: {
+			totalKnown: 0,
+			totalPracticed: 0,
+			known: [],
+			practiced: []
+		}
+	};
 	specializations = [];
 	boons = {
 		combat: [],
