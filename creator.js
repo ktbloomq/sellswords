@@ -8,6 +8,8 @@ import actionLevelTable from "./actionLevelTable.js"
 
 let physiqueInput, precisionInput, intuitionInput, smartsInput, witInput, soulInput, pointsSpent, boonInputClickCount = 0, level = 1;
 
+
+// display nested options
 function updateAttributePreview(event) {
   pointsSpent.textContent = Number(physiqueInput.value) + Number(precisionInput.value) +
     Number(intuitionInput.value) + Number(smartsInput.value) +
@@ -246,10 +248,9 @@ window.onload = async function () {
     const inputCharacter = await response.json();
     const userInputs = inputCharacter.userInputs;
     console.log(userInputs);
-    document.getElementById("name").value = userInputs.name;
-
-    document.getElementById("race").value = userInputs.race;
-    updateRaceChoices({ target: { value: userInputs.race } }, Object.entries(inputCharacter.race.choices));
+    document.getElementById("name").value = inputCharacter.name;
+    document.getElementById("race").value = inputCharacter.race.name;
+    updateRaceChoices({ target: { value: inputCharacter.race.name } }, Object.entries(inputCharacter.race.choices));
     physiqueInput.value = userInputs.physique;
     precisionInput.value = userInputs.precision;
     intuitionInput.value = userInputs.intuition;
@@ -258,7 +259,7 @@ window.onload = async function () {
     soulInput.value = userInputs.soul;
     document.getElementById("archetype").value = userInputs.archetype;
     updateArchetypeChoices({ target: { value: userInputs.archetype } }, Object.entries(inputCharacter.archetype.choices));
-    document.getElementById("appearance").value = userInputs.appearance;
+    document.getElementById("appearance").value = inputCharacter.lore.appearance;
     document.getElementById("past").value = userInputs.past;
     updatePastChoices({ target: { value: userInputs.past } }, inputCharacter.pastLife.choices);
     document.getElementById("socialCircle").value = userInputs.socialCircle;
@@ -269,18 +270,19 @@ window.onload = async function () {
     document.getElementById("skill-interest2").value = userInputs["skill-interest2"];
     document.getElementById("magic-school").value = userInputs["magic-school"];
     document.getElementById("path").value = userInputs.path;
-    document.getElementById("call").value = userInputs.call;
+    document.getElementById("call").value = inputCharacter.lore.call;
     document.getElementById("trait-name").value = userInputs["trait-name"];
     document.getElementById("trait-skill").value = userInputs["trait-skill"];
     document.getElementById("flaw-name").value = userInputs["flaw-name"];
     document.getElementById("flaw-skill").value = userInputs["flaw-skill"];
-    document.getElementById("quirks").value = userInputs.quirks;
-    document.getElementById("religion").value = userInputs.religion;
-    document.getElementById("oath").value = userInputs.oath;
-    document.getElementById("politics").value = userInputs.politics;
-    document.getElementById("organizations").value = userInputs.organizations;
-    document.getElementById("backstory").value = userInputs.backstory;
-    document.getElementById("level").value = userInputs.level;
+    document.getElementById("quirks").value = inputCharacter.lore.quirks;
+    document.getElementById("religion").value = inputCharacter.lore.religion;
+    document.getElementById("oath").value = inputCharacter.lore.oath;
+    document.getElementById("politics").value = inputCharacter.lore.politics;
+    document.getElementById("organizations").value = inputCharacter.lore.organizations;
+    document.getElementById("backstory").value = inputCharacter.lore.backstory;
+    document.getElementById("notes").value = inputCharacter.lore.notes;
+    document.getElementById("level").value = inputCharacter.level;
     let levelUp = [];
     Object.entries(userInputs).forEach(([key, value]) => {
       if (key.startsWith("boon")) {
@@ -379,6 +381,7 @@ window.onload = async function () {
     character.lore.politics = formdata.get("politics") ?? "";
     character.lore.organizations = formdata.get("organizations") ?? "";
     character.lore.backstory = formdata.get("backstory") ?? "";
+    character.lore.notes = formdata.get("notes") ?? "";
 
     // Traits
     const traitName = formdata.get("trait-name");

@@ -7,10 +7,10 @@
 - [x] action dice
 - [x] past life skills
 - [ ] past life options: workaround - each option is a new boon
-- [ ] all boons
+- [X] all boons*
 - [X] Paths
 - [X] allow manual adjustments
 - [ ] magic
 - [ ] armor
-- [ ] player leveling
+- [X] player leveling
 - [ ] injury: may be deprecated
