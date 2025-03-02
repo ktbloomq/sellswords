@@ -241,7 +241,7 @@ function applyChange(event) {
 		}
 	}
 	editorTarget.source(values);
-	console.log(character);
+	// console.log(character);
 	updateElements();
 	editorModalElement.close();
 	document.activeElement.blur();
@@ -272,7 +272,7 @@ window.onload = async function () {
 	} else {
 		character = new Character();
 	}
-	console.log(character);
+	// console.log(character);
 
 	Object.keys(characterElements).forEach((key) => {
 		characterElements[key].target = document.getElementById(key) ?? undefined;
