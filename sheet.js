@@ -47,13 +47,14 @@ let characterElements = {
 	politics: { type: "textarea" },
 	organizations: { type: "textarea" },
 	backstory: { type: "textarea" },
+	inventory: { type: "boon" },
 	notes: { type: "textarea" },
 };
 let editorModalElement, editorInputElement, editorFormElement, editorTarget;
 
 function updateElements() {
 	Object.entries(characterElements).forEach(([key, entry]) => {
-		const source = entry.source()
+		const source = entry.source();
 		if (entry.type === "number" || entry.type === "string" || entry.type === "textarea") {
 			entry.target.textContent = source;
 		} else if (Array.isArray(source)) {
@@ -91,6 +92,9 @@ function updateElements() {
 						entry2.appendChild(blank);
 					}
 				});
+			}
+			else {
+				console.error("invalid type", source);
 			}
 		} else {
 			console.error("invalid type", source);
@@ -278,18 +282,18 @@ window.onload = async function () {
 		characterElements[key].target = document.getElementById(key) ?? undefined;
 	});
 	characterElements.specializations.target = {}
-	characterElements.specializations.target.intimidation = document.getElementById("intimidationSpecialization");
-	characterElements.specializations.target.strength = document.getElementById("strengthSpecialization");
-	characterElements.specializations.target.pickpocket = document.getElementById("pickpocketSpecialization");
-	characterElements.specializations.target.hide = document.getElementById("hideSpecialization");
-	characterElements.specializations.target.blend = document.getElementById("blendSpecialization");
-	characterElements.specializations.target.diplomacy = document.getElementById("diplomacySpecialization");
-	characterElements.specializations.target.focus = document.getElementById("focusSpecialization");
-	characterElements.specializations.target.education = document.getElementById("educationSpecialization");
-	characterElements.specializations.target.business = document.getElementById("businessSpecialization");
-	characterElements.specializations.target.bluff = document.getElementById("bluffSpecialization");
-	characterElements.specializations.target.readPerson = document.getElementById("readPersonSpecialization");
-	characterElements.specializations.target.alchemy = document.getElementById("alchemySpecialization");
+	characterElements.specializations.target.intimidation = document.getElementById("physiqueSpecialization");
+	characterElements.specializations.target.strength = document.getElementById("physiqueSpecialization");
+	characterElements.specializations.target.pickpocket = document.getElementById("precisionSpecialization");
+	characterElements.specializations.target.hide = document.getElementById("precisionSpecialization");
+	characterElements.specializations.target.blend = document.getElementById("intuitionSpecialization");
+	characterElements.specializations.target.diplomacy = document.getElementById("intuitionSpecialization");
+	characterElements.specializations.target.focus = document.getElementById("smartsSpecialization");
+	characterElements.specializations.target.education = document.getElementById("smartsSpecialization");
+	characterElements.specializations.target.business = document.getElementById("witSpecialization");
+	characterElements.specializations.target.bluff = document.getElementById("witSpecialization");
+	characterElements.specializations.target.readPerson = document.getElementById("soulSpecialization");
+	characterElements.specializations.target.alchemy = document.getElementById("soulSpecialization");
 
 	editorModalElement = document.getElementById("editor");
 	editorFormElement = document.getElementById("editor-form");
@@ -347,8 +351,8 @@ window.onload = async function () {
 	characterElements.politics.source = (v) => { if (v !== undefined) character.lore.politics = v; return character.lore.politics; };
 	characterElements.organizations.source = (v) => { if (v !== undefined) character.lore.organizations = v; return character.lore.organizations; };
 	characterElements.backstory.source = (v) => { if (v !== undefined) character.lore.backstory = v; return character.lore.backstory; };
+	characterElements.inventory.source = (v) => { if (v !== undefined) character.inventory = v; return character.inventory; };
 	characterElements.notes.source = (v) => { if (v !== undefined) character.lore.notes = v; return character.lore.notes; };
-
 
 	updateElements();
 

@@ -85,6 +85,7 @@ export default class Character {
 		backstory: "",
 		notes: ""
 	}
+	inventory = [];
 	luck = 0;
 	freeActions = 1;
 	actionChain = 1;

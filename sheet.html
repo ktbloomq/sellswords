@@ -35,298 +35,289 @@
 			<button id="save" type="button" style="font-size: xx-large;">Save</button>
 		</div>
 	</div>
-	<div id="attributes">
-		<!-- Title Row -->
-		<div class="title">Attribute</div>
-		<div class="title">Attribute Bonus</div>
-		<div class="title">Skill</div>
-		<div class="title">Skill Bonus</div>
-		<div class="title">Injury</div>
-		<button id="specializations" name="specializations" class="hidden-button title"
-			type="button">Specialization</button>
-		<div class="title">Injury</div>
-		<div id="pools-title" class="title">Combat Pools</div>
-		<!-- Row -->
-		<div class="physical">
-			<div class="text-box">Physique</div>
-		</div>
-		<div class="physical">
-			<div id="physique" class="box"></div>
-		</div>
-		<div class="physical">
-			<div class="text-box">Intimidation</div>
-			<div class="text-box">Strength</div>
-		</div>
-		<div class="physical">
-			<div id="intimidation" class="box"></div>
-			<div id="strength" class="box"></div>
-		</div>
-		<div class="physical">
-			<div id="intimidation-injury" class="box"></div>
-			<div id="strength-injury" class="box"></div>
-		</div>
-		<div class="physical">
-			<label for="specializations" class="specialization-box" type="button">
-				<table id="intimidationSpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-			<label for="specializations" class="specialization-box">
-				<table id="strengthSpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-		</div>
-		<div class="physical">
-			<div id="physique-injury" class="box"></div>
-		</div>
-		<!-- Row -->
-		<div class="physical">
-			<div class="text-box">Precision</div>
-		</div>
-		<div class="physical">
-			<div id="precision" class="box"></div>
-		</div>
-		<div class="physical">
-			<div class="text-box">Pickpocket</div>
-			<div class="text-box">Hide</div>
-		</div>
-		<div class="physical">
-			<div id="pickpocket" class="box"></div>
-			<div id="hide" class="box"></div>
-		</div>
-		<div class="physical">
-			<div id="pickpocket-injury" class="box"></div>
-			<div id="hide-injury" class="box"></div>
-		</div>
-		<div class="physical">
-			<label for="specializations" class="specialization-box">
-				<table id="pickpocketSpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-			<label for="specializations" class="specialization-box">
-				<table id="hideSpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-		</div>
-		<div class="physical">
-			<div id="precision-injury" class="box"></div>
-		</div>
-		<!-- Row -->
-		<div class="mental">
-			<div class="text-box">Intuition</div>
-		</div>
-		<div class="mental">
-			<div id="intuition" class="box"></div>
-		</div>
-		<div class="mental">
-			<div class="text-box">Blend</div>
-			<div class="text-box">Diplomacy</div>
-		</div>
-		<div class="mental">
-			<div id="blend" class="box"></div>
-			<div id="diplomacy" class="box"></div>
-		</div>
-		<div class="mental">
-			<div id="blend-injury" class="box"></div>
-			<div id="diplomacy-injury" class="box"></div>
-		</div>
-		<div class="mental">
-			<label for="specializations" class="specialization-box">
-				<table id="blendSpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-			<label for="specializations" class="specialization-box">
-				<table id="diplomacySpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-		</div>
-		<div class="mental">
-			<div id="intuition-injury" class="box"></div>
-		</div>
-		<!-- Row -->
-		<div class="mental">
-			<div class="text-box">Smarts</div>
-		</div>
-		<div class="mental">
-			<div id="smarts" class="box"></div>
-		</div>
-		<div class="mental">
-			<div class="text-box">Focus</div>
-			<div class="text-box">Education</div>
-		</div>
-		<div class="mental">
-			<div id="focus" class="box"></div>
-			<div id="education" class="box"></div>
-		</div>
-		<div class="mental">
-			<div id="focus-injury" class="box"></div>
-			<div id="education-injury" class="box"></div>
-		</div>
-		<div class="mental">
-			<label for="specializations" class="specialization-box">
-				<table id="focusSpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-			<label for="specializations" class="specialization-box">
-				<table id="educationSpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-		</div>
-		<div class="mental">
-			<div id="smarts-injury" class="box"></div>
-		</div>
-		<!-- Row -->
-		<div class="spiritual">
-			<div class="text-box">Wit</div>
-		</div>
-		<div class="spiritual">
-			<div id="wit" class="box"></div>
-		</div>
-		<div class="spiritual">
-			<div class="text-box">Business</div>
-			<div class="text-box">Bluff</div>
-		</div>
-		<div class="spiritual">
-			<div id="business" class="box"></div>
-			<div id="bluff" class="box"></div>
-		</div>
-		<div class="spiritual">
-			<div id="business-injury" class="box"></div>
-			<div id="bluff-injury" class="box"></div>
-		</div>
-		<div class="spiritual">
-			<label for="specializations" class="specialization-box">
-				<table id="businessSpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-			<label for="specializations" class="specialization-box">
-				<table id="bluffSpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-		</div>
-		<div class="spiritual">
-			<div id="wit-injury" class="box"></div>
-		</div>
-		<!-- Row -->
-		<div class="spiritual">
-			<div class="text-box">Soul</div>
-		</div>
-		<div class="spiritual">
-			<div id="soul" class="box"></div>
-		</div>
-		<div class="spiritual">
-			<div class="text-box">Read Person</div>
-			<div class="text-box">Alchemy</div>
-		</div>
-		<div class="spiritual">
-			<div id="readPerson" class="box"></div>
-			<div id="alchemy" class="box"></div>
-		</div>
-		<div class="spiritual">
-			<div id="readPerson-injury" class="box"></div>
-			<div id="alchemy-injury" class="box"></div>
-		</div>
-		<div class="spiritual">
-			<label for="specializations" class="specialization-box">
-				<table id="readPersonSpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-			<label for="specializations" class="specialization-box">
-				<table id="alchemySpecialization">
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</label>
-		</div>
-		<div class="spiritual">
-			<div id="soul-injury" class="box"></div>
-		</div>
+	<div id="stats">
+		<table id="attributes">
+			<!-- Title Row -->
+			<tr>
+				<td class="title">Attribute</td>
+				<td class="title">Attribute Bonus</td>
+				<td class="title">Skill</td>
+				<td class="title">Skill Bonus</td>
+				<td class="title">Injury</td>
+				<td>
+					<button id="specializations" name="specializations" class="hidden-button title"
+						type="button">Specialization</button>
+				</td>
+				<td class="title">Injury</td>
+				<!-- <td id="pools-title" class="title">Combat Pools</div> -->
+			</tr>
+			<tr class="physical">
+				<td>
+					<div class="text-box">Physique</div>
+				</td>
+				<td>
+					<div id="physique" class="box"></div>
+				</td>
+				<td>
+					<div class="text-box">Intimidation</div>
+					<div class="text-box">Strength</div>
+				</td>
+				<td>
+					<div id="intimidation" class="box"></div>
+					<div id="strength" class="box"></div>
+				</td>
+				<td>
+					<div id="intimidation-injury" class="box"></div>
+					<div id="strength-injury" class="box"></div>
+				</td>
+				<td class="specialization-cell">
+					<label for="specializations" class="specialization-box">
+						<table id="physiqueSpecialization">
+							<tr id="intimidationSpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+							<tr id="strengthSpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</label>
+				</td>
+				<td>
+					<div id="physique-injury" class="box"></div>
+				</td>
+			</tr>
+			<tr class="physical">
+				<td>
+					<div class="text-box">Precision</div>
+				</td>
+				<td>
+					<div id="precision" class="box"></div>
+				</td>
+				<td>
+					<div class="text-box">Pickpocket</div>
+					<div class="text-box">Hide</div>
+				</td>
+				<td>
+					<div id="pickpocket" class="box"></div>
+					<div id="hide" class="box"></div>
+				</td>
+				<td>
+					<div id="pickpocket-injury" class="box"></div>
+					<div id="hide-injury" class="box"></div>
+				</td>
+				<td class="specialization-cell">
+					<label for="specializations" class="specialization-box">
+						<table id="precisionSpecialization">
+							<tr id="pickpocketSpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+							<tr id="hideSpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</label>
+				</td>
+				<td>
+					<div id="precision-injury" class="box"></div>
+				</td>
+			</tr>
+			<tr class="mental">
+				<td>
+					<div class="text-box">Intuition</div>
+				</td>
+				<td>
+					<div id="intuition" class="box"></div>
+				</td>
+				<td>
+					<div class="text-box">Blend</div>
+					<div class="text-box">Diplomacy</div>
+				</td>
+				<td>
+					<div id="blend" class="box"></div>
+					<div id="diplomacy" class="box"></div>
+				</td>
+				<td>
+					<div id="blend-injury" class="box"></div>
+					<div id="diplomacy-injury" class="box"></div>
+				</td>
+				<td class="specialization-cell">
+					<label for="specializations" class="specialization-box">
+						<table id="intuitionSpecialization">
+							<tr id="blendSpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+							<tr id="diplomacySpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</label>
+				</td>
+				<td>
+					<div id="intuition-injury" class="box"></div>
+				</td>
+			</tr>
+			<tr class="mental">
+				<td>
+					<div class="text-box">Smarts</div>
+				</td>
+				<td>
+					<div id="smarts" class="box"></div>
+				</td>
+				<td>
+					<div class="text-box">Focus</div>
+					<div class="text-box">Education</div>
+				</td>
+				<td>
+					<div id="focus" class="box"></div>
+					<div id="education" class="box"></div>
+				</td>
+				<td>
+					<div id="focus-injury" class="box"></div>
+					<div id="education-injury" class="box"></div>
+				</td>
+				<td class="specialization-cell">
+					<label for="specializations" class="specialization-box">
+						<table id="smartsSpecialization">
+							<tr id="focusSpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+							<tr id="educationSpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</label>
+				</td>
+				<td>
+					<div id="smarts-injury" class="box"></div>
+				</td>
+			</tr>
+			<tr class="spiritual">
+				<td>
+					<div class="text-box">Wit</div>
+				</td>
+				<td>
+					<div id="wit" class="box"></div>
+				</td>
+				<td>
+					<div class="text-box">Business</div>
+					<div class="text-box">Bluff</div>
+				</td>
+				<td>
+					<div id="business" class="box"></div>
+					<div id="bluff" class="box"></div>
+				</td>
+				<td>
+					<div id="business-injury" class="box"></div>
+					<div id="bluff-injury" class="box"></div>
+				</td>
+				<td class="specialization-cell">
+					<label for="specializations" class="specialization-box">
+						<table id="witSpecialization">
+							<tr id="businessSpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+							<tr id="bluffSpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</label>
+				</td>
+				<td>
+					<div id="wit-injury" class="box"></div>
+				</td>
+			</tr>
+			<tr class="spiritual">
+				<td>
+					<div class="text-box">Soul</div>
+				</td>
+				<td>
+					<div id="soul" class="box"></div>
+				</td>
+				<td>
+					<div class="text-box">Read Person</div>
+					<div class="text-box">Alchemy</div>
+				</td>
+				<td>
+					<div id="readPerson" class="box"></div>
+					<div id="alchemy" class="box"></div>
+				</td>
+				<td>
+					<div id="readPerson-injury" class="box"></div>
+					<div id="alchemy-injury" class="box"></div>
+				</td>
+				<td class="specialization-cell">
+					<label for="specializations" class="specialization-box">
+						<table id="soulSpecialization">
+							<tr id="readPersonSpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+							<tr id="alchemySpecialization">
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</label>
+				</td>
+				<td>
+					<div id="soul-injury" class="box"></div>
+				</td>
+			</tr>
+		</table>
 		<!-- Pools -->
 		<div id="pools">
-			<div>Health
-				<div style="border: 1px solid; text-align: left;">
-					<div style="display: flex; height: 3rem; align-items: center; justify-content: center;">
-						<div id="hp"></div>
+			<div class="pool">Health
+				<div>
+					<div id="hp">
 					</div>
-					<div style="border-top: 1px solid; padding: 0 2px;">
-						<label for="hpMax">Max HP</label>
+					<label for="hpMax" class="flex" style="border-top: 1px solid; padding: 0 2px;">
+						<div>Max HP</div>
 						<button id="hpMax" name="hpMax" class="hidden-button" type="button"></button>
-					</div>
+					</label>
 				</div>
 			</div>
-			<div>Energy
-				<div style="border: 1px solid; text-align: left;">
-					<div style="display: flex; height: 3rem; align-items: center; justify-content: center;">
-						<div id="ep"></div>
+			<div class="pool">Energy
+				<div>
+					<div id="ep">
 					</div>
-					<div style="border-top: 1px solid; padding: 0 2px;">
-						<label for="epMax">Max EP</label>
+					<label for="epMax" class="flex" style="border-top: 1px solid; padding: 0 2px;">
+						<div>Max EP</div>
 						<button id="epMax" name="epMax" class="hidden-button" type="button"></button>
-					</div>
+					</label>
 				</div>
 			</div>
-			<div>Mana
-				<div style="border: 1px solid; text-align: left;">
-					<div style="display: flex; height: 3rem; align-items: center; justify-content: center;">
-						<div id="mp"></div>
+			<div class="pool">Mana
+				<div>
+					<div id="mp">
 					</div>
-					<div style="border-top: 1px solid; padding: 0 2px;">
-						<label for="mpMax">Max MP</label>
+					<label for="mpMax" class="flex" style="border-top: 1px solid; padding: 0 2px;">
+						<div>Max MP</div>
 						<button id="mpMax" name="mpMax" class="hidden-button" type="button"></button>
+					</label>
+				</div>
+			</div>
+			<div class="pool">Luck
+				<div>
+					<div id="luck">
 					</div>
 				</div>
 			</div>
 			<div>Injuries
 				<ol id="injuries">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
 				</ol>
 			</div>
 			<div>Actions
@@ -437,6 +428,10 @@
 				<div>
 					<label for="backstory">Backstory:</label>
 					<button id="backstory" name="backstory" class="hidden-button" type="button"></button>
+				</div>
+				<div>
+					<label for="inventory">Inventory:</label>
+					<button id="inventory" name="inventory" class="hidden-button" type="button"></button>
 				</div>
 				<div>
 					<label for="notes">Notes:</label>

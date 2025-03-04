@@ -9,13 +9,14 @@ import actionLevelTable from "./actionLevelTable.js"
 let physiqueInput, precisionInput, intuitionInput, smartsInput, witInput, soulInput, pointsSpent, boonInputClickCount = 0, level = 1;
 
 
-// display nested options
+
 function updateAttributePreview(event) {
   pointsSpent.textContent = Number(physiqueInput.value) + Number(precisionInput.value) +
     Number(intuitionInput.value) + Number(smartsInput.value) +
     Number(witInput.value) + Number(soulInput.value) + 24;
 }
 
+// display nested options
 function updateRaceChoices(event, values) {
   const raceChoicesElement = document.getElementById("race-choices");
   raceChoicesElement.textContent = '';
@@ -243,9 +244,10 @@ window.onload = async function () {
   // set inputs to existing character
   const queryParams = new URLSearchParams(window.location.search);
   const nameParam = queryParams.get("name");
+  let inputCharacter = null;
   if (nameParam) {
     const response = await fetch(`getCharacter.php/?name=${nameParam}`);
-    const inputCharacter = await response.json();
+    inputCharacter = await response.json();
     const userInputs = inputCharacter.userInputs;
     console.log(userInputs);
     document.getElementById("name").value = inputCharacter.name;
@@ -461,8 +463,17 @@ window.onload = async function () {
       character.attributes[split[0]][split[1]] = Math.ceil((character.attributes[split[0]][split[1]] + 1) / 5) * 5;
     }
 
-    const characterString = JSON.stringify(character);
+    // Merge old character
+    if (inputCharacter) {
+      character.inventory = inputCharacter.inventory;
+      character.health.current = inputCharacter.health.current;
+      character.energy.current = inputCharacter.energy.current;
+      character.mana.current = inputCharacter.mana.current;
+    }
+
+    // Save and load character
     console.log(character);
+    const characterString = JSON.stringify(character);
     const response = await fetch("saveCharacter.php?name=" + character.name, {
       method: "POST",
       body: characterString,
