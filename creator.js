@@ -9,13 +9,14 @@ import actionLevelTable from "./actionLevelTable.js"
 let physiqueInput, precisionInput, intuitionInput, smartsInput, witInput, soulInput, pointsSpent, boonInputClickCount = 0, level = 1;
 
 
-// display nested options
+
 function updateAttributePreview(event) {
   pointsSpent.textContent = Number(physiqueInput.value) + Number(precisionInput.value) +
     Number(intuitionInput.value) + Number(smartsInput.value) +
     Number(witInput.value) + Number(soulInput.value) + 24;
 }
 
+// display nested options
 function updateRaceChoices(event, values) {
   const raceChoicesElement = document.getElementById("race-choices");
   raceChoicesElement.textContent = '';
@@ -140,7 +141,7 @@ function addBoonInput(event, value) {
   const BoonChoicesElement = document.getElementById("boons");
   const select = document.createElement("select");
   select.name = "boon-" + boonInputClickCount;
-  boonOptions(select,undefined,value);
+  boonOptions(select, undefined, value);
   BoonChoicesElement.appendChild(select);
 }
 
@@ -165,17 +166,17 @@ function boonOptions(element, options = Object.values(Boons), value) {
   element.value = value ?? "";
 }
 
-function levelUpOptions(event,values=[]) {
+function levelUpOptions(event, values = []) {
   const levelSection = document.getElementById("levelSection");
-  if(event.target.value<=0) {
-    event.target.value=1;
+  if (event.target.value <= 0) {
+    event.target.value = 1;
   }
   let newLevel = Number(event.target.value);
   if (newLevel > level) {
     for (let i = level; i < newLevel; i++) {
       const div = document.createElement("div");
       const title = document.createElement("h4");
-      title.textContent = "Level " + (i+1);
+      title.textContent = "Level " + (i + 1);
       div.appendChild(title);
 
       const archetype = document.createElement("select");
@@ -186,26 +187,26 @@ function levelUpOptions(event,values=[]) {
         <option value="Scholar">Scholar</option>
         <option value="Mage">Mage</option>
       `;
-      archetype.value = values[(i-1)*3] ?? "Warrior";
+      archetype.value = values[(i - 1) * 3] ?? "Warrior";
       div.appendChild(archetype);
 
       const pathBoon = document.createElement("select");
       pathBoon.name = "levelUpPathBoon" + i;
       pathBoon.id = "levelUpPathBoon" + i;
-      boonOptions(pathBoon,Object.values(Boons).filter((value) => (value.type===archetype.value)));
-      pathBoon.value = values[(i-1)*3+1] ?? "";
+      boonOptions(pathBoon, Object.values(Boons).filter((value) => (value.type === archetype.value)));
+      pathBoon.value = values[(i - 1) * 3 + 1] ?? "";
       div.appendChild(pathBoon);
 
       const supportBoon = document.createElement("select");
       supportBoon.name = "levelUpSupportBoon" + i;
       supportBoon.id = "levelUpSupportBoon" + i;
-      boonOptions(supportBoon,Object.values(Boons).filter((value) => (value.type==="support")));
-      supportBoon.value = values[(i-1)*3+2] ?? "";
+      boonOptions(supportBoon, Object.values(Boons).filter((value) => (value.type === "support")));
+      supportBoon.value = values[(i - 1) * 3 + 2] ?? "";
       div.appendChild(supportBoon);
 
       archetype.addEventListener("change", (event) => {
         pathBoon.textContent = "";
-        boonOptions(pathBoon,Object.values(Boons).filter((value) => (value.type===event.target.value)))
+        boonOptions(pathBoon, Object.values(Boons).filter((value) => (value.type === event.target.value)))
       });
       levelSection.appendChild(div);
     }
@@ -243,9 +244,10 @@ window.onload = async function () {
   // set inputs to existing character
   const queryParams = new URLSearchParams(window.location.search);
   const nameParam = queryParams.get("name");
+  let inputCharacter = null;
   if (nameParam) {
     const response = await fetch(`getCharacter.php/?name=${nameParam}`);
-    const inputCharacter = await response.json();
+    inputCharacter = await response.json();
     const userInputs = inputCharacter.userInputs;
     console.log(userInputs);
     document.getElementById("name").value = inputCharacter.name;
@@ -291,7 +293,7 @@ window.onload = async function () {
         levelUp.push(value);
       }
     });
-    levelUpOptions({target:{value:userInputs.level}}, levelUp);
+    levelUpOptions({ target: { value: userInputs.level } }, levelUp);
   } else {
     updateRaceChoices({ target: { value: "Human" } });
     updateArchetypeChoices({ target: { value: "Warrior" } });
@@ -461,8 +463,17 @@ window.onload = async function () {
       character.attributes[split[0]][split[1]] = Math.ceil((character.attributes[split[0]][split[1]] + 1) / 5) * 5;
     }
 
-    const characterString = JSON.stringify(character);
+    // Merge old character
+    if (inputCharacter) {
+      character.inventory = inputCharacter.inventory;
+      character.health.current = inputCharacter.health.current;
+      character.energy.current = inputCharacter.energy.current;
+      character.mana.current = inputCharacter.mana.current;
+    }
+
+    // Save and load character
     console.log(character);
+    const characterString = JSON.stringify(character);
     const response = await fetch("saveCharacter.php?name=" + character.name, {
       method: "POST",
       body: characterString,

@@ -11,6 +11,7 @@ let characterElements = {
 	mpMax: { type: "number" },
 	ep: { type: "number" },
 	epMax: { type: "number" },
+	luck: { type: "number" },
 	physique: { type: "number" },
 	intimidation: { type: "number" },
 	strength: { type: "number" },
@@ -47,13 +48,14 @@ let characterElements = {
 	politics: { type: "textarea" },
 	organizations: { type: "textarea" },
 	backstory: { type: "textarea" },
+	inventory: { type: "boon" },
 	notes: { type: "textarea" },
 };
 let editorModalElement, editorInputElement, editorFormElement, editorTarget;
 
 function updateElements() {
 	Object.entries(characterElements).forEach(([key, entry]) => {
-		const source = entry.source()
+		const source = entry.source();
 		if (entry.type === "number" || entry.type === "string" || entry.type === "textarea") {
 			entry.target.textContent = source;
 		} else if (Array.isArray(source)) {
@@ -91,6 +93,9 @@ function updateElements() {
 						entry2.appendChild(blank);
 					}
 				});
+			}
+			else {
+				console.error("invalid type", source);
 			}
 		} else {
 			console.error("invalid type", source);
@@ -311,6 +316,7 @@ window.onload = async function () {
 	characterElements.epMax.source = (v) => { if (v !== undefined) character.energy.max = v; return character.energy.max };
 	characterElements.mp.source = (v) => { if (v !== undefined) character.mana.current = v; return character.mana.current };
 	characterElements.mpMax.source = (v) => { if (v !== undefined) character.mana.max = v; return character.mana.max };
+	characterElements.luck.source = (v) => { if (v !== undefined) character.luck = v; return character.luck };
 	characterElements.physique.source = (v) => { if (v !== undefined) character.attributes.physique.raw = v; return character.attributes.physique.raw };
 	characterElements.intimidation.source = (v) => { if (v !== undefined) character.attributes.physique.intimidation = v; return character.attributes.physique.intimidation; };
 	characterElements.strength.source = (v) => { if (v !== undefined) character.attributes.physique.strength = v; return character.attributes.physique.strength; };
@@ -347,8 +353,8 @@ window.onload = async function () {
 	characterElements.politics.source = (v) => { if (v !== undefined) character.lore.politics = v; return character.lore.politics; };
 	characterElements.organizations.source = (v) => { if (v !== undefined) character.lore.organizations = v; return character.lore.organizations; };
 	characterElements.backstory.source = (v) => { if (v !== undefined) character.lore.backstory = v; return character.lore.backstory; };
+	characterElements.inventory.source = (v) => { if (v !== undefined) character.inventory = v; return character.inventory; };
 	characterElements.notes.source = (v) => { if (v !== undefined) character.lore.notes = v; return character.lore.notes; };
-
 
 	updateElements();
 
@@ -363,5 +369,5 @@ window.onload = async function () {
 	document.getElementById("editor-close").addEventListener("click", () => {
 		editorModalElement.close();
 		document.activeElement.blur();
-	})
+	});
 }

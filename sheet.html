@@ -254,7 +254,10 @@
 			<div id="soul" class="box"></div>
 		</div>
 		<div class="spiritual">
-			<div class="text-box">Read Person</div>
+			<div class="text-box">
+				<div>Read</div>
+				<div>Person</div>
+			</div>
 			<div class="text-box">Alchemy</div>
 		</div>
 		<div class="spiritual">
@@ -288,45 +291,48 @@
 		</div>
 		<!-- Pools -->
 		<div id="pools">
-			<div>Health
-				<div style="border: 1px solid; text-align: left;">
-					<div style="display: flex; height: 3rem; align-items: center; justify-content: center;">
-						<div id="hp"></div>
+			<div class="pool">Health
+				<div>
+					<div id="hp">
 					</div>
-					<div style="border-top: 1px solid; padding: 0 2px;">
-						<label for="hpMax">Max HP</label>
+					<label for="hpMax" class="flex" style="border-top: 1px solid; padding: 0 2px;">
+						<div>Max HP</div>
 						<button id="hpMax" name="hpMax" class="hidden-button" type="button"></button>
-					</div>
+					</label>
 				</div>
 			</div>
-			<div>Energy
-				<div style="border: 1px solid; text-align: left;">
-					<div style="display: flex; height: 3rem; align-items: center; justify-content: center;">
-						<div id="ep"></div>
+			<div class="pool">Energy
+				<div>
+					<div id="ep">
 					</div>
-					<div style="border-top: 1px solid; padding: 0 2px;">
-						<label for="epMax">Max EP</label>
+					<label for="epMax" class="flex" style="border-top: 1px solid; padding: 0 2px;">
+						<div>Max EP</div>
 						<button id="epMax" name="epMax" class="hidden-button" type="button"></button>
-					</div>
+					</label>
 				</div>
 			</div>
-			<div>Mana
-				<div style="border: 1px solid; text-align: left;">
-					<div style="display: flex; height: 3rem; align-items: center; justify-content: center;">
-						<div id="mp"></div>
+			<div class="pool">Mana
+				<div>
+					<div id="mp">
 					</div>
-					<div style="border-top: 1px solid; padding: 0 2px;">
-						<label for="mpMax">Max MP</label>
+					<label for="mpMax" class="flex" style="border-top: 1px solid; padding: 0 2px;">
+						<div>Max MP</div>
 						<button id="mpMax" name="mpMax" class="hidden-button" type="button"></button>
+					</label>
+				</div>
+			</div>
+			<div class="pool">Luck
+				<div>
+					<div id="luck">
 					</div>
 				</div>
 			</div>
 			<div>Injuries
 				<ol id="injuries">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
 				</ol>
 			</div>
 			<div>Actions
@@ -437,6 +443,10 @@
 				<div>
 					<label for="backstory">Backstory:</label>
 					<button id="backstory" name="backstory" class="hidden-button" type="button"></button>
+				</div>
+				<div>
+					<label for="inventory">Inventory:</label>
+					<button id="inventory" name="inventory" class="hidden-button" type="button"></button>
 				</div>
 				<div>
 					<label for="notes">Notes:</label>
