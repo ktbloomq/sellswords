@@ -5,7 +5,7 @@ services:
     ports:
       - 8080:80
     volumes:
-      - .:/var/www/html/:ro
+      - ./src:/var/www/html/:ro
   db:
     image: mariadb
     ports:
