@@ -55,7 +55,7 @@ let editorModalElement, editorInputElement, editorFormElement, editorTarget;
 
 function updateElements() {
 	Object.entries(characterElements).forEach(([key, entry]) => {
-		const source = entry.source();
+		const source = entry.source.call(character);
 		if (entry.type === "number" || entry.type === "string" || entry.type === "textarea") {
 			entry.target.textContent = source;
 		} else if (Array.isArray(source)) {
@@ -95,10 +95,10 @@ function updateElements() {
 				});
 			}
 			else {
-				console.error("invalid type", source);
+				console.error("invalid type", source, entry.type);
 			}
 		} else {
-			console.error("invalid type", source);
+			console.error("invalid type", source, entry.type);
 		}
 	});
 }
@@ -193,7 +193,7 @@ function editorAppend(entry, type) {
 
 function openModal(element) {
 	editorInputElement.innerHTML = "";
-	const source = element.source();
+	const source = element.source.call(character);
 	if (Array.isArray(source)) {
 		document.getElementById("editor-array-controls").style.display = "inline";
 		source.forEach((entry) => {
@@ -211,7 +211,7 @@ function applyChange(event) {
 	event.preventDefault();
 	const formData = new FormData(editorFormElement);
 	let values = Array.from(formData.values());
-	const source = editorTarget.source();
+	const source = editorTarget.source.call(character);
 	if (Array.isArray(source)) {
 		if (editorTarget.type === "number") {
 			values = values.map((entry) => { return Number(entry) });
@@ -245,7 +245,7 @@ function applyChange(event) {
 			values = values[0];
 		}
 	}
-	editorTarget.source(values);
+	editorTarget.source.call(character, values);
 	// console.log(character);
 	updateElements();
 	editorModalElement.close();
@@ -271,9 +271,11 @@ window.onload = async function () {
 	const nameParam = queryParams.get("name");
 	if (characterParam !== null) {
 		character = JSON.parse(characterParam);
+		character = new Character(character)
 	} else if (nameParam !== null) {
 		const response = await fetch(`getCharacter.php/?name=${nameParam}`);
 		character = await response.json();
+		character = new Character(character);
 	} else {
 		character = new Character();
 	}
@@ -307,54 +309,9 @@ window.onload = async function () {
 	document.getElementById("save").addEventListener("click", saveCharacter);
 	document.getElementById("manage").addEventListener("click", () => { window.location.href = "creator.html?name=" + character.name });
 
-	characterElements.name.source = (v) => { if (v !== undefined) character.name = v; return character.name };
-	characterElements.race.source = (v) => { if (v !== undefined) character.race.name = v; return character.race.name };
-	characterElements.level.source = (v) => { if (v !== undefined) character.level = v; return character.level };
-	characterElements.hp.source = (v) => { if (v !== undefined) character.health.current = v; return character.health.current };
-	characterElements.hpMax.source = (v) => { if (v !== undefined) character.health.max = v; return character.health.max };
-	characterElements.ep.source = (v) => { if (v !== undefined) character.energy.current = v; return character.energy.current };
-	characterElements.epMax.source = (v) => { if (v !== undefined) character.energy.max = v; return character.energy.max };
-	characterElements.mp.source = (v) => { if (v !== undefined) character.mana.current = v; return character.mana.current };
-	characterElements.mpMax.source = (v) => { if (v !== undefined) character.mana.max = v; return character.mana.max };
-	characterElements.luck.source = (v) => { if (v !== undefined) character.luck = v; return character.luck };
-	characterElements.physique.source = (v) => { if (v !== undefined) character.attributes.physique.raw = v; return character.attributes.physique.raw };
-	characterElements.intimidation.source = (v) => { if (v !== undefined) character.attributes.physique.intimidation = v; return character.attributes.physique.intimidation; };
-	characterElements.strength.source = (v) => { if (v !== undefined) character.attributes.physique.strength = v; return character.attributes.physique.strength; };
-	characterElements.precision.source = (v) => { if (v !== undefined) character.attributes.precision.raw = v; return character.attributes.precision.raw; };
-	characterElements.pickpocket.source = (v) => { if (v !== undefined) character.attributes.precision.pickpocket = v; return character.attributes.precision.pickpocket; };
-	characterElements.hide.source = (v) => { if (v !== undefined) character.attributes.precision.hide = v; return character.attributes.precision.hide; };
-	characterElements.intuition.source = (v) => { if (v !== undefined) character.attributes.intuition.raw = v; return character.attributes.intuition.raw; };
-	characterElements.blend.source = (v) => { if (v !== undefined) character.attributes.intuition.blend = v; return character.attributes.intuition.blend; };
-	characterElements.diplomacy.source = (v) => { if (v !== undefined) character.attributes.intuition.diplomacy = v; return character.attributes.intuition.diplomacy; };
-	characterElements.smarts.source = (v) => { if (v !== undefined) character.attributes.smarts.raw = v; return character.attributes.smarts.raw; };
-	characterElements.focus.source = (v) => { if (v !== undefined) character.attributes.smarts.focus = v; return character.attributes.smarts.focus; };
-	characterElements.education.source = (v) => { if (v !== undefined) character.attributes.smarts.education = v; return character.attributes.smarts.education; };
-	characterElements.wit.source = (v) => { if (v !== undefined) character.attributes.wit.raw = v; return character.attributes.wit.raw; };
-	characterElements.business.source = (v) => { if (v !== undefined) character.attributes.wit.business = v; return character.attributes.wit.business; };
-	characterElements.bluff.source = (v) => { if (v !== undefined) character.attributes.wit.bluff = v; return character.attributes.wit.bluff; };
-	characterElements.soul.source = (v) => { if (v !== undefined) character.attributes.soul.raw = v; return character.attributes.soul.raw; };
-	characterElements.readPerson.source = (v) => { if (v !== undefined) character.attributes.soul.readPerson = v; return character.attributes.soul.readPerson; };
-	characterElements.alchemy.source = (v) => { if (v !== undefined) character.attributes.soul.alchemy = v; return character.attributes.soul.alchemy; };
-	characterElements.weaponsTraining.source = (v) => { if (v !== undefined) character.weaponsTraining = v; return character.weaponsTraining; };
-	characterElements.combatBoons.source = (v) => { if (v !== undefined) character.boons.combat = v; return character.boons.combat; };
-	characterElements.socialBoons.source = (v) => { if (v !== undefined) character.boons.social = v; return character.boons.social; };
-	characterElements.explorationBoons.source = (v) => { if (v !== undefined) character.boons.exploration = v; return character.boons.exploration; };
-	characterElements.specializations.source = (v) => { if (v !== undefined) character.specializations = v; return character.specializations; };
-	characterElements.freeActions.source = (v) => { if (v !== undefined) character.freeActions = v; return character.freeActions; };
-	characterElements.actionChain.source = (v) => { if (v !== undefined) character.actionChain = v; return character.actionChain; };
-	characterElements.actionDice.source = (v) => { if (v !== undefined) character.actionDice = v; return character.actionDice; };
-	characterElements.appearance.source = (v) => { if (v !== undefined) character.lore.appearance = v; return character.lore.appearance; };
-	characterElements.socialCircle.source = (v) => { if (v !== undefined) character.lore.socialCircle = v; return character.lore.socialCircle; };
-	characterElements.regionalKnowledge.source = (v) => { if (v !== undefined) character.lore.regionalKnowledge = v; return character.lore.regionalKnowledge; };
-	characterElements.call.source = (v) => { if (v !== undefined) character.lore.call = v; return character.lore.call; };
-	characterElements.quirks.source = (v) => { if (v !== undefined) character.lore.quirks = v; return character.lore.quirks; };
-	characterElements.religion.source = (v) => { if (v !== undefined) character.lore.religion = v; return character.lore.religion; };
-	characterElements.oath.source = (v) => { if (v !== undefined) character.lore.oath = v; return character.lore.oath; };
-	characterElements.politics.source = (v) => { if (v !== undefined) character.lore.politics = v; return character.lore.politics; };
-	characterElements.organizations.source = (v) => { if (v !== undefined) character.lore.organizations = v; return character.lore.organizations; };
-	characterElements.backstory.source = (v) => { if (v !== undefined) character.lore.backstory = v; return character.lore.backstory; };
-	characterElements.inventory.source = (v) => { if (v !== undefined) character.inventory = v; return character.inventory; };
-	characterElements.notes.source = (v) => { if (v !== undefined) character.lore.notes = v; return character.lore.notes; };
+	Object.entries(characterElements).forEach(([key,entry]) => {
+		entry.source = character[key+"Handler"];
+	});
 
 	updateElements();
 
